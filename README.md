@@ -22,3 +22,17 @@ After instalation of dependencies, run:
 ```
 rake bower:install
 ```
+
+To create the database run:
+
+```
+rake db:create
+```
+
+To run the migrations: 
+
+```
+rake db:migrate
+```
+
+Run `rails s` and be happy :)
