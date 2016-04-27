@@ -1,4 +1,4 @@
-var app = angular.module('cederj-site', ['ui.router'])
+var app = angular.module('cederj-site', ['ui.router', 'templates'])
 
 app.config([
   '$stateProvider',
