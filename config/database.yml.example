@@ -1,0 +1,36 @@
+# PostgreSQl.
+#
+#
+development:
+  adapter: postgresql
+  host: localhost
+  encoding: unicode
+  database: cederj_development
+  pool: 5
+  username: hugotamaki
+  password:
+
+# Warning: The database defined as "test" will be erased and
+# re-generated from your development database when you run "rake".
+# Do not set this db to the same as development or production.
+test: &test
+  adapter: postgresql
+  host: localhost
+  encoding: unicode
+  database: cederj_test
+  pool: 5
+  username: hugotamaki
+  password:
+
+production:
+  adapter: postgresql
+  host: localhost
+  encoding: unicode
+  database: example_development
+  pool: 5
+  username: your_username
+  password:
+
+
+cucumber:
+  <<: *test
