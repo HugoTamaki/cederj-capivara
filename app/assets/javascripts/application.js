@@ -10,7 +10,6 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require libs/angular.min
 //= require www/app
 //= require www/controllers/app_controller
 //= require_tree .
