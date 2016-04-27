@@ -8,7 +8,7 @@ app.controller('AppCtrl', [
     $scope.hello = 'Hello World!'
 
     $scope.about = function () {
-      $state.go('app.about')
+      $state.go('about')
     }
   }
 ])
