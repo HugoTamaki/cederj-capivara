@@ -17,5 +17,7 @@
 //= require angular-rails-templates
 //= require_tree ../templates
 //= require www/app
+//= require www/directives/directives
 //= require www/controllers/app_controller
-
+//= require www/controllers/login_controller
+//= require lib/bootstrap/bootstrap.min
