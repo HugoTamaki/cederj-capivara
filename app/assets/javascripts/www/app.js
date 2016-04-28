@@ -8,6 +8,12 @@ app.config([
             $urlRouterProvider) {
 
     $stateProvider
+      .state('login', {
+        url: '/login',
+        templateUrl: 'login.html',
+        controller: 'LoginCtrl'
+      })
+
       .state('about', {
         url: '/about',
         templateUrl: 'about.html'
