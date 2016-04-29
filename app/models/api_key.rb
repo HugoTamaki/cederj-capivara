@@ -1,7 +1,11 @@
 require 'securerandom'
 class ApiKey < ActiveRecord::Base
   before_create :set_secret_and_token, :set_expiration
-  belongs_to :user, dependent: :destroy
+  belongs_to :user
+
+  def token
+    "#{self.secret}:#{self.key}"
+  end
 
   private
 
