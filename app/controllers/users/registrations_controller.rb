@@ -1,4 +1,6 @@
-class RegistrationsController < Devise::RegistrationsController
+class Users::RegistrationsController < Devise::RegistrationsController
+  before_filter :configure_permitted_parameters, if: :devise_controller?
+  skip_before_filter :verify_authenticity_token, :only => :create
   
   # POST /resource
   def create
@@ -22,5 +24,12 @@ class RegistrationsController < Devise::RegistrationsController
       set_minimum_password_length
       respond_with resource
     end
+  end
+
+  protected
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.for(:sign_up) << :first_name
+    devise_parameter_sanitizer.for(:sign_up) << :last_name
   end
 end
