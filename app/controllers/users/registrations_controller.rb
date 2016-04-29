@@ -2,7 +2,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   before_filter :configure_permitted_parameters, if: :devise_controller?
   skip_before_filter :verify_authenticity_token, :only => :create
   respond_to :json
-  
+
   # POST /resource
   def create
     build_resource(sign_up_params)
