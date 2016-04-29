@@ -10,7 +10,8 @@ class User < ActiveRecord::Base
     self.api_keys.create
   end
 
-  def destroy_api_key
-
+  def destroy_api_key(id)
+    api_key = self.api_keys.find(id)
+    api_key.destroy
   end
 end
