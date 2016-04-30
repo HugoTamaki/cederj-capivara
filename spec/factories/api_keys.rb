@@ -1,8 +1,8 @@
 FactoryGirl.define do
   factory :api_key do
-    secret "MyString"
-    key "MyString"
-    expires_at "2016-04-28 21:28:58"
+    secret "650f80eeeb0a4618a4d0a338b9c2dbbb"
+    key "1f3d747dc8a24661a449fff0c0451d3c"
+    expires_at Time.now + 7.days
     user_id 1
   end
 end
