@@ -10,15 +10,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
     resource.save
     yield resource if block_given?
     if resource.persisted?
-      if resource.active_for_authentication?
-        sign_up(resource_name, resource)
-        api_key = resource.set_api_key
+      api_key = resource.set_api_key
 
-        render json: {user: resource, api_key: {token: api_key.token}}
-      else
-        expire_data_after_sign_in!
-        respond_with resource
-      end
+      render json: {user: resource, api_key: {token: api_key.token}}
     else
       clean_up_passwords resource
       set_minimum_password_length
