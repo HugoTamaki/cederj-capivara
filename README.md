@@ -37,7 +37,7 @@ rake db:migrate
 
 Run `rails s` and be happy :)
 
-This project users rspec for specs. To run tests, run the command:
+This project uses rspec for specs. To run tests, run the command:
 
 ```
 rspec spec
