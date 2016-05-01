@@ -1,11 +1,20 @@
-var app = angular.module('cederj-site', ['ui.router', 'templates'])
+var app = angular.module('capivara', [
+  'ui.router',
+  'templates',
+  'LocalStorageModule'
+])
 
 app.config([
   '$stateProvider',
   '$urlRouterProvider',
+  'localStorageServiceProvider',
 
   function ($stateProvider,
-            $urlRouterProvider) {
+            $urlRouterProvider,
+            localStorageServiceProvider) {
+
+    localStorageServiceProvider
+      .setPrefix('capivara')
 
     $stateProvider
       .state('login', {

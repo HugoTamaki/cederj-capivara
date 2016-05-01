@@ -12,8 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require angular/angular.min
-//= require angular-ui-router/release/angular-ui-router.min
+//= require underscore/underscore-min
+//= require angular/angular
+//= require angular-local-storage/dist/angular-local-storage.min
+//= require angular-ui-router/release/angular-ui-router
 //= require angular-rails-templates
 //= require_tree ../templates
 //= require www/app
