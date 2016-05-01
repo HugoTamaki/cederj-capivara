@@ -23,4 +23,15 @@ class Users::SessionsController < Devise::SessionsController
     end
     api_key
   end
+
+  def format_response(resource, api_key)
+    {
+      user: {
+        first_name: resource.first_name,
+        last_name: resource.last_name,
+        email: resource.email
+      },
+      api_key: api_key.token
+    }
+  end
 end

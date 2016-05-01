@@ -12,7 +12,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     if resource.persisted?
       api_key = resource.set_api_key
 
-      render json: {user: resource, api_key: {token: api_key.token}}
+      render json: format_response(resource, api_key)
     else
       clean_up_passwords resource
       set_minimum_password_length
@@ -24,5 +24,16 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :email, :password, :password_confirmation])
+  end
+
+  def format_response(resource, api_key)
+    {
+      user: {
+        first_name: resource.first_name,
+        last_name: resource.last_name,
+        email: resource.email
+      },
+      api_key: api_key.token
+    }
   end
 end
