@@ -5,9 +5,9 @@ class Users::SessionsController < Devise::SessionsController
   # POST /resource/sign_in
   def create
     resource = User.find_by(email: params[:api_v1_user][:email])
-    if resource.valid_password?(params[:api_v1_user][:password])
+    if resource && resource.valid_password?(params[:api_v1_user][:password])
       api_key = renew_api_key(resource)
-      render json: {user: resource, api_key: {token: api_key.token}}
+      render json: format_response(resource, api_key)
     else
       render json: {error: 'email or password is wrong'}, status: 404
     end
