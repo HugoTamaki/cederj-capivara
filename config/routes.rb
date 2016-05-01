@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
-  
+
   root 'home#index'
 
 
   namespace :api do
     namespace :v1 do
       devise_for :users,
-      controllers: { 
+      controllers: {
         registrations: 'users/registrations',
         sessions: 'users/sessions'
       }
