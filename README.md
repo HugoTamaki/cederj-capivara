@@ -17,22 +17,28 @@ run:
 bundle install
 ```
 
-After instalation of dependencies, run:
+After instalation of dependencies, run this to add angular dependencies
 
 ```
 rake bower:install
 ```
 
-To create the database run:
+To create the database, run:
 
 ```
 rake db:create
 ```
 
-To run the migrations: 
+To run the migrations:
 
 ```
 rake db:migrate
 ```
 
 Run `rails s` and be happy :)
+
+This project users rspec for specs. To run tests, run the command:
+
+```
+rspec spec
+```
