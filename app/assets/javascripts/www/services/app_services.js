@@ -36,13 +36,22 @@ app.service('CacheService', [
 
     StartupService = {
       init: function () {
-        user = CacheService.get('user')
+        this.startTasks = Object.getOwnPropertyNames(this.tasks)
+      },
 
-        if (!_.isEmpty(user)) {
-          User.data = user
-          $state.go('profile');
-        } else {
-          $state.go('login');
+      executeTask: function (task) {
+        this.tasks[task]()
+      },
+
+      tasks: {
+        userInit: function () {
+          User.init()
+
+          if (!_.isEmpty(User.data)) {
+            $state.go('profile');
+          } else {
+            $state.go('login');
+          }
         }
       }
     }
@@ -65,6 +74,10 @@ app.service('CacheService', [
       appStarted = 1;
       event.preventDefault()
       StartupService.init()
+
+      _(StartupService.startTasks).each(function (task) {
+        StartupService.executeTask(task)
+      })
     });
   }
 ])
