@@ -1,16 +1,20 @@
 app.controller('MenuCtrl', [
   '$scope',
   '$state',
+  'User',
   'CacheService',
 
   function ($scope,
             $state,
+            User,
             CacheService) {
 
 
     $scope.signOut = function () {
-      CacheService.remove('user')
-      $state.go('login')
+      User.signOut()
+        .then(function () {
+          $state.go('login')
+        })
     }
 
     $scope.about = function () {
