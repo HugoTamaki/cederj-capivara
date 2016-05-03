@@ -1,10 +1,10 @@
-<nav>
+<nav ng-controller="MenuCtrl">
   <ul class="nav nav-pills">
     <li>
-      <a ui-sref="login">Home</a>
+      <a href="#" ng-click="about()">Sobre</a>
     </li>
     <li>
-      <a ui-sref="about">Sobre</a>
+      <a href="#" ng-click="signOut()">Sair</a>
     </li>
   </ul>
 </nav>
