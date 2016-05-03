@@ -3,14 +3,13 @@ Rails.application.routes.draw do
   root 'home#index'
 
 
-  namespace :api do
+  namespace :api, defaults: {format: :json} do
     namespace :v1 do
       devise_for :users,
       controllers: {
         registrations: 'users/registrations',
         sessions: 'users/sessions'
       }
-
     end
   end
 
