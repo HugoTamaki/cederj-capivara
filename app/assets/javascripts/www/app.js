@@ -27,5 +27,11 @@ app.config([
         url: '/about',
         templateUrl: 'about.html'
       })
+
+      .state('profile', {
+        url: '/profile',
+        templateUrl: 'profile.html',
+        controller: 'ProfileCtrl'
+      })
   }
 ])
