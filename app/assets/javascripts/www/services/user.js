@@ -11,7 +11,11 @@ app.service('User', [
         cache
 
     User = {
-      sign_in: function (options) {
+      init: function () {
+        this.data = CacheService.get('user')
+      },
+
+      signIn: function (options) {
         var deferred = $q.defer(),
         url = Conf.baseUrl + 'users/sign_in',
         self = this
@@ -30,9 +34,25 @@ app.service('User', [
         return deferred.promise
       },
 
-      sign_out: function () {
-        CacheService.set('user', null),
-        this.data = null
+      signOut: function () {
+        var deferred = $q.defer(),
+        url = Conf.baseUrl + 'users/sign_out'
+
+        $http.delete(url, {
+          headers: {
+            'Authorization': 'Token token=' + User.token
+          }
+        })
+        .success(function (response) {
+          CacheService.set('user', null)
+          this.data = null
+          deferred.resolve()
+        })
+        .error(function (response) {
+          deferred.reject(response.error)
+        })
+
+        return deferred.promise
       }
     }
 
