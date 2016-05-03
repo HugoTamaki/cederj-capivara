@@ -1,14 +1,25 @@
 app.controller('LoginCtrl', [
   '$scope',
   '$state',
+  'User',
 
   function ($scope,
-            $state) {
+            $state,
+            User) {
 
     $scope.user = {}
 
     $scope.login = function (user) {
-      console.log(user)
+      var options = {
+        api_v1_user: {
+          email: user.email,
+          password: user.password
+        }
+      }
+      User.sign_in(options)
+        .then(function () {
+          $state.go('profile')
+        })
     }
   }
 ])
