@@ -16,7 +16,7 @@ app.controller('LoginCtrl', [
           password: user.password
         }
       }
-      User.sign_in(options)
+      User.signIn(options)
         .then(function () {
           $state.go('profile')
         })
