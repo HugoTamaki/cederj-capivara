@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require underscore/underscore-min
+//= require_tree ./www/shared
 //= require angular/angular
 //= require angular-local-storage/dist/angular-local-storage.min
 //= require angular-ui-router/release/angular-ui-router
@@ -20,6 +21,10 @@
 //= require_tree ../templates
 //= require www/app
 //= require www/directives/directives
+//= require www/services/user
+//= require www/services/app_services
 //= require www/controllers/app_controller
 //= require www/controllers/login_controller
+//= require www/controllers/profile_controller
+//= require www/controllers/menu_controller
 //= require lib/bootstrap/bootstrap.min
