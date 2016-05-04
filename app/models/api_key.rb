@@ -11,6 +11,10 @@ class ApiKey < ActiveRecord::Base
     Time.now > self.expires_at
   end
 
+  def not_expired?
+    Time.now < self.expires_at
+  end
+
   private
 
   def set_secret_and_token
