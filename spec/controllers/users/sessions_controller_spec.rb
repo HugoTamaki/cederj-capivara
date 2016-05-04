@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe Users::SessionsController do
   let!(:user) { FactoryGirl.create(:user, email: 'johndoe@email.com', password: '123123123', password_confirmation: '123123123') }
-  let!(:api_key) { FactoryGirl.create(:api_key, user: user) }
+  let!(:api_key) { FactoryGirl.create(:api_key, user: user, expires_at: Time.now + 7.days) }
 
   before(:each) do
     @request.env['devise.mapping'] = Devise.mappings[:api_v1_user]
@@ -71,6 +71,55 @@ describe Users::SessionsController do
         data = JSON.parse(response.body)
 
         expect(data[:api_key]).not_to eql(api_key.token)
+      end
+    end
+  end
+
+  describe 'DELETE #destroy' do
+    context 'ApiKey is not found' do
+      it 'send 404 status' do
+        api_key.destroy
+
+        request.env['HTTP_AUTHORIZATION'] = "Token token=#{api_key.token}"
+        delete :destroy
+
+        data = JSON.parse(response.body)
+
+        expect(data).to eql({
+            'error' => 'Bad credentials'
+          })
+        expect(response.status).to eql(401)
+      end
+    end
+
+    context 'ApiKey is found' do
+      it 'destroys ApiKey' do
+        request.env['HTTP_AUTHORIZATION'] = "Token token=#{api_key.token}"
+        delete :destroy
+
+        data = JSON.parse(response.body)
+
+        expect(data).to eql({
+            'message' => 'Session cleared'
+          })
+        expect(response.status).to eql(200)
+      end
+    end
+
+    context 'ApiKey is expired' do
+      it 'sends 404 status' do
+        request.env['HTTP_AUTHORIZATION'] = "Token token=#{api_key.token}"
+        api_key.expires_at = Time.now - 7.days
+        api_key.save
+
+        delete :destroy
+
+        data = JSON.parse(response.body)
+
+        expect(data).to eql({
+            'error' => 'Bad credentials'
+          })
+        expect(response.status).to eql(401)
       end
     end
   end
