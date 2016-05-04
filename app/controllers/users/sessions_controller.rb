@@ -46,12 +46,14 @@ class Users::SessionsController < Devise::SessionsController
 
   def authenticate_token
     authenticate_with_http_token do |token, options|
-
+      secret, key = token.split(':')
+      @api_key = ApiKey.find_by(secret: secret, key: key)
+      @api_key && @api_key.not_expired? ? true : false
     end
   end
 
   def render_unauthorized
     self.headers['WWW-Authenticate'] = 'Token realm="Application"'
-    render json: 'Bad credentials', status: 401
+    render json: {error: 'Bad credentials'}, status: 401
   end
 end
