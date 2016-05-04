@@ -13,6 +13,7 @@ app.service('User', [
     User = {
       init: function () {
         this.data = CacheService.get('user')
+        this.token = CacheService.get('token')
       },
 
       signIn: function (options) {
@@ -58,6 +59,7 @@ app.service('User', [
 
     cache = function () {
       CacheService.set('user', User.data)
+      CacheService.set('token', User.token)
     }
 
     return User
