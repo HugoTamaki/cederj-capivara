@@ -18,7 +18,11 @@ class Users::SessionsController < Devise::SessionsController
 
   # DELETE /resource/sign_out
   def destroy
-    # find and destroy ApiKey
+    if @api_key.destroy
+      render json: {message: 'Session cleared'}, status: 200
+    else
+      render json: {message: 'Internal server error'}, status: 500
+    end
   end
 
   private
