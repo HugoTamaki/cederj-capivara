@@ -7,16 +7,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     build_resource(sign_up_params)
 
-    resource.save
-    yield resource if block_given?
-    if resource.persisted?
+    if resource.save
       api_key = resource.set_api_key
-
-      render json: format_response(resource, api_key)
+      render json: format_response(resource, api_key), status: 200
     else
-      clean_up_passwords resource
-      set_minimum_password_length
-      render json: {error: resource.errors}
+      render json: {error: resource.errors}, status: 400
     end
   end
 

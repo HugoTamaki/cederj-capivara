@@ -24,6 +24,7 @@
 //= require www/services/user
 //= require www/services/app_services
 //= require www/controllers/app_controller
+//= require www/controllers/signup_controller
 //= require www/controllers/login_controller
 //= require www/controllers/profile_controller
 //= require www/controllers/menu_controller

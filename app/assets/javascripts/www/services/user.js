@@ -8,24 +8,42 @@ app.service('User', [
             CacheService) {
     var url,
         User,
-        cache
+        cache,
+        extendAndCache
 
     User = {
       init: function () {
         this.data = CacheService.get('user')
-        this.token = CacheService.get('token')
+        if (this.data) {
+          this.logged = true
+        }
+      },
+
+      signUp: function (options) {
+        var deferred = $q.defer(),
+            url = Conf.baseUrl + 'users/',
+            self = this
+
+        $http.post(url, options)
+          .success(function (response) {
+            extendAndCache(response)
+            deferred.resolve()
+          })
+          .error(function () {
+            deferred.reject()
+          })
+
+        return deferred.promise
       },
 
       signIn: function (options) {
         var deferred = $q.defer(),
-        url = Conf.baseUrl + 'users/sign_in',
-        self = this
+            url = Conf.baseUrl + 'users/sign_in',
+            self = this
 
         $http.post(url, options)
           .success(function (response) {
-            self.data = response.user
-            self.token = response.api_key
-            cache()
+            extendAndCache(response)
             deferred.resolve()
           })
           .error(function (response) {
@@ -37,16 +55,18 @@ app.service('User', [
 
       signOut: function () {
         var deferred = $q.defer(),
-        url = Conf.baseUrl + 'users/sign_out'
+            url = Conf.baseUrl + 'users/sign_out',
+            self = this
 
         $http.delete(url, {
           headers: {
-            'Authorization': 'Token token=' + User.token
+            'Authorization': 'Token token=' + User.data.token
           }
         })
         .success(function (response) {
           CacheService.set('user', null)
-          this.data = null
+          self.data = null
+          self.logged = false
           deferred.resolve()
         })
         .error(function (response) {
@@ -57,9 +77,14 @@ app.service('User', [
       }
     }
 
+    extendAndCache = function (response) {
+      User.data = _(response.user).extend({ token: response.api_key })
+      User.logged = true
+      cache()
+    }
+
     cache = function () {
       CacheService.set('user', User.data)
-      CacheService.set('token', User.token)
     }
 
     return User

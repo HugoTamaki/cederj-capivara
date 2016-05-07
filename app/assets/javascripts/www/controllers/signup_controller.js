@@ -1,4 +1,4 @@
-app.controller('LoginCtrl', [
+app.controller('SignUpCtrl', [
   '$scope',
   '$state',
   'User',
@@ -9,21 +9,22 @@ app.controller('LoginCtrl', [
 
     $scope.user = {}
 
-    $scope.login = function (user) {
+    $scope.signUp = function (user) {
+
       var options = {
         api_v1_user: {
+          first_name: user.firstName,
+          last_name: user.lastName,
           email: user.email,
-          password: user.password
+          password: user.password,
+          password_confirmation: user.passworConfirmation
         }
       }
-      User.signIn(options)
+
+      User.signUp(options)
         .then(function () {
           $state.go('profile')
         })
-    }
-
-    $scope.goToSignUp = function () {
-      $state.go('sign_up')
     }
   }
 ])

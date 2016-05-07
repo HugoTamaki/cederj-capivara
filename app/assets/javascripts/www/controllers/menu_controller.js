@@ -9,6 +9,7 @@ app.controller('MenuCtrl', [
             User,
             CacheService) {
 
+    $scope.user = User
 
     $scope.signOut = function () {
       User.signOut()

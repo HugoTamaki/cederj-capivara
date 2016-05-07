@@ -4,7 +4,7 @@
       <a href="#" ng-click="about()">Sobre</a>
     </li>
     <li>
-      <a href="#" ng-click="signOut()">Sair</a>
+      <a href="#" ng-click="signOut()" ng-if="user.logged">Sair</a>
     </li>
   </ul>
 </nav>
