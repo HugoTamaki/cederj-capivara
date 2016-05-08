@@ -23,6 +23,19 @@ app.service('CacheService', [
   }
 ])
 
+.service('LabelService', [
+
+  function () {
+    var LabelService = {
+      error: {
+        failedLogin: 'Email ou senha errados.'
+      }
+    }
+
+    return LabelService
+  }
+])
+
 .service('StartupService', [
   '$state',
   'User',
