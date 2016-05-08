@@ -9,18 +9,25 @@
         </div>
 
         <div class="panel-body">
-          <form>
+          <div class="alert alert-danger" ng-show="error">
+            {{ error }}
+          </div>
+
+          <p ng-show="signInForm.email.$invalid && signInForm.email.$dirty" class="alert alert-danger">Preencha o campo de email</p>
+          <p ng-show="signInForm.password.$invalid && signInForm.password.$dirty" class="alert alert-danger">Preencha o campo de senha</p>
+
+          <form name="signInForm">
             <div class="form-group">
               Email:
-              <input type="email" class="form-control" id="user-email" ng-model="user.email">
+              <input type="text" class="form-control" id="user-email" name="email" ng-model="user.email" ng-required="true">
             </div>
 
             <div class="form-group">
               Senha:
-              <input type="password" class="form-control" id="user-email" ng-model="user.password">
+              <input type="password" class="form-control" id="user-password" name="password" ng-model="user.password" ng-required="true">
             </div>
 
-            <button type="submit" class="btn btn-default" ng-click="login(user)">Entrar</button>
+            <button type="submit" class="btn btn-default" ng-click="login(user)" ng-disabled="signInForm.$invalid">Entrar</button>
           </form>
         </div>
       </div>

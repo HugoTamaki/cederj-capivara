@@ -2,10 +2,12 @@ app.controller('LoginCtrl', [
   '$scope',
   '$state',
   'User',
+  'LabelService',
 
   function ($scope,
             $state,
-            User) {
+            User,
+            LabelService) {
 
     $scope.user = {}
 
@@ -19,6 +21,9 @@ app.controller('LoginCtrl', [
       User.signIn(options)
         .then(function () {
           $state.go('profile')
+        })
+        .catch(function () {
+          $scope.error = LabelService.error.failedLogin
         })
     }
 
