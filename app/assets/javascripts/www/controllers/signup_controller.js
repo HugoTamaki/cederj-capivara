@@ -2,10 +2,12 @@ app.controller('SignUpCtrl', [
   '$scope',
   '$state',
   'User',
+  'LabelService',
 
   function ($scope,
             $state,
-            User) {
+            User,
+            LabelService) {
 
     $scope.user = {}
 
@@ -17,13 +19,16 @@ app.controller('SignUpCtrl', [
           last_name: user.lastName,
           email: user.email,
           password: user.password,
-          password_confirmation: user.passworConfirmation
+          password_confirmation: user.passwordConfirmation
         }
       }
 
       User.signUp(options)
         .then(function () {
           $state.go('profile')
+        })
+        .catch(function () {
+          $scope.error = LabelService.error.somethingWrong
         })
     }
   }

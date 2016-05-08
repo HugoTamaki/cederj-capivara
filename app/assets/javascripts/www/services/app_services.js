@@ -28,7 +28,8 @@ app.service('CacheService', [
   function () {
     var LabelService = {
       error: {
-        failedLogin: 'Email ou senha errados.'
+        failedLogin: 'Email ou senha errados.',
+        somethingWrong: 'Alguma coisa aconteceu, tente novamente mais tarde.'
       }
     }
 
