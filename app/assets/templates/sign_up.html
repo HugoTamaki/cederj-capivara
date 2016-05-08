@@ -47,10 +47,15 @@
               <input type="password" class="form-control" id="user-email" ng-model="user.passwordConfirmation" name="passwordConfirmation" ng-required="true" compare-to="user.password">
             </div>
 
-            <button type="submit" class="btn btn-default" ng-click="signUp(user)">Entrar</button>
+            <button type="submit" class="btn btn-default" ng-click="signUp(user)" ng-disabled="signUpForm.$invalid">Entrar</button>
           </form>
         </div>
       </div>
+      <p>
+        <a ng-click="goToLogin()" href="javascript:;">
+          Login
+        </a>
+      </p>
     </div>
   </div>
 </div>
