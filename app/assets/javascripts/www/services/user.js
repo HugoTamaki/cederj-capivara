@@ -22,15 +22,16 @@ app.service('User', [
       signUp: function (options) {
         var deferred = $q.defer(),
             url = Conf.baseUrl + 'users/',
-            self = this
+            self = this,
+            error
 
         $http.post(url, options)
           .success(function (response) {
             extendAndCache(response)
             deferred.resolve()
           })
-          .error(function () {
-            deferred.reject()
+          .error(function (response) {
+            deferred.reject(response.error)
           })
 
         return deferred.promise

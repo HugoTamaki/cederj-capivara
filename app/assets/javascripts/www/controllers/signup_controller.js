@@ -27,9 +27,17 @@ app.controller('SignUpCtrl', [
         .then(function () {
           $state.go('profile')
         })
-        .catch(function () {
-          $scope.error = LabelService.error.somethingWrong
+        .catch(function (error) {
+          if (error.email && error.email[0] === 'has already been taken') {
+            $scope.error = LabelService.error.alreadyTaken
+          } else {
+            $scope.error = LabelService.error.somethingWrong
+          }
         })
+    }
+
+    $scope.goToLogin = function () {
+      $state.go('login')
     }
   }
 ])
