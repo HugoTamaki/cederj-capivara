@@ -41,3 +41,16 @@ app.config([
       })
   }
 ])
+
+.constant(
+  'CONST', {
+    'RESPONSE_STATUS': {
+      'UNAUTHORIZED': 401,
+      'OK': 200,
+      'INTERNAL_SERVER_ERROR': 500,
+      'SERVICE_UNAVAILABLE': 503,
+      'UNPROCESSABLE_ENTITY': 422,
+      'FORBIDDEN': 403
+    }
+  }
+)
