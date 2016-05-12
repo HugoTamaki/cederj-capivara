@@ -13,9 +13,12 @@ app.service('User', [
 
     User = {
       init: function () {
-        this.data = CacheService.get('user')
-        if (this.data) {
-          this.logged = true
+        var self = this,
+            data
+        data = CacheService.get('user')
+        _(User).extend(data)
+        if (User.token) {
+          self.logged = true
         }
       },
 
@@ -59,11 +62,7 @@ app.service('User', [
             url = Conf.baseUrl + 'users/sign_out',
             self = this
 
-        $http.delete(url, {
-          headers: {
-            'Authorization': 'Token token=' + User.data.token
-          }
-        })
+        $http.delete(url)
         .success(function (response) {
           CacheService.set('user', null)
           self.data = null
@@ -79,13 +78,13 @@ app.service('User', [
     }
 
     extendAndCache = function (response) {
-      User.data = _(response.user).extend({ token: response.api_key })
+      _(User).extend(response.user, {token: response.api_key})
       User.logged = true
       cache()
     }
 
     cache = function () {
-      CacheService.set('user', User.data)
+      CacheService.set('user', User)
     }
 
     return User
