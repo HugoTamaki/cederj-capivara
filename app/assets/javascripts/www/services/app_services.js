@@ -62,10 +62,8 @@ app.service('CacheService', [
         userInit: function () {
           User.init()
 
-          if (!_.isEmpty(User.data)) {
-            $state.go('profile');
-          } else {
-            $state.go('login');
+          if (!User.logged) {
+            $state.go('login')
           }
         }
       }

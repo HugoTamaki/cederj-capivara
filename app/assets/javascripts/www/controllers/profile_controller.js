@@ -7,6 +7,6 @@ app.controller('ProfileCtrl', [
             $state,
             User) {
 
-    $scope.user = User.data
+    $scope.user = User
   }
 ])
