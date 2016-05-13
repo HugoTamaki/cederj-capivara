@@ -2,11 +2,13 @@ app.controller('SignUpCtrl', [
   '$scope',
   '$state',
   'User',
+  'usSpinnerService',
   'LabelService',
 
   function ($scope,
             $state,
             User,
+            usSpinnerService,
             LabelService) {
 
     $scope.user = {}
@@ -23,6 +25,8 @@ app.controller('SignUpCtrl', [
         }
       }
 
+      usSpinnerService.spin('sign_up')
+
       User.signUp(options)
         .then(function () {
           $state.go('profile')
@@ -33,6 +37,9 @@ app.controller('SignUpCtrl', [
           } else {
             $scope.error = LabelService.error.somethingWrong
           }
+        })
+        .finally(function () {
+          usSpinnerService.stop('sign_up')
         })
     }
 

@@ -2,11 +2,13 @@ app.controller('LoginCtrl', [
   '$scope',
   '$state',
   'User',
+  'usSpinnerService',
   'LabelService',
 
   function ($scope,
             $state,
             User,
+            usSpinnerService,
             LabelService) {
 
     $scope.user = {}
@@ -18,12 +20,18 @@ app.controller('LoginCtrl', [
           password: user.password
         }
       }
+
+      usSpinnerService.spin('login')
+
       User.signIn(options)
         .then(function () {
           $state.go('profile')
         })
         .catch(function () {
           $scope.error = LabelService.error.failedLogin
+        })
+        .finally(function () {
+          usSpinnerService.stop('login')
         })
     }
 
