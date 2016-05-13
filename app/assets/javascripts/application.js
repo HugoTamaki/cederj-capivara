@@ -17,6 +17,8 @@
 //= require angular/angular
 //= require angular-local-storage/dist/angular-local-storage.min
 //= require angular-ui-router/release/angular-ui-router
+//= require spin.js/spin.min
+//= require angular-spinner/angular-spinner.min
 //= require angular-rails-templates
 //= require_tree ../templates
 //= require www/app
