@@ -1,16 +1,19 @@
 var app = angular.module('capivara', [
   'ui.router',
   'templates',
+  'angularSpinner',
   'LocalStorageModule'
 ])
 
 app.config([
   '$stateProvider',
   '$urlRouterProvider',
+  'usSpinnerConfigProvider',
   'localStorageServiceProvider',
 
   function ($stateProvider,
             $urlRouterProvider,
+            usSpinnerConfigProvider,
             localStorageServiceProvider) {
 
     localStorageServiceProvider
@@ -39,6 +42,8 @@ app.config([
         templateUrl: 'profile.html',
         controller: 'ProfileCtrl'
       })
+
+    usSpinnerConfigProvider.setTheme('small', { color: 'black', radius: 6, top: '50%', left: '50%' })
   }
 ])
 
