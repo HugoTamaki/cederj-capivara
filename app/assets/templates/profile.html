@@ -1,4 +1,8 @@
 <div class="container">
   <menu></menu>
-  <h1>Bem vindo {{ user.first_name }}!</h1>
+  <h1>Capivara</h1>
+
+  <div class="profile" ng-if="user">
+    <p>Bem vindo {{ user.first_name }} {{ user.last_name }}!</p>
+  </div>
 </div>
