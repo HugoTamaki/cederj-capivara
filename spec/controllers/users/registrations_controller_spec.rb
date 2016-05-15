@@ -97,37 +97,158 @@ describe Users::RegistrationsController do
       let!(:user) { FactoryGirl.create(:user, email: 'johndoe@email.com', first_name: 'John', last_name: 'Doe', password: '123123123', password_confirmation: '123123123') }
       let!(:api_key) { FactoryGirl.create(:api_key, user: user, expires_at: Time.now + 7.days) }
 
-      it 'updates user and send user info and token' do
-        request.env['HTTP_AUTHORIZATION'] = "Token token=#{api_key.token}"
+      context 'with password' do
+        it 'updates user with password and send user info and token' do
+          request.env['HTTP_AUTHORIZATION'] = "Token token=#{api_key.token}"
 
-        antique_password = user.encrypted_password
+          antique_password = user.encrypted_password
 
-        expect(user.first_name).to eql('John')
-        expect(user.last_name).to eql('Doe')
+          expect(user.first_name).to eql('John')
+          expect(user.last_name).to eql('Doe')
 
-        put :update, {
-          api_v1_user: {
-            first_name: 'Jonhson',
-            last_name: 'Doan',
-            current_password: '123123123',
-            password: '321321321',
-            password_confirmation: '321321321'
+          put :update, {
+            api_v1_user: {
+              first_name: 'Jonhson',
+              last_name: 'Doan',
+              current_password: '123123123',
+              password: '321321321',
+              password_confirmation: '321321321'
+            }
           }
-        }
 
-        expected_reponse = {
-          user: {
-            first_name: 'Jonhson',
-            last_name: 'Doan',
-            email: 'johndoe@email.com'
-          },
-          api_key: api_key.token
-        }
+          expected_reponse = {
+            user: {
+              first_name: 'Jonhson',
+              last_name: 'Doan',
+              email: 'johndoe@email.com'
+            },
+            api_key: api_key.token
+          }
 
-        expect(response.body).to eql(expected_reponse.to_json)
-        expect(user.reload.encrypted_password).not_to eql(antique_password)
-        expect(user.reload.first_name).to eql('Jonhson')
-        expect(user.reload.last_name).to eql('Doan')
+          expect(response.body).to eql(expected_reponse.to_json)
+          expect(user.reload.encrypted_password).not_to eql(antique_password)
+          expect(user.reload.first_name).to eql('Jonhson')
+          expect(user.reload.last_name).to eql('Doan')
+        end
+      end
+
+      context 'without password' do
+        it 'updates user without password and send user info and token' do
+          request.env['HTTP_AUTHORIZATION'] = "Token token=#{api_key.token}"
+
+          expect(user.first_name).to eql('John')
+          expect(user.last_name).to eql('Doe')
+
+          put :update, {
+            api_v1_user: {
+              first_name: 'Jonhson',
+              last_name: 'Doan'
+            }
+          }
+
+          expected_reponse = {
+            user: {
+              first_name: 'Jonhson',
+              last_name: 'Doan',
+              email: 'johndoe@email.com'
+            },
+            api_key: api_key.token
+          }
+
+          expect(response.body).to eql(expected_reponse.to_json)
+          expect(user.reload.first_name).to eql('Jonhson')
+          expect(user.reload.last_name).to eql('Doan')
+        end
+      end
+    end
+
+    context 'not valid' do
+      let!(:user) { FactoryGirl.create(:user, email: 'johndoe@email.com', first_name: 'John', last_name: 'Doe', password: '123123123', password_confirmation: '123123123') }
+      let!(:api_key) { FactoryGirl.create(:api_key, user: user, expires_at: Time.now + 7.days) }
+
+      context 'with empty attrs' do
+        it 'doesnt update user and send cant be blank error' do
+          request.env['HTTP_AUTHORIZATION'] = "Token token=#{api_key.token}"
+
+          expect(user.first_name).to eql('John')
+          expect(user.last_name).to eql('Doe')
+
+          put :update, {
+            api_v1_user: {
+              first_name: '',
+              last_name: ''
+            }
+          }
+
+          expected_reponse = {
+            error: {
+              first_name: ["can't be blank"],
+              last_name: ["can't be blank"]
+            }
+          }
+
+          expect(response.body).to eql(expected_reponse.to_json)
+          expect(user.reload.first_name).to eql('John')
+          expect(user.reload.last_name).to eql('Doe')
+        end
+      end
+
+      context 'with invalid current password' do
+        it 'doesnt update user and send cant be blank error' do
+          request.env['HTTP_AUTHORIZATION'] = "Token token=#{api_key.token}"
+
+          expect(user.first_name).to eql('John')
+          expect(user.last_name).to eql('Doe')
+
+          put :update, {
+            api_v1_user: {
+              first_name: 'Johnson',
+              last_name: 'Doan',
+              current_password: '123212321',
+              password: '321321321',
+              password_confirmation: '321321321'
+            }
+          }
+
+          expected_reponse = {
+            error: {
+              current_password: ["is invalid"]
+            }
+          }
+
+          expect(response.body).to eql(expected_reponse.to_json)
+          expect(user.reload.first_name).to eql('John')
+          expect(user.reload.last_name).to eql('Doe')
+        end
+      end
+
+      context 'with different password confirmation' do
+        it 'doesnt update user and send cant be blank error' do
+          request.env['HTTP_AUTHORIZATION'] = "Token token=#{api_key.token}"
+
+          expect(user.first_name).to eql('John')
+          expect(user.last_name).to eql('Doe')
+
+          put :update, {
+            api_v1_user: {
+              first_name: 'Johnson',
+              last_name: 'Doan',
+              current_password: '123123123',
+              password: '222222222',
+              password_confirmation: '321321321'
+            }
+          }
+
+          expected_reponse = {
+            error: {
+              password_confirmation: ["doesn't match Password"]
+            }
+          }
+
+          expect(response.body).to eql(expected_reponse.to_json)
+          expect(user.reload.first_name).to eql('John')
+          expect(user.reload.last_name).to eql('Doe')
+        end
       end
     end
   end
