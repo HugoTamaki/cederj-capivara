@@ -46,6 +46,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
     }
   end
 
+  def update_resource(resource, params)
+    if params[:current_password] && params[:password]
+      resource.update_with_password(params)
+    else
+      resource.update_without_password(params)
+    end
+  end
+
   def authenticate
     authenticate_token || render_unauthorized
   end
