@@ -1,17 +1,11 @@
 app.controller('AppCtrl', [
   '$scope',
   '$state',
-  'StartupService',
 
   function ($scope,
-            $state,
-            StartupService) {
+            $state) {
 
 
-    StartupService.init()
-
-    _(StartupService.startTasks).each(function (task) {
-      StartupService.executeTask(task)
-    })
+    $state.go('login')
   }
 ])

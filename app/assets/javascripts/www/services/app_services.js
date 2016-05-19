@@ -72,3 +72,25 @@ app.service('CacheService', [
     return StartupService
   }
 ])
+
+.run([
+  '$rootScope',
+  'StartupService',
+
+  function ($rootScope,
+            StartupService) {
+
+    var appStarted = 0; // flag to redirect only once when app is started
+    $rootScope.$on('$stateChangeStart',
+    function(event) {
+      if(appStarted) return;
+      appStarted = 1;
+      event.preventDefault()
+      StartupService.init()
+
+      _(StartupService.startTasks).each(function (task) {
+        StartupService.executeTask(task)
+      })
+    });
+  }
+])
