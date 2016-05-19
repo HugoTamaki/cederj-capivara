@@ -31,6 +31,11 @@ app.service('CacheService', [
         failedLogin: 'Email ou senha errados.',
         somethingWrong: 'Alguma coisa aconteceu, tente novamente mais tarde.',
         alreadyTaken: 'Já existe um usuário com este email.'
+      },
+      notification: {
+        profileEdit: {
+          success: 'Usuário editado com sucesso.'
+        }
       }
     }
 

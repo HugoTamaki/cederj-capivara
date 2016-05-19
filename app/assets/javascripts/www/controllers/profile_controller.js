@@ -15,11 +15,13 @@ app.controller('ProfileCtrl', [
   '$scope',
   '$state',
   'User',
+  'LabelService',
   'usSpinnerService',
 
   function ($scope,
             $state,
             User,
+            LabelService,
             usSpinnerService) {
 
     $scope.user = User
@@ -44,10 +46,10 @@ app.controller('ProfileCtrl', [
 
       User.edit(options)
         .then(function () {
-          $scope.notice = 'Usuário editado com sucesso.'
+          $scope.notice = LabelService.notification.profileEdit.success
         })
         .catch(function () {
-          $scope.error = 'Alguma coisa aconteceu.'
+          $scope.error = LabelService.error.somethingWrong
         })
         .finally(function () {
           usSpinnerService.stop('edit_profile')
