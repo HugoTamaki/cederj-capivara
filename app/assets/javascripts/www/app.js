@@ -43,6 +43,12 @@ app.config([
         controller: 'ProfileCtrl'
       })
 
+      .state('edit_profile', {
+        url: '/edit_profile',
+        templateUrl: 'edit_profile.html',
+        controller: 'ProfileEditCtrl'
+      })
+
     usSpinnerConfigProvider.setTheme('small', { color: 'black', radius: 6, top: '50%', left: '50%' })
   }
 ])
