@@ -74,6 +74,23 @@ app.service('User', [
         })
 
         return deferred.promise
+      },
+
+      edit: function (options) {
+        var deferred = $q.defer(),
+            url = Conf.baseUrl + 'users',
+            self = this
+
+        $http.put(url, options)
+          .success(function (response) {
+            extendAndCache(response)
+            deferred.resolve()
+          })
+          .error(function (response) {
+            deferred.reject()
+          })
+
+        return deferred.promise
       }
     }
 

@@ -10,3 +10,48 @@ app.controller('ProfileCtrl', [
     $scope.user = User
   }
 ])
+
+.controller('ProfileEditCtrl', [
+  '$scope',
+  '$state',
+  'User',
+  'usSpinnerService',
+
+  function ($scope,
+            $state,
+            User,
+            usSpinnerService) {
+
+    $scope.user = User
+
+    $scope.edit = function (user) {
+      var options = {
+        api_v1_user: {
+          first_name: user.first_name,
+          last_name: user.last_name
+        }
+      }
+
+      if (user.current_password) {
+        _(options).extend({
+          current_password: user.current_password,
+          password: user.password,
+          password_confirmation: user.password_confirmation
+        })
+      }
+
+      usSpinnerService.spin('edit_profile')
+
+      User.edit(options)
+        .then(function () {
+          $scope.notice = 'Usuário editado com sucesso.'
+        })
+        .catch(function () {
+          $scope.error = 'Alguma coisa aconteceu.'
+        })
+        .finally(function () {
+          usSpinnerService.stop('edit_profile')
+        })
+    }
+  }
+])
