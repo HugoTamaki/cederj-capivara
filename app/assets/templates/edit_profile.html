@@ -2,13 +2,17 @@
   <menu></menu>
 
   <div class="row">
+    <div class="alert alert-success" ng-show="notice">
+      {{ notice }}
+    </div>
+
+    <div class="alert alert-danger" ng-show="error">
+      {{ error }}
+    </div>
+
     <div class="col-lg-4">
       <span us-spinner spinner-theme="small" spinner-key="edit_profile"></span>
-      <h1>Editar sua conta</h1>
-
-      <div class="alert alert-danger" ng-show="error">
-        {{ error }}
-      </div>
+      <h1>Configurações</h1>
 
       <p ng-show="editForm.firstName.$invalid && editForm.firstName.$dirty" class="alert alert-danger">Preencha o campo de Nome</p>
       <p ng-show="editForm.lastName.$invald && editForm.lastName.$dirty" class="alert alert-danger">Preencha seu sobrenome</p>
@@ -16,34 +20,41 @@
       <p ng-show="editForm.passwordConfirmation.$error.required && editForm.passwordConfirmation.$dirty" class="alert alert-danger">Preencha o campo de confirmação de senha</p>
       <p ng-show="editForm.passwordConfirmation.$error.passwordVerify && editForm.passwordConfirmation.$dirty" class="alert alert-danger">A senha e a confirmação de senha devem ser iguais</p>
 
-      <form name="editForm">
-        <div class="form-group">
-          Nome:
-          <input type="text" class="form-control" id="user-first-name" name="firstName" ng-model="user.first_name" ng-required="true">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h2>Perfil</h2>
         </div>
+        <div class="panel-body">
+          <form name="editForm">
+            <div class="form-group">
+              Nome:
+              <input type="text" class="form-control" id="user-first-name" name="firstName" ng-model="user.first_name" ng-required="true">
+            </div>
 
-        <div class="form-group">
-          Sobrenome:
-          <input type="text" class="form-control" id="user-last-name" name="lastName" ng-model="user.last_name" ng-required="true">
+            <div class="form-group">
+              Sobrenome:
+              <input type="text" class="form-control" id="user-last-name" name="lastName" ng-model="user.last_name" ng-required="true">
+            </div>
+
+            <div class="form-group">
+              Senha atual:
+              <input type="password" class="form-control" id="user-current-password" name="currentPassword" ng-model="user.current_password">
+            </div>
+
+            <div class="form-group">
+              Nova senha:
+              <input type="password" class="form-control" id="user-password" ng-model="user.password" name="password">
+            </div>
+
+            <div class="form-group">
+              Confirmação de nova senha:
+              <input type="password" class="form-control" id="user-password-confirmation" ng-model="user.password_confirmation" name="passwordConfirmation" compare-to="user.password">
+            </div>
+
+            <button type="submit" class="btn btn-default" ng-click="edit(user)" ng-disabled="editForm.$invalid">Editar</button>
+          </form>
         </div>
-
-        <div class="form-group">
-          Senha atual:
-          <input type="password" class="form-control" id="user-current-password" name="currentPassword" ng-model="user.current_password">
-        </div>
-
-        <div class="form-group">
-          Nova senha:
-          <input type="password" class="form-control" id="user-password" ng-model="user.password" name="password">
-        </div>
-
-        <div class="form-group">
-          Confirmação de nova senha:
-          <input type="password" class="form-control" id="user-password-confirmation" ng-model="user.password_confirmation" name="passwordConfirmation" compare-to="user.password">
-        </div>
-
-        <button type="submit" class="btn btn-default" ng-click="edit(user)" ng-disabled="editForm.$invalid">Editar</button>
-      </form>
+      </div>
     </div>
   </div>
 </div>
