@@ -4,6 +4,12 @@
       <a href="javascript:;" ng-click="about()">Sobre</a>
     </li>
     <li>
+      <a href="javascript:;" ng-click="profile()" ng-if="user.logged">Perfil</a>
+    </li>
+    <li>
+      <a href="javascript:;" ng-click="editProfile()" ng-if="user.logged">Configurações</a>
+    </li>
+    <li>
       <a href="javascript:;" ng-click="signOut()" ng-if="user.logged">Sair</a>
     </li>
   </ul>
