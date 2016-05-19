@@ -21,5 +21,13 @@ app.controller('MenuCtrl', [
     $scope.about = function () {
       $state.go('about')
     }
+
+    $scope.profile = function () {
+      $state.go('profile')
+    }
+
+    $scope.editProfile = function () {
+      $state.go('edit_profile')
+    }
   }
 ])
