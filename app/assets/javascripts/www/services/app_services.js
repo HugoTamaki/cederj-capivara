@@ -64,6 +64,8 @@ app.service('CacheService', [
 
           if (!User.logged) {
             $state.go('login')
+          } else if (window.location.hash === '') {
+            $state.go('profile')
           }
         }
       }
