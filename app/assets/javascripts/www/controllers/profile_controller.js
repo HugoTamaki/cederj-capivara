@@ -35,7 +35,7 @@ app.controller('ProfileCtrl', [
       }
 
       if (user.current_password) {
-        _(options).extend({
+        _(options.api_v1_user).extend({
           current_password: user.current_password,
           password: user.password,
           password_confirmation: user.password_confirmation
@@ -47,6 +47,9 @@ app.controller('ProfileCtrl', [
       User.edit(options)
         .then(function () {
           $scope.notice = LabelService.notification.profileEdit.success
+          delete $scope.user.current_password
+          delete $scope.user.password
+          delete $scope.user.password_confirmation
         })
         .catch(function () {
           $scope.error = LabelService.error.somethingWrong
