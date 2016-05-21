@@ -30,20 +30,34 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   protected
 
-  def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :email, :password, :password_confirmation])
-    devise_parameter_sanitizer.permit(:account_update, keys: [:first_name, :last_name, :password, :password_confirmation, :current_password])
-  end
-
   def format_response(resource, api_key)
+    user_disciplines = resource.user_disciplines
+    disciplines_hash = prepare_disciplines(user_disciplines)
+
     {
       user: {
         first_name: resource.first_name,
         last_name: resource.last_name,
-        email: resource.email
+        email: resource.email,
+        disciplines: disciplines_hash
       },
       api_key: api_key.token
     }
+  end
+
+  def prepare_disciplines(user_disciplines)
+    response = []
+
+    user_disciplines.each do |user_discipline|
+      response << {
+        id: user_discipline.discipline.id,
+        name: user_discipline.discipline.name,
+        description: user_discipline.discipline.description,
+        status: user_discipline.status
+      }
+    end
+
+    response
   end
 
   def update_resource(resource, params)
@@ -73,5 +87,16 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def render_unauthorized
     self.headers['WWW-Authenticate'] = 'Token realm="Application"'
     render json: {error: 'Bad credentials'}, status: 401
+  end
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up,
+      keys: [:first_name, :last_name, :email, :password, :password_confirmation]
+    )
+    devise_parameter_sanitizer.permit(:account_update,
+      keys: [:first_name, :last_name, :password, :password_confirmation, :current_password,
+        user_disciplines_attributes: [:id, :status]
+      ]
+    )
   end
 end

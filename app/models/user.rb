@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   has_many :api_keys, dependent: :destroy
   has_many :user_disciplines
   has_many :disciplines, through: :user_disciplines
+  accepts_nested_attributes_for :user_disciplines
 
   validates :first_name, presence: true
   validates :last_name, presence: true

@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 describe Users::RegistrationsController do
+  let!(:pda) { FactoryGirl.create(:discipline, name: 'PDA', description: 'discipline desc') }
+  let!(:cpw) { FactoryGirl.create(:discipline, name: 'CPW', description: 'discipline desc') }
 
   before(:each) do
     @request.env['devise.mapping'] = Devise.mappings[:api_v1_user]
@@ -25,7 +27,21 @@ describe Users::RegistrationsController do
           user: {
             first_name: 'John',
             last_name: 'Doe',
-            email: 'johndoe@email.com'
+            email: 'johndoe@email.com',
+            disciplines: [
+              {
+                id: pda.id,
+                name: pda.name,
+                description: pda.description,
+                status: 'incomplete'
+              },
+              {
+                id: cpw.id,
+                name: cpw.name,
+                description: cpw.description,
+                status: 'incomplete'
+              }
+            ]
           },
           api_key: api_key.token
         }
@@ -120,7 +136,21 @@ describe Users::RegistrationsController do
             user: {
               first_name: 'Jonhson',
               last_name: 'Doan',
-              email: 'johndoe@email.com'
+              email: 'johndoe@email.com',
+              disciplines: [
+                {
+                  id: pda.id,
+                  name: pda.name,
+                  description: pda.description,
+                  status: 'incomplete'
+                },
+                {
+                  id: cpw.id,
+                  name: cpw.name,
+                  description: cpw.description,
+                  status: 'incomplete'
+                }
+              ]
             },
             api_key: api_key.token
           }
@@ -150,7 +180,21 @@ describe Users::RegistrationsController do
             user: {
               first_name: 'Jonhson',
               last_name: 'Doan',
-              email: 'johndoe@email.com'
+              email: 'johndoe@email.com',
+              disciplines: [
+                {
+                  id: pda.id,
+                  name: pda.name,
+                  description: pda.description,
+                  status: 'incomplete'
+                },
+                {
+                  id: cpw.id,
+                  name: cpw.name,
+                  description: cpw.description,
+                  status: 'incomplete'
+                }
+              ]
             },
             api_key: api_key.token
           }
@@ -158,6 +202,52 @@ describe Users::RegistrationsController do
           expect(response.body).to eql(expected_reponse.to_json)
           expect(user.reload.first_name).to eql('Jonhson')
           expect(user.reload.last_name).to eql('Doan')
+        end
+      end
+
+      context 'update disciplines statuses' do
+        it 'updates successfuly disciplines statuses' do
+          request.env['HTTP_AUTHORIZATION'] = "Token token=#{api_key.token}"
+
+          put :update, {
+            api_v1_user: {
+              user_disciplines_attributes: [
+                {
+                  id: user.user_disciplines.first.id,
+                  status: 'doing'
+                },
+                {
+                  id: user.user_disciplines.last.id,
+                  status: 'doing'
+                }
+              ]
+            }
+          }
+
+          expected_reponse = {
+            user: {
+              first_name: 'John',
+              last_name: 'Doe',
+              email: 'johndoe@email.com',
+              disciplines: [
+                {
+                  id: pda.id,
+                  name: pda.name,
+                  description: pda.description,
+                  status: 'doing'
+                },
+                {
+                  id: cpw.id,
+                  name: cpw.name,
+                  description: cpw.description,
+                  status: 'doing'
+                }
+              ]
+            },
+            api_key: api_key.token
+          }
+
+          expect(response.body).to eql(expected_reponse.to_json)
         end
       end
     end
