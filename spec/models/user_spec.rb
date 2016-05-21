@@ -11,6 +11,22 @@ describe User do
 
   describe :relationships do
     it { expect(user).to respond_to(:api_keys) }
+    it { expect(user).to respond_to(:disciplines) }
+    it { expect(user).to respond_to(:user_disciplines) }
+  end
+
+  describe :creation do
+    let!(:pda) { FactoryGirl.create(:discipline, name: 'PDA', description: 'some description') }
+    let!(:cpw) { FactoryGirl.create(:discipline, name: 'CPW', description: 'some description') }
+    let!(:user_creation) { FactoryGirl.create(:user, email: 'loremipsum@email.com') }
+
+    it 'user should have all disciplines' do
+      expect(user.disciplines).to include(pda, cpw)
+    end
+
+    it 'user disciplines should all be incomplete' do
+      expect(user.disciplines.pluck(:status)).to eql(['incomplete', 'incomplete'])
+    end
   end
 
   describe :methods do
