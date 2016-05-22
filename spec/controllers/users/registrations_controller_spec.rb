@@ -23,6 +23,7 @@ describe Users::RegistrationsController do
 
         user = User.last
         api_key = ApiKey.last
+        user_disciplines = user.user_disciplines
         expected_reponse = {
           user: {
             first_name: 'John',
@@ -31,12 +32,14 @@ describe Users::RegistrationsController do
             disciplines: [
               {
                 id: pda.id,
+                ud_id: user_disciplines[0].id,
                 name: pda.name,
                 description: pda.description,
                 status: 'incomplete'
               },
               {
                 id: cpw.id,
+                ud_id: user_disciplines[1].id,
                 name: cpw.name,
                 description: cpw.description,
                 status: 'incomplete'
@@ -122,6 +125,8 @@ describe Users::RegistrationsController do
           expect(user.first_name).to eql('John')
           expect(user.last_name).to eql('Doe')
 
+          user_disciplines = user.user_disciplines
+
           put :update, {
             api_v1_user: {
               first_name: 'Jonhson',
@@ -140,12 +145,14 @@ describe Users::RegistrationsController do
               disciplines: [
                 {
                   id: pda.id,
+                  ud_id: user_disciplines[0].id,
                   name: pda.name,
                   description: pda.description,
                   status: 'incomplete'
                 },
                 {
                   id: cpw.id,
+                  ud_id: user_disciplines[1].id,
                   name: cpw.name,
                   description: cpw.description,
                   status: 'incomplete'
@@ -169,6 +176,8 @@ describe Users::RegistrationsController do
           expect(user.first_name).to eql('John')
           expect(user.last_name).to eql('Doe')
 
+          user_disciplines = user.user_disciplines
+
           put :update, {
             api_v1_user: {
               first_name: 'Jonhson',
@@ -184,12 +193,14 @@ describe Users::RegistrationsController do
               disciplines: [
                 {
                   id: pda.id,
+                  ud_id: user_disciplines[0].id,
                   name: pda.name,
                   description: pda.description,
                   status: 'incomplete'
                 },
                 {
                   id: cpw.id,
+                  ud_id: user_disciplines[1].id,
                   name: cpw.name,
                   description: cpw.description,
                   status: 'incomplete'
@@ -208,6 +219,11 @@ describe Users::RegistrationsController do
       context 'update disciplines statuses' do
         it 'updates successfuly disciplines statuses' do
           request.env['HTTP_AUTHORIZATION'] = "Token token=#{api_key.token}"
+
+          user_disciplines = user.user_disciplines
+
+          expect(user_disciplines[0].status).to eql('incomplete')
+          expect(user_disciplines[1].status).to eql('incomplete')
 
           put :update, {
             api_v1_user: {
@@ -232,12 +248,14 @@ describe Users::RegistrationsController do
               disciplines: [
                 {
                   id: pda.id,
+                  ud_id: user_disciplines[0].id,
                   name: pda.name,
                   description: pda.description,
                   status: 'doing'
                 },
                 {
                   id: cpw.id,
+                  ud_id: user_disciplines[1].id,
                   name: cpw.name,
                   description: cpw.description,
                   status: 'doing'

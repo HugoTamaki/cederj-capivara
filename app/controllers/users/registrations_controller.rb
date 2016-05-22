@@ -51,6 +51,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     user_disciplines.each do |user_discipline|
       response << {
         id: user_discipline.discipline.id,
+        ud_id: user_discipline.id,
         name: user_discipline.discipline.name,
         description: user_discipline.discipline.description,
         status: user_discipline.status
