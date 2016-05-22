@@ -28,14 +28,34 @@ class Users::SessionsController < Devise::SessionsController
   private
 
   def format_response(resource, api_key)
+    user_disciplines = resource.user_disciplines
+    disciplines_hash = prepare_disciplines(user_disciplines)
+
     {
       user: {
         first_name: resource.first_name,
         last_name: resource.last_name,
-        email: resource.email
+        email: resource.email,
+        disciplines: disciplines_hash
       },
       api_key: api_key.token
     }
+  end
+
+  def prepare_disciplines(user_disciplines)
+    response = []
+
+    user_disciplines.each do |user_discipline|
+      response << {
+        id: user_discipline.discipline.id,
+        ud_id: user_discipline.id,
+        name: user_discipline.discipline.name,
+        description: user_discipline.discipline.description,
+        status: user_discipline.status
+      }
+    end
+
+    response
   end
 
   protected

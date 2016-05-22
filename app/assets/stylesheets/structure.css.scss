@@ -9,3 +9,17 @@
   text-align: left;
   margin-right: -4px;
 }
+
+.list-group-item {
+  .todo {
+    background-color: red;
+  }
+
+  .doing {
+    background-color: blue;
+  }
+
+  .done {
+    background-color: green;
+  }
+}

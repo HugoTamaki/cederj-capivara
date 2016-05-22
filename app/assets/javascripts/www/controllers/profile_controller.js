@@ -8,6 +8,16 @@ app.controller('ProfileCtrl', [
             User) {
 
     $scope.user = User
+
+    $scope.setStatus = function (status) {
+      if (status === 'incomplete') {
+        return 'a fazer'
+      } else if (status === 'doing') {
+        return 'fazendo'
+      } else {
+        return 'completo'
+      }
+    }
   }
 ])
 

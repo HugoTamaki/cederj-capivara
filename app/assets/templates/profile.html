@@ -5,4 +5,20 @@
   <div class="profile" ng-if="user">
     <p>Bem vindo {{ user.first_name }} {{ user.last_name }}!</p>
   </div>
+
+  <h2>Histórico</h2>
+
+  <div class="col-lg-6">
+    <ul class="list-group">
+      <li ng-repeat="discipline in user.disciplines" class="list-group-item">
+        <p>{{ discipline.name }}<span class="badge pull-right"
+                                      ng-class="{'todo': discipline.status === 'incomplete',
+                                                 'doing': discipline.status === 'doing',
+                                                 'done': discipline.status === 'complete'}">
+                                  {{ setStatus(discipline.status) }}
+                                </span>
+        </p>
+      </li>
+    </ul>
+  </div>
 </div>
