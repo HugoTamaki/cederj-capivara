@@ -34,13 +34,20 @@ app.controller('ProfileCtrl', [
             LabelService,
             usSpinnerService) {
 
+    var formatDisciplines
+
     $scope.user = User
+    $scope.disciplines = User.disciplines
 
     $scope.edit = function (user) {
+      var options,
+          disciplines = formatDisciplines(user.disciplines)
+
       var options = {
         api_v1_user: {
           first_name: user.first_name,
-          last_name: user.last_name
+          last_name: user.last_name,
+          user_disciplines_attributes: disciplines
         }
       }
 
@@ -67,6 +74,15 @@ app.controller('ProfileCtrl', [
         .finally(function () {
           usSpinnerService.stop('edit_profile')
         })
+    }
+
+    formatDisciplines = function (disciplines) {
+      return _(disciplines).map(function (discipline) {
+        return {
+          id: discipline.ud_id,
+          status: discipline.status
+        }
+      })
     }
   }
 ])

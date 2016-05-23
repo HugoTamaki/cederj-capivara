@@ -10,7 +10,7 @@
       {{ error }}
     </div>
 
-    <div class="col-lg-4">
+    <div class="col-lg-6">
       <span us-spinner spinner-theme="small" spinner-key="edit_profile"></span>
       <h1>Configurações</h1>
 
@@ -34,6 +34,26 @@
             <div class="form-group">
               Sobrenome:
               <input type="text" class="form-control" id="user-last-name" name="lastName" ng-model="user.last_name" ng-required="true">
+            </div>
+
+            <div class="form-group">
+              Disciplinas:
+              <ul class="list-group-item">
+                <li class="list-group-item" ng-repeat="discipline in user.disciplines">
+                  {{ discipline.name }}
+                  <div>
+                    <label class="radio-inline">
+                      <input type="radio" ng-model="discipline.status" value="incomplete" ng-checked="discipline.status === 'incomplete'"> A fazer
+                    </label>
+                    <label class="radio-inline">
+                      <input type="radio" ng-model="discipline.status" value="doing" ng-checked="discipline.status === 'doing'"> Fazendo
+                    </label>
+                    <label class="radio-inline">
+                      <input type="radio" ng-model="discipline.status" value="complete" ng-checked="discipline.status === 'complete'"> Feito
+                    </label>
+                  </div>
+                </li>
+              </ul>
             </div>
 
             <div class="alert-info">
