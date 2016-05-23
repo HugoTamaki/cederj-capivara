@@ -24,6 +24,7 @@ describe Users::RegistrationsController do
         user = User.last
         api_key = ApiKey.last
         user_disciplines = user.user_disciplines
+
         expected_reponse = {
           user: {
             first_name: 'John',

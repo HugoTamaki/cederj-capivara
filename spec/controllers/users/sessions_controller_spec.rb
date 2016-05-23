@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 describe Users::SessionsController do
+  let!(:pda) { FactoryGirl.create(:discipline, name: 'PDA', description: 'discipline desc') }
+  let!(:cpw) { FactoryGirl.create(:discipline, name: 'CPW', description: 'discipline desc') }
   let!(:user) { FactoryGirl.create(:user, email: 'johndoe@email.com', password: '123123123', password_confirmation: '123123123') }
   let!(:api_key) { FactoryGirl.create(:api_key, user: user, expires_at: Time.now + 7.days) }
 
@@ -21,12 +23,29 @@ describe Users::SessionsController do
 
         user = User.last
         api_key = user.api_keys.last
+        user_disciplines = user.user_disciplines
 
         expected_reponse = {
           user: {
-            first_name: user.first_name,
-            last_name: user.last_name,
-            email: user.email,
+            first_name: 'John',
+            last_name: 'Doe',
+            email: 'johndoe@email.com',
+            disciplines: [
+              {
+                id: pda.id,
+                ud_id: user_disciplines[0].id,
+                name: pda.name,
+                description: pda.description,
+                status: 'incomplete'
+              },
+              {
+                id: cpw.id,
+                ud_id: user_disciplines[1].id,
+                name: cpw.name,
+                description: cpw.description,
+                status: 'incomplete'
+              }
+            ]
           },
           api_key: api_key.token
         }
