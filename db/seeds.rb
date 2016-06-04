@@ -6,6 +6,8 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+course = Course.create(name: 'Tecnologia em Sistemas de Computação')
+
 disciplines = [
   {
     name: 'Projeto de Desenvolvimento de Algoritmos',
@@ -23,4 +25,10 @@ disciplines = [
 
 disciplines.each do |discipline|
   Discipline.create(name: discipline[:name], description: discipline[:description])
+end
+
+disciplines = Discipline.all
+
+disciplines.each do |discipline|
+  course.disciplines << discipline
 end
