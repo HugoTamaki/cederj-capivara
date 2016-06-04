@@ -16,7 +16,7 @@ app.controller('SignUpCtrl', [
     $scope.signUp = function (user) {
 
       var options = {
-        api_v1_user: {
+        user: {
           first_name: user.firstName,
           last_name: user.lastName,
           email: user.email,

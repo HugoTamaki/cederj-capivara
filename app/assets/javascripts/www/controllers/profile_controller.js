@@ -44,7 +44,7 @@ app.controller('ProfileCtrl', [
           disciplines = formatDisciplines(user.disciplines)
 
       var options = {
-        api_v1_user: {
+        user: {
           first_name: user.first_name,
           last_name: user.last_name,
           user_disciplines_attributes: disciplines
@@ -52,7 +52,7 @@ app.controller('ProfileCtrl', [
       }
 
       if (user.current_password) {
-        _(options.api_v1_user).extend({
+        _(options.user).extend({
           current_password: user.current_password,
           password: user.password,
           password_confirmation: user.password_confirmation

@@ -15,7 +15,7 @@ app.controller('LoginCtrl', [
 
     $scope.login = function (user) {
       var options = {
-        api_v1_user: {
+        user: {
           email: user.email,
           password: user.password
         }

@@ -1,20 +1,21 @@
 require 'rails_helper'
 
 describe Users::SessionsController do
-  let!(:pda) { FactoryGirl.create(:discipline, name: 'PDA', description: 'discipline desc') }
-  let!(:cpw) { FactoryGirl.create(:discipline, name: 'CPW', description: 'discipline desc') }
-  let!(:user) { FactoryGirl.create(:user, email: 'johndoe@email.com', password: '123123123', password_confirmation: '123123123') }
+  let!(:computacao) { FactoryGirl.create(:course, name: 'Tecnologia em Sistemas de Computação') }
+  let!(:pda) { FactoryGirl.create(:discipline, name: 'PDA', description: 'discipline desc', course: computacao) }
+  let!(:cpw) { FactoryGirl.create(:discipline, name: 'CPW', description: 'discipline desc', course: computacao) }
+  let!(:user) { FactoryGirl.create(:user, email: 'johndoe@email.com', password: '123123123', password_confirmation: '123123123', course: computacao) }
   let!(:api_key) { FactoryGirl.create(:api_key, user: user, expires_at: Time.now + 7.days) }
 
   before(:each) do
-    @request.env['devise.mapping'] = Devise.mappings[:api_v1_user]
+    @request.env['devise.mapping'] = Devise.mappings[:user]
   end
 
   describe 'POST #create' do
     context 'user exists' do
       it 'sends user and token' do
         post :create, {
-          api_v1_user: {
+          user: {
             email: 'johndoe@email.com',
             password: '123123123',
             password_confirmation: '123123123'
@@ -57,7 +58,7 @@ describe Users::SessionsController do
     context 'user doesnt exist' do
       it 'returns 404 response' do
         post :create, {
-          api_v1_user: {
+          user: {
             email: 'janedoe@email.com',
             password: '123123123',
             password_confirmation: '123123123'
@@ -80,7 +81,7 @@ describe Users::SessionsController do
         api_key.save
 
         post :create, {
-            api_v1_user: {
+            user: {
               email: 'johndoe@email.com',
               password: '123123123',
               password_confirmation: '123123123'

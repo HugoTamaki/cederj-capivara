@@ -1,21 +1,23 @@
 require 'rails_helper'
 
 describe Users::RegistrationsController do
-  let!(:pda) { FactoryGirl.create(:discipline, name: 'PDA', description: 'discipline desc') }
-  let!(:cpw) { FactoryGirl.create(:discipline, name: 'CPW', description: 'discipline desc') }
+  let!(:computacao) { FactoryGirl.create(:course, name: 'Tecnologia em Sistemas de Computação') }
+  let!(:pda)        { FactoryGirl.create(:discipline, name: 'PDA', description: 'discipline desc', course: computacao) }
+  let!(:cpw)        { FactoryGirl.create(:discipline, name: 'CPW', description: 'discipline desc', course: computacao) }
 
   before(:each) do
-    @request.env['devise.mapping'] = Devise.mappings[:api_v1_user]
+    @request.env['devise.mapping'] = Devise.mappings[:user]
   end
 
   describe 'POST #create' do
     context 'valid' do
       it 'creates user and send user info and token' do
         post :create, {
-          api_v1_user: {
+          user: {
             first_name: 'John',
             last_name: 'Doe',
             email: 'johndoe@email.com',
+            course_id: computacao.id,
             password: '123123123',
             password_confirmation: '123123123'
           }
@@ -53,6 +55,7 @@ describe Users::RegistrationsController do
         expect(user.first_name).to eql('John')
         expect(user.last_name).to eql('Doe')
         expect(user.email).to eql('johndoe@email.com')
+        expect(user.course).to eql(computacao)
         expect(user.api_keys.count).to eql(1)
         expect(response.body).to eql(expected_reponse.to_json)
       end
@@ -64,10 +67,11 @@ describe Users::RegistrationsController do
 
         it 'does not create user as email is the same' do
           post :create, {
-            api_v1_user: {
+            user: {
               first_name: 'John',
               last_name: 'Doe',
               email: 'johndoe@email.com',
+              course_id: computacao.id,
               password: '123123123',
               password_confirmation: '123123123'
             }
@@ -88,7 +92,7 @@ describe Users::RegistrationsController do
     context 'attributes are not present' do
       it 'sends cant be blank error' do
         post :create, {
-          api_v1_user: {
+          user: {
             first_name: '',
             last_name: '',
             email: '',
@@ -129,7 +133,7 @@ describe Users::RegistrationsController do
           user_disciplines = user.user_disciplines
 
           put :update, {
-            api_v1_user: {
+            user: {
               first_name: 'Jonhson',
               last_name: 'Doan',
               current_password: '123123123',
@@ -180,7 +184,7 @@ describe Users::RegistrationsController do
           user_disciplines = user.user_disciplines
 
           put :update, {
-            api_v1_user: {
+            user: {
               first_name: 'Jonhson',
               last_name: 'Doan'
             }
@@ -227,7 +231,7 @@ describe Users::RegistrationsController do
           expect(user_disciplines[1].status).to eql('incomplete')
 
           put :update, {
-            api_v1_user: {
+            user: {
               user_disciplines_attributes: [
                 {
                   id: user.user_disciplines.first.id,
@@ -283,7 +287,7 @@ describe Users::RegistrationsController do
           expect(user.last_name).to eql('Doe')
 
           put :update, {
-            api_v1_user: {
+            user: {
               first_name: '',
               last_name: ''
             }
@@ -310,7 +314,7 @@ describe Users::RegistrationsController do
           expect(user.last_name).to eql('Doe')
 
           put :update, {
-            api_v1_user: {
+            user: {
               first_name: 'Johnson',
               last_name: 'Doan',
               current_password: '123212321',
@@ -339,7 +343,7 @@ describe Users::RegistrationsController do
           expect(user.last_name).to eql('Doe')
 
           put :update, {
-            api_v1_user: {
+            user: {
               first_name: 'Johnson',
               last_name: 'Doan',
               current_password: '123123123',

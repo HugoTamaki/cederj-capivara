@@ -7,8 +7,8 @@ class Users::SessionsController < Devise::SessionsController
 
   # POST /resource/sign_in
   def create
-    resource = User.find_by(email: params[:api_v1_user][:email])
-    if resource && resource.valid_password?(params[:api_v1_user][:password])
+    resource = User.find_by(email: params[:user][:email])
+    if resource && resource.valid_password?(params[:user][:password])
       api_key = resource.set_api_key
       render json: format_response(resource, api_key)
     else
