@@ -1,8 +1,9 @@
 require 'rails_helper'
 
 describe UserDiscipline do
-  let(:user) { FactoryGirl.create(:user) }
-  let(:discipline) { FactoryGirl.create(:discipline) }
+  let(:computacao) { FactoryGirl.create(:course, name: 'Tecnologia em Sistemas de Computação') }
+  let(:discipline) { FactoryGirl.create(:discipline, course: computacao) }
+  let(:user) { FactoryGirl.create(:user, course: computacao) }
   let(:user_discipline) { FactoryGirl.create(:user_discipline, user: user, discipline: discipline) }
 
   describe :attributes do
