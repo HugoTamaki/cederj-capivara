@@ -1,7 +1,12 @@
 require 'rails_helper'
 
 describe User do
-  let(:user) { FactoryGirl.create(:user) }
+  let!(:computacao)    { FactoryGirl.create(:course, name: 'Tecnologia em Sistemas de Computação') }
+  let!(:pedagogia)     { FactoryGirl.create(:course, name: 'Pedagogia') }
+  let!(:pda)           { FactoryGirl.create(:discipline, name: 'PDA', description: 'some description', course: computacao) }
+  let!(:cpw)           { FactoryGirl.create(:discipline, name: 'CPW', description: 'some description', course: computacao) }
+  let!(:paulo_freire)  { FactoryGirl.create(:discipline, name: 'Paulo Freire', description: 'some description', course: pedagogia) }
+  let!(:user)          { FactoryGirl.create(:user, course: computacao) }
 
   describe :attributes do
     it { expect(user).to have_attribute(:first_name) }
@@ -11,17 +16,18 @@ describe User do
 
   describe :relationships do
     it { expect(user).to respond_to(:api_keys) }
+    it { expect(user).to respond_to(:course) }
     it { expect(user).to respond_to(:disciplines) }
     it { expect(user).to respond_to(:user_disciplines) }
   end
 
   describe :creation do
-    let!(:pda) { FactoryGirl.create(:discipline, name: 'PDA', description: 'some description') }
-    let!(:cpw) { FactoryGirl.create(:discipline, name: 'CPW', description: 'some description') }
-    let!(:user_creation) { FactoryGirl.create(:user, email: 'loremipsum@email.com') }
-
-    it 'user should have all disciplines' do
+    it 'user should have all disciplines related to course' do
       expect(user.disciplines).to include(pda, cpw)
+    end
+
+    it 'user disciplines should be only of the course he is applying' do
+      expect(user.disciplines).not_to include(paulo_freire)
     end
 
     it 'user disciplines should all be incomplete' do

@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   validates :first_name, presence: true
   validates :last_name, presence: true
 
-  before_create :set_disciplines
+  before_create :set_course_and_disciplines
 
   def set_api_key
     self.api_keys.create
@@ -21,8 +21,18 @@ class User < ActiveRecord::Base
 
   private
 
+  def set_course_and_disciplines
+    set_course
+    set_disciplines
+  end
+
+  def set_course
+    course = Course.find_by(name: 'Tecnologia em Sistemas de Computação')
+    self.course = course
+  end
+
   def set_disciplines
-    disciplines = Discipline.all
+    disciplines = self.course.disciplines
 
     disciplines.each do |discipline|
       self.disciplines << discipline
