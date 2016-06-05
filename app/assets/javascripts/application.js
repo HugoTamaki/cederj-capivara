@@ -26,6 +26,7 @@
 //= require www/services/login_services
 //= require www/services/app_services
 //= require www/services/api_services
+//= require www/services/course_services
 //= require www/controllers/app_controller
 //= require www/controllers/signup_controller
 //= require www/controllers/login_controller
