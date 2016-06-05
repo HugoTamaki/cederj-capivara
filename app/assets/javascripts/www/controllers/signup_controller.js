@@ -4,14 +4,21 @@ app.controller('SignUpCtrl', [
   'User',
   'usSpinnerService',
   'LabelService',
+  'CoursesService',
 
   function ($scope,
             $state,
             User,
             usSpinnerService,
-            LabelService) {
+            LabelService,
+            CoursesService) {
 
     $scope.user = {}
+
+    CoursesService.getCourses()
+      .then(function (response) {
+        $scope.courses = response.courses
+      })
 
     $scope.signUp = function (user) {
 

@@ -39,6 +39,13 @@
             </div>
 
             <div class="form-group">
+              Curso:
+              <select type="text" class="form-control" id="user-course" ng-model="user.course">
+                <option value="{{ course.id }}" ng-repeat="course in courses">{{ course.name }}</option>
+              </select>
+            </div>
+
+            <div class="form-group">
               Senha:
               <input type="password" class="form-control" id="user-email" ng-model="user.password" name="password" ng-required="true">
             </div>
