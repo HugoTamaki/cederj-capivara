@@ -18,6 +18,7 @@
             <p ng-show="signUpForm.firstName.$invalid && signUpForm.firstName.$dirty" class="alert alert-danger">Preencha o campo de nome</p>
             <p ng-show="signUpForm.lastName.$invalid && signUpForm.lastName.$dirty" class="alert alert-danger">Preencha o campo de sobrenome</p>
             <p ng-show="signUpForm.email.$invalid && signUpForm.email.$dirty" class="alert alert-danger">Preencha o campo de email</p>
+            <p ng-show="signUpForm.course.$invalid && signUpForm.course.$dirty" class="alert alert-danget">Escolha o curso que está fazendo</p>
             <p ng-show="signUpForm.password.$invalid && signUpForm.password.$dirty" class="alert alert-danger">Preencha o campo de senha</p>
             <p ng-show="signUpForm.passwordConfirmation.$error.required && signUpForm.passwordConfirmation.$dirty" class="alert alert-danger">Preencha o campo de confirmação de senha</p>
             <p ng-show="signUpForm.passwordConfirmation.$error.passwordVerify && signUpForm.passwordConfirmation.$dirty" class="alert alert-danger">A senha e a confirmação de senha devem ser iguais</p>
@@ -40,7 +41,7 @@
 
             <div class="form-group">
               Curso:
-              <select type="text" class="form-control" id="user-course" ng-model="user.course">
+              <select type="text" class="form-control" id="user-course" name="course" ng-model="user.course_id" ng-required="true">
                 <option value="{{ course.id }}" ng-repeat="course in courses">{{ course.name }}</option>
               </select>
             </div>

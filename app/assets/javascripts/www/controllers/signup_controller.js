@@ -27,6 +27,7 @@ app.controller('SignUpCtrl', [
           first_name: user.firstName,
           last_name: user.lastName,
           email: user.email,
+          course_id: user.course_id,
           password: user.password,
           password_confirmation: user.passwordConfirmation
         }
