@@ -63,12 +63,14 @@ app.controller('ProfileCtrl', [
 
       User.edit(options)
         .then(function () {
+          $scope.error = null
           $scope.notice = LabelService.notification.profileEdit.success
           delete $scope.user.current_password
           delete $scope.user.password
           delete $scope.user.password_confirmation
         })
         .catch(function () {
+          $scope.notice = null
           $scope.error = LabelService.error.somethingWrong
         })
         .finally(function () {
