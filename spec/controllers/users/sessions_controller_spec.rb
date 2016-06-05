@@ -13,6 +13,10 @@ describe Users::SessionsController do
 
   describe 'POST #create' do
     context 'user exists' do
+      before(:each) do
+        user.set_disciplines
+      end
+
       it 'sends user and token' do
         post :create, {
           user: {

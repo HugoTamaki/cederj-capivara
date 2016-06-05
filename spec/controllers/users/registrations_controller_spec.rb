@@ -106,7 +106,8 @@ describe Users::RegistrationsController do
             email: ["can't be blank"],
             password: ["can't be blank"],
             first_name: ["can't be blank"],
-            last_name: ["can't be blank"]
+            last_name: ["can't be blank"],
+            course_id: ["can't be blank"]
           }
         }
 
@@ -118,8 +119,12 @@ describe Users::RegistrationsController do
 
   describe 'PUT #update' do
     context 'valid' do
-      let!(:user) { FactoryGirl.create(:user, email: 'johndoe@email.com', first_name: 'John', last_name: 'Doe', password: '123123123', password_confirmation: '123123123') }
+      let!(:user) { FactoryGirl.create(:user, email: 'johndoe@email.com', first_name: 'John', last_name: 'Doe', password: '123123123', password_confirmation: '123123123', course: computacao) }
       let!(:api_key) { FactoryGirl.create(:api_key, user: user, expires_at: Time.now + 7.days) }
+
+      before(:each) do
+        user.set_disciplines
+      end
 
       context 'with password' do
         it 'updates user with password and send user info and token' do

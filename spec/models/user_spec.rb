@@ -12,6 +12,7 @@ describe User do
     it { expect(user).to have_attribute(:first_name) }
     it { expect(user).to have_attribute(:last_name) }
     it { expect(user).to have_attribute(:email) }
+    it { expect(user).to have_attribute(:course_id) }
   end
 
   describe :relationships do
@@ -21,20 +22,6 @@ describe User do
     it { expect(user).to respond_to(:user_disciplines) }
   end
 
-  describe :creation do
-    it 'user should have all disciplines related to course' do
-      expect(user.disciplines).to include(pda, cpw)
-    end
-
-    it 'user disciplines should be only of the course he is applying' do
-      expect(user.disciplines).not_to include(paulo_freire)
-    end
-
-    it 'user disciplines should all be incomplete' do
-      expect(user.disciplines.pluck(:status)).to eql(['incomplete', 'incomplete'])
-    end
-  end
-
   describe :methods do
     describe '#set_api_key' do
       it 'user should have new ApiKey' do
@@ -42,6 +29,15 @@ describe User do
         api_key = user.set_api_key
         expect(ApiKey.count).to eql(1)
         expect(api_key.user).to eql(user)
+      end
+    end
+
+    describe '#set_disciplines' do
+      it 'sets disciplines based on user course' do
+        expect(user.disciplines).to match([])
+        expect(user.course).to eql(computacao)
+        user.set_disciplines
+        expect(user.disciplines).to include(pda, cpw)
       end
     end
   end

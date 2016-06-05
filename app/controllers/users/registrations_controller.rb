@@ -11,6 +11,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     build_resource(sign_up_params)
 
     if resource.save
+      resource.set_disciplines
       api_key = resource.set_api_key
       render json: format_response(resource, api_key), status: 200
     else
