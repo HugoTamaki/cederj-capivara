@@ -18,6 +18,10 @@ app.controller('MenuCtrl', [
         })
     }
 
+    $scope.loginPage = function () {
+      $state.go('login')
+    }
+
     $scope.about = function () {
       $state.go('about')
     }
