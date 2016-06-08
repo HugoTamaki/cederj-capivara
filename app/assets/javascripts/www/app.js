@@ -23,30 +23,45 @@ app.config([
       .state('login', {
         url: '/login',
         templateUrl: 'login.html',
-        controller: 'LoginCtrl'
+        controller: 'LoginCtrl',
+        data: {
+          requireLogin: false
+        }
       })
 
       .state('sign_up', {
         url: '/sign_up',
         templateUrl: 'sign_up.html',
-        controller: 'SignUpCtrl'
+        controller: 'SignUpCtrl',
+        data: {
+          requireLogin: false
+        }
       })
 
       .state('about', {
         url: '/about',
-        templateUrl: 'about.html'
+        templateUrl: 'about.html',
+        data: {
+          requireLogin: false
+        }
       })
 
       .state('profile', {
         url: '/profile',
         templateUrl: 'profile.html',
-        controller: 'ProfileCtrl'
+        controller: 'ProfileCtrl',
+        data: {
+          requireLogin: true
+        }
       })
 
       .state('edit_profile', {
         url: '/edit_profile',
         templateUrl: 'edit_profile.html',
-        controller: 'ProfileEditCtrl'
+        controller: 'ProfileEditCtrl',
+        data: {
+          requireLogin: true
+        }
       })
 
     usSpinnerConfigProvider.setTheme('small', { color: 'black', radius: 6, top: '50%', left: '50%' })

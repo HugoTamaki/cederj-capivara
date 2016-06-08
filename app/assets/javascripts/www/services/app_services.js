@@ -66,12 +66,6 @@ app.service('CacheService', [
       tasks: {
         userInit: function () {
           User.init()
-
-          if (!User.logged) {
-            $state.go('login')
-          } else if (window.location.hash === '') {
-            $state.go('profile')
-          }
         }
       }
     }
@@ -81,10 +75,18 @@ app.service('CacheService', [
 ])
 
 .run([
+  'User',
+
+  '$state',
+  '$location',
   '$rootScope',
   'StartupService',
 
-  function ($rootScope,
+  function (User,
+
+            $state,
+            $location,
+            $rootScope,
             StartupService) {
 
     var appStarted = 0; // flag to redirect only once when app is started
@@ -98,6 +100,14 @@ app.service('CacheService', [
       _(StartupService.startTasks).each(function (task) {
         StartupService.executeTask(task)
       })
-    });
+    })
+
+    $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
+      var requireLogin = toState.data.requireLogin
+
+      if (requireLogin && !User.logged) {
+        $location.path('login')
+      }
+    })
   }
 ])
