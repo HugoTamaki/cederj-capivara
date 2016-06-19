@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
 
   belongs_to :course
   has_many :api_keys, dependent: :destroy
+  has_many :rooms
   has_many :user_disciplines
   has_many :disciplines, through: :user_disciplines
   accepts_nested_attributes_for :user_disciplines
