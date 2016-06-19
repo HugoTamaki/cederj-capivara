@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :room do
-    name "MyString"
+    name "My room"
     public false
     user_id 1
   end

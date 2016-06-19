@@ -27,7 +27,7 @@ describe Users::RegistrationsController do
         api_key = ApiKey.last
         user_disciplines = user.user_disciplines
 
-        expected_reponse = {
+        expected_response = {
           user: {
             id: user.id,
             first_name: 'John',
@@ -58,7 +58,7 @@ describe Users::RegistrationsController do
         expect(user.email).to eql('johndoe@email.com')
         expect(user.course).to eql(computacao)
         expect(user.api_keys.count).to eql(1)
-        expect(response.body).to eql(expected_reponse.to_json)
+        expect(response.body).to eql(expected_response.to_json)
       end
     end
 
@@ -78,13 +78,13 @@ describe Users::RegistrationsController do
             }
           }
 
-          expected_reponse = {
+          expected_response = {
             error: {
               email: ['has already been taken']
             }
           }
 
-          expect(response.body).to eql(expected_reponse.to_json)
+          expect(response.body).to eql(expected_response.to_json)
           expect(User.count).to eql(1)
         end
       end
@@ -102,7 +102,7 @@ describe Users::RegistrationsController do
           }
         }
 
-        expected_reponse = {
+        expected_response = {
           error: {
             email: ["can't be blank"],
             password: ["can't be blank"],
@@ -112,7 +112,7 @@ describe Users::RegistrationsController do
           }
         }
 
-        expect(response.body).to eql(expected_reponse.to_json)
+        expect(response.body).to eql(expected_response.to_json)
         expect(User.count).to eql(0)
       end
     end
@@ -148,7 +148,7 @@ describe Users::RegistrationsController do
             }
           }
 
-          expected_reponse = {
+          expected_response = {
             user: {
               id: user.id,
               first_name: 'Jonhson',
@@ -174,7 +174,7 @@ describe Users::RegistrationsController do
             api_key: api_key.token
           }
 
-          expect(response.body).to eql(expected_reponse.to_json)
+          expect(response.body).to eql(expected_response.to_json)
           expect(user.reload.encrypted_password).not_to eql(antique_password)
           expect(user.reload.first_name).to eql('Jonhson')
           expect(user.reload.last_name).to eql('Doan')
@@ -197,7 +197,7 @@ describe Users::RegistrationsController do
             }
           }
 
-          expected_reponse = {
+          expected_response = {
             user: {
               id: user.id,
               first_name: 'Jonhson',
@@ -223,7 +223,7 @@ describe Users::RegistrationsController do
             api_key: api_key.token
           }
 
-          expect(response.body).to eql(expected_reponse.to_json)
+          expect(response.body).to eql(expected_response.to_json)
           expect(user.reload.first_name).to eql('Jonhson')
           expect(user.reload.last_name).to eql('Doan')
         end
@@ -253,7 +253,7 @@ describe Users::RegistrationsController do
             }
           }
 
-          expected_reponse = {
+          expected_response = {
             user: {
               id: user.id,
               first_name: 'John',
@@ -279,7 +279,7 @@ describe Users::RegistrationsController do
             api_key: api_key.token
           }
 
-          expect(response.body).to eql(expected_reponse.to_json)
+          expect(response.body).to eql(expected_response.to_json)
         end
       end
     end
@@ -302,14 +302,14 @@ describe Users::RegistrationsController do
             }
           }
 
-          expected_reponse = {
+          expected_response = {
             error: {
               first_name: ["can't be blank"],
               last_name: ["can't be blank"]
             }
           }
 
-          expect(response.body).to eql(expected_reponse.to_json)
+          expect(response.body).to eql(expected_response.to_json)
           expect(user.reload.first_name).to eql('John')
           expect(user.reload.last_name).to eql('Doe')
         end
@@ -332,13 +332,13 @@ describe Users::RegistrationsController do
             }
           }
 
-          expected_reponse = {
+          expected_response = {
             error: {
               current_password: ["is invalid"]
             }
           }
 
-          expect(response.body).to eql(expected_reponse.to_json)
+          expect(response.body).to eql(expected_response.to_json)
           expect(user.reload.first_name).to eql('John')
           expect(user.reload.last_name).to eql('Doe')
         end
@@ -362,13 +362,13 @@ describe Users::RegistrationsController do
             }
           }
 
-          expected_reponse = {
+          expected_response = {
             error: {
               password_confirmation: ["doesn't match Password"]
             }
           }
 
-          expect(response.body).to eql(expected_reponse.to_json)
+          expect(response.body).to eql(expected_response.to_json)
           expect(user.reload.first_name).to eql('John')
           expect(user.reload.last_name).to eql('Doe')
         end

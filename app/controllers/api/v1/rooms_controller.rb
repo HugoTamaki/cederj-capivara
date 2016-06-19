@@ -1,6 +1,8 @@
 module Api
   module V1
     class RoomsController < ApplicationController
+      respond_to :json
+
       before_action :authenticate
       before_action :set_user
 
@@ -23,7 +25,7 @@ module Api
       end
 
       def set_user
-        @user = User.find(params[:id])
+        @user = User.find(params[:user_id])
       end
 
       def render_unauthorized
