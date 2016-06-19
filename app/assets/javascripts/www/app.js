@@ -55,6 +55,15 @@ app.config([
         }
       })
 
+      .state('forum', {
+        url: '/forum',
+        templateUrl: 'forum.html',
+        controller: 'ForumCtrl',
+        data: {
+          requireLogin: true
+        }
+      })
+
       .state('edit_profile', {
         url: '/edit_profile',
         templateUrl: 'edit_profile.html',

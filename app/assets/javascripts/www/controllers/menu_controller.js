@@ -30,6 +30,10 @@ app.controller('MenuCtrl', [
       $state.go('profile')
     }
 
+    $scope.forum = function () {
+      $state.go('forum')
+    }
+
     $scope.editProfile = function () {
       $state.go('edit_profile')
     }

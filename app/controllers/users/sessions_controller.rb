@@ -33,6 +33,7 @@ class Users::SessionsController < Devise::SessionsController
 
     {
       user: {
+        id: resource.id,
         first_name: resource.first_name,
         last_name: resource.last_name,
         email: resource.email,

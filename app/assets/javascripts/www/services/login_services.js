@@ -91,6 +91,22 @@ app.service('User', [
           })
 
         return deferred.promise
+      },
+
+      getMyRooms: function () {
+        var deferred = $q.defer(),
+            url = Conf.baseUrl + this.id + '/rooms',
+            self = this
+
+        $http.get(url)
+          .success(function (response) {
+            deferred.resolve(response)
+          })
+          .error(function (response) {
+            deferred.reject(response.error)
+          })
+
+        return deferred.promise
       }
     }
 

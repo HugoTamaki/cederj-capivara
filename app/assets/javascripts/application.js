@@ -31,5 +31,6 @@
 //= require www/controllers/signup_controller
 //= require www/controllers/login_controller
 //= require www/controllers/profile_controller
+//= require www/controllers/forum_controller
 //= require www/controllers/menu_controller
 //= require lib/bootstrap/bootstrap.min

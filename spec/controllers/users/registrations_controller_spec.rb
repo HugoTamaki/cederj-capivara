@@ -29,6 +29,7 @@ describe Users::RegistrationsController do
 
         expected_reponse = {
           user: {
+            id: user.id,
             first_name: 'John',
             last_name: 'Doe',
             email: 'johndoe@email.com',
@@ -149,6 +150,7 @@ describe Users::RegistrationsController do
 
           expected_reponse = {
             user: {
+              id: user.id,
               first_name: 'Jonhson',
               last_name: 'Doan',
               email: 'johndoe@email.com',
@@ -197,6 +199,7 @@ describe Users::RegistrationsController do
 
           expected_reponse = {
             user: {
+              id: user.id,
               first_name: 'Jonhson',
               last_name: 'Doan',
               email: 'johndoe@email.com',
@@ -252,6 +255,7 @@ describe Users::RegistrationsController do
 
           expected_reponse = {
             user: {
+              id: user.id,
               first_name: 'John',
               last_name: 'Doe',
               email: 'johndoe@email.com',
@@ -349,6 +353,7 @@ describe Users::RegistrationsController do
 
           put :update, {
             user: {
+              id: user.id,
               first_name: 'Johnson',
               last_name: 'Doan',
               current_password: '123123123',

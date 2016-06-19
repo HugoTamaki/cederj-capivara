@@ -32,6 +32,7 @@ describe Users::SessionsController do
 
         expected_reponse = {
           user: {
+            id: user.id,
             first_name: 'John',
             last_name: 'Doe',
             email: 'johndoe@email.com',
