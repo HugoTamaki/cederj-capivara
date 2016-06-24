@@ -20,6 +20,8 @@ describe User do
     it { expect(user).to respond_to(:course) }
     it { expect(user).to respond_to(:disciplines) }
     it { expect(user).to respond_to(:user_disciplines) }
+    it { expect(user).to respond_to(:rooms) }
+    it { expect(user).to respond_to(:groups) }
   end
 
   describe :methods do
