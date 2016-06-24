@@ -10,6 +10,15 @@ module Api
         @rooms = @user.rooms
       end
 
+      def create
+        @room = @user.rooms.build(room_params)
+        if @room.save
+          @room
+        else
+          render json: { errors: @room.errors }, status: 400
+        end
+      end
+
       private
 
       def authenticate
@@ -26,6 +35,10 @@ module Api
 
       def set_user
         @user = User.find(params[:user_id])
+      end
+
+      def room_params
+        params.require(:room).permit(:name, :public)
       end
 
       def render_unauthorized
