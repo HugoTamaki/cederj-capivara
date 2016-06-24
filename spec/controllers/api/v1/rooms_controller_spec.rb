@@ -73,23 +73,187 @@ describe Api::V1::RoomsController do
       it 'creates room without params' do
         request.env['HTTP_AUTHORIZATION'] = "Token token=#{api_key.token}"
 
-          params = {
-            name: '',
-            public: false
+        params = {
+          name: '',
+          public: false
+        }
+
+        expect(user.reload.rooms.size).to eql(3)
+
+        get :create, room: params, format: :json
+
+        expected_response = {
+          errors: {
+            name: ["can't be blank"]
           }
+        }
 
-          expect(user.reload.rooms.size).to eql(3)
+        expect(response.body).to eql(expected_response.to_json)
+        expect(user.reload.rooms.size).to eql(3)
+      end
 
-          get :create, room: params, format: :json
+      it 'api_key is invalid' do
+        api_key.expires_at = Time.now - 7.days
+        api_key.save
 
-          expected_response = {
-            errors: {
-              name: ["can't be blank"]
-            }
+        request.env['HTTP_AUTHORIZATION'] = "Token token=#{api_key.token}"
+
+        params = {
+          name: 'CPW room',
+          public: false
+        }
+
+        expect(user.reload.rooms.size).to eql(3)
+
+        get :create, room: params, format: :json
+
+        expected_response = {
+          error: 'Bad credentials'
+        }
+
+        expect(response.body).to eql(expected_response.to_json)
+        expect(response.status).to eql(401)
+        expect(user.reload.rooms.size).to eql(3)
+      end
+    end
+  end
+
+  describe 'GET #show' do
+    context 'valid' do
+      it 'gets one room information' do
+        request.env['HTTP_AUTHORIZATION'] = "Token token=#{api_key.token}"
+
+        get :show, id: room1.id, format: :json
+
+        expected_response = {
+          room: {
+            id: room1.id,
+            name: room1.name,
+            public: room1.public
           }
+        }
 
-          expect(response.body).to eql(expected_response.to_json)
-          expect(user.reload.rooms.size).to eql(3)
+        expect(response.body).to eql(expected_response.to_json)
+      end
+    end
+
+    context 'invalid' do
+      it 'api_key is invalid' do
+        api_key.expires_at = Time.now - 7.days
+        api_key.save
+
+        request.env['HTTP_AUTHORIZATION'] = "Token token=#{api_key.token}"
+
+        get :show, id: room1.id, format: :json
+
+        expected_response = {
+          error: 'Bad credentials'
+        }
+
+        expect(response.body).to eql(expected_response.to_json)
+        expect(response.status).to eql(401)
+      end
+    end
+  end
+
+  describe 'PUT #update' do
+    context 'valid' do
+      it 'updates room information' do
+        request.env['HTTP_AUTHORIZATION'] = "Token token=#{api_key.token}"
+
+        expect(room1.name).to eql('Room 1')
+
+        put :update, id: room1.id, room: {name: 'PDA room', public: true}, format: :json
+
+        expected_response = {
+          room: {
+            id: room1.id,
+            name: 'PDA room',
+            public: true
+          }
+        }
+
+        expect(room1.reload.name).to eql('PDA room')
+        expect(room1.public).to eql(true)
+        expect(response.body).to eql(expected_response.to_json)
+        expect(response.status).to eql(200)
+      end
+    end
+
+    context 'invalid' do
+      it 'api_key is invalid' do
+        api_key.expires_at = Time.now - 7.days
+        api_key.save
+        request.env['HTTP_AUTHORIZATION'] = "Token token=#{api_key.token}"
+
+        expect(room1.name).to eql('Room 1')
+
+        put :update, id: room1.id, room: {name: 'PDA room', public: true}, format: :json
+
+        expected_response = {
+          error: 'Bad credentials'
+        }
+
+        expect(response.body).to eql(expected_response.to_json)
+        expect(response.status).to eql(401)
+      end
+
+      it 'attributes are empty' do
+        request.env['HTTP_AUTHORIZATION'] = "Token token=#{api_key.token}"
+
+        expect(room1.name).to eql('Room 1')
+
+        put :update, id: room1.id, room: {name: ''}, format: :json
+
+        expected_response = {
+          errors: {
+            name: ["can't be blank"]
+          }
+        }
+
+        expect(response.body).to eql(expected_response.to_json)
+        expect(response.status).to eql(400)
+      end
+    end
+  end
+
+  describe 'DELETE #destroy' do
+    context 'valid' do
+      it 'deletes one room' do
+        request.env['HTTP_AUTHORIZATION'] = "Token token=#{api_key.token}"
+
+        expect(user.rooms.size).to eql(3)
+
+        expected_response = {
+          room: {
+            id: room1.id,
+            name: room1.name,
+            public: room1.public
+          }
+        }
+
+        delete :destroy, id: room1.id, format: :json
+
+        expect(user.reload.rooms.size).to eql(2)
+        expect(response.body).to eql(expected_response.to_json)
+        expect(response.status).to eql(200)
+      end
+    end
+
+    context 'invalid' do
+      it 'api_key is invalid' do
+        api_key.expires_at = Time.now - 7.days
+        api_key.save
+        request.env['HTTP_AUTHORIZATION'] = "Token token=#{api_key.token}"
+
+        delete :destroy, id: room1.id, format: :json
+
+        expected_response = {
+          error: 'Bad credentials'
+        }
+
+        expect(response.body).to eql(expected_response.to_json)
+        expect(response.status).to eql(401)
       end
     end
   end

@@ -4,6 +4,7 @@ module Api
       respond_to :json
 
       before_action :authenticate
+      before_action :set_room, only: [:show, :update, :destroy]
 
       def index
         user = @api_key.user
@@ -14,6 +15,26 @@ module Api
         user = @api_key.user
         @room = user.rooms.build(room_params)
         if @room.save
+          @room
+        else
+          render json: { errors: @room.errors }, status: 400
+        end
+      end
+
+      def show
+        @room
+      end
+
+      def update
+        if @room.update(room_params)
+          @room
+        else
+          render json: { errors: @room.errors }, status: 400
+        end
+      end
+
+      def destroy
+        if @room.destroy
           @room
         else
           render json: { errors: @room.errors }, status: 400
@@ -32,6 +53,10 @@ module Api
           @api_key = ApiKey.find_by(secret: secret, key: key)
           @api_key && @api_key.not_expired? ? true : false
         end
+      end
+
+      def set_room
+        @room = Room.find(params[:id])
       end
 
       def room_params
