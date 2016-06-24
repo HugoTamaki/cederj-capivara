@@ -14,7 +14,7 @@ describe Api::V1::RoomsController do
     it 'sends all users room' do
       request.env['HTTP_AUTHORIZATION'] = "Token token=#{api_key.token}"
 
-      get :index, user_id: user.id, format: :json
+      get :index, format: :json
 
       expected_response = {
         rooms: [
@@ -52,7 +52,7 @@ describe Api::V1::RoomsController do
 
         expect(user.reload.rooms.size).to eql(3)
 
-        get :create, user_id: user.id, room: params, format: :json
+        get :create, room: params, format: :json
 
         room = Room.last
 
@@ -80,7 +80,7 @@ describe Api::V1::RoomsController do
 
           expect(user.reload.rooms.size).to eql(3)
 
-          get :create, user_id: user.id, room: params, format: :json
+          get :create, room: params, format: :json
 
           expected_response = {
             errors: {

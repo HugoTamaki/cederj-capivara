@@ -4,14 +4,15 @@ module Api
       respond_to :json
 
       before_action :authenticate
-      before_action :set_user
 
       def index
-        @rooms = @user.rooms
+        user = @api_key.user
+        @rooms = user.rooms
       end
 
       def create
-        @room = @user.rooms.build(room_params)
+        user = @api_key.user
+        @room = user.rooms.build(room_params)
         if @room.save
           @room
         else
@@ -31,10 +32,6 @@ module Api
           @api_key = ApiKey.find_by(secret: secret, key: key)
           @api_key && @api_key.not_expired? ? true : false
         end
-      end
-
-      def set_user
-        @user = User.find(params[:user_id])
       end
 
       def room_params

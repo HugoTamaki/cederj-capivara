@@ -10,9 +10,7 @@ Rails.application.routes.draw do
         registrations: 'users/registrations',
         sessions: 'users/sessions'
       }
-      resources :users do
-        resources :rooms
-      end
+      resources :rooms
       resources :courses
     end
   end
