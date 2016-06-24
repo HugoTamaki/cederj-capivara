@@ -1,5 +1,16 @@
 require 'rails_helper'
 
-RSpec.describe Room, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe Room do
+  let(:user) { FactoryGirl.create(:user) }
+  let(:room) { FactoryGirl.create(:room) }
+
+  describe :attributes do
+    it { expect(room).to have_attribute(:name) }
+    it { expect(room).to have_attribute(:public) }
+    it { expect(room).to have_attribute(:user_id) }
+  end
+
+  describe :relationships do
+    it { expect(room).to respond_to(:user) }
+  end
 end
