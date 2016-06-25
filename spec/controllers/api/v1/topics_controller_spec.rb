@@ -103,7 +103,7 @@ describe Api::V1::TopicsController do
   end
 
   describe '#POST create' do
-    context 'valid' do
+    describe 'topic for room owned by user' do
       it 'creates a valid topic' do
         request.env['HTTP_AUTHORIZATION'] = "Token token=#{api_key.token}"
 
@@ -128,6 +128,66 @@ describe Api::V1::TopicsController do
 
         expect(response.body).to eql(expected_response.to_json)
         expect(room1.reload.topics.size).to eql(4)
+      end
+    end
+
+    describe 'topic for room user is participating' do
+      before :each do
+        room2.participants << user
+      end
+
+      it 'creates a valid topic' do
+        request.env['HTTP_AUTHORIZATION'] = "Token token=#{api_key.token}"
+
+        params = {
+          name: 'My topic',
+          content: 'lorem ipsum lala'
+        }
+
+        expect(room2.topics.size).to eql(3)
+
+        post :create, room_id: room2.id, topic: params, format: :json
+
+        topic = Topic.last
+
+        expected_response = {
+          topic: {
+            id: topic.id,
+            name: topic.name,
+            content: topic.content
+          }
+        }
+
+        expect(room2.reload.topics.size).to eql(4)
+        expect(room2.participants).to include(user)
+        expect(response.body).to eql(expected_response.to_json)
+        expect(response.status).to eql(200)
+      end
+    end
+
+    describe 'topic for room not owned or participating by user' do
+      it 'cant create topic' do
+        request.env['HTTP_AUTHORIZATION'] = "Token token=#{api_key.token}"
+
+        params = {
+          name: 'My topic',
+          content: 'lorem ipsum lala'
+        }
+
+        expect(room2.topics.size).to eql(3)
+
+        post :create, room_id: room2.id, topic: params, format: :json
+
+        topic = Topic.last
+
+        expected_response = {
+          error: 'Not authorized'
+        }
+
+        expect(room2.reload.topics.size).to eql(3)
+        expect(room2.participants).not_to include(user)
+        expect(response.body).to eql(expected_response.to_json)
+        expect(response.status).to eql(401)
       end
     end
   end

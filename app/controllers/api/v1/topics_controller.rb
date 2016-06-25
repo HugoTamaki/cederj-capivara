@@ -14,6 +14,7 @@ module Api
 
       def create
         @topic = @room.topics.build(topic_params)
+        authorize @topic
         if @topic.save
           @topic
         else
@@ -22,6 +23,10 @@ module Api
       end
 
       private
+
+      def pundit_user
+        @api_key.user
+      end
 
       def authenticate
         authenticate_token || render_unauthorized
