@@ -11,7 +11,7 @@ class TopicPolicy < ApplicationPolicy
       rooms = @user.rooms.pluck(:id)
       groups = @user.groups.pluck(:id)
       ids = [rooms, groups].flatten.uniq
-      
+
       scope.joins(:room).where(rooms: {id: ids})
     end
   end
