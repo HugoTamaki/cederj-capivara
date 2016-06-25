@@ -12,33 +12,49 @@ describe Api::V1::TopicsController do
   let!(:topic3)     { FactoryGirl.create(:topic, name:'Topic title 3', content: 'lorem ipsum lari lara', room: room1) }
 
   describe '#GET index' do
-    it 'sends all topics' do
-      request.env['HTTP_AUTHORIZATION'] = "Token token=#{api_key.token}"
+    describe 'scope' do
+      describe 'requests topics that user is owner' do
+        it 'sends all topics from room' do
+          request.env['HTTP_AUTHORIZATION'] = "Token token=#{api_key.token}"
 
-      get :index, room_id: room1.id, format: :json
+          get :index, room_id: room1.id, format: :json
 
-      expected_response = {
-        topics: [
-          {
-            id: topic1.id,
-            name: topic1.name,
-            content: topic1.content
-          },
-          {
-            id: topic2.id,
-            name: topic2.name,
-            content: topic2.content
-          },
-          {
-            id: topic3.id,
-            name: topic3.name,
-            content: topic3.content
+          expected_response = {
+            topics: [
+              {
+                id: topic1.id,
+                name: topic1.name,
+                content: topic1.content
+              },
+              {
+                id: topic2.id,
+                name: topic2.name,
+                content: topic2.content
+              },
+              {
+                id: topic3.id,
+                name: topic3.name,
+                content: topic3.content
+              }
+            ]
           }
-        ]
-      }
 
-      expect(response.body).to eql(expected_response.to_json)
-      expect(response.status).to eql(200)
+          expect(response.body).to eql(expected_response.to_json)
+          expect(response.status).to eql(200)
+        end
+      end
+
+      describe 'requests topics from a room that a user belongs to' do
+        xit 'sends all topics from room' do
+          pending 'TODO'
+        end
+      end
+
+      describe 'requests topics from a room which the user is not owner nor belongs' do
+        xit 'sends no topics at all' do
+          pending 'TODO'
+        end
+      end
     end
   end
 

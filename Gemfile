@@ -27,6 +27,7 @@ gem 'devise'
 gem 'rabl'
 gem 'bower-rails'
 gem 'angular-rails-templates'
+gem 'pundit'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

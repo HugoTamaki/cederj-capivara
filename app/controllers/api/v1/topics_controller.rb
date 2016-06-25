@@ -9,7 +9,7 @@ module Api
 
       def index
         room = Room.find(params[:room_id])
-        @topics = room.topics
+        @topics = TopicPolicy::Scope.new(@api_key.user, room.topics).resolve
       end
 
       def create
