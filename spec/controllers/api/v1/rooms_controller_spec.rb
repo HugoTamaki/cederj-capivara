@@ -37,6 +37,7 @@ describe Api::V1::RoomsController do
       }
 
       expect(response.body).to eql(expected_response.to_json)
+      expect(response.status).to eql(200)
     end
   end
 
