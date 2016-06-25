@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe Room do
   let(:user) { FactoryGirl.create(:user) }
-  let(:room) { FactoryGirl.create(:room) }
+  let(:room) { FactoryGirl.create(:room, user: user) }
 
   describe :attributes do
     it { expect(room).to have_attribute(:name) }
