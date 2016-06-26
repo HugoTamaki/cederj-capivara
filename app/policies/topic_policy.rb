@@ -8,16 +8,7 @@ class TopicPolicy < ApplicationPolicy
     end
 
     def resolve
-      room_ids = get_room_ids(@user)
-      scope.joins(:room).where(rooms: {id: room_ids})
-    end
-
-    private
-
-    def get_room_ids(user)
-      user_rooms = user.rooms.pluck(:id)
-      user_groups = user.groups.pluck(:id)
-      [user_rooms, user_groups].flatten.uniq
+      scope.joins(:room).where(rooms: {id: @user.room_ids})
     end
   end
 
