@@ -29,15 +29,14 @@ class TopicPolicy < ApplicationPolicy
   end
 
   def create?
-    room_ids = get_room_ids(@user)
-    room_ids.include? @topic.room.id
+    @user.room_ids.include? @topic.room.id
   end
 
-  private
+  def update?
+    @user.room_ids.include? @topic.room.id
+  end
 
-  def get_room_ids(user)
-    user_rooms = user.rooms.pluck(:id)
-    user_groups = user.groups.pluck(:id)
-    [user_rooms, user_groups].flatten.uniq
+  def destroy?
+    @user.room_ids.include? @topic.room.id
   end
 end

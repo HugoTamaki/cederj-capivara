@@ -4,18 +4,35 @@ module Api
       respond_to :json
 
       before_action :authenticate
-      before_action :set_room, only: [:create]
+      before_action :set_room
       before_action :set_topic, only: [:show, :update, :destroy]
 
       def index
-        room = Room.find(params[:room_id])
-        @topics = TopicPolicy::Scope.new(@api_key.user, room.topics).resolve
+        @topics = TopicPolicy::Scope.new(@api_key.user, @room.topics).resolve
       end
 
       def create
         @topic = @room.topics.build(topic_params)
         authorize @topic
         if @topic.save
+          @topic
+        else
+          render json: { errors: @topic.errors }, status: 400
+        end
+      end
+
+      def update
+        authorize @topic
+        if @topic.update(topic_params)
+          @topic
+        else
+          render json: { errors: @topic.errors }, status: 400
+        end
+      end
+
+      def destroy
+        authorize @topic
+        if @topic.destroy
           @topic
         else
           render json: { errors: @topic.errors }, status: 400

@@ -29,4 +29,10 @@ class User < ActiveRecord::Base
       self.disciplines << discipline
     end
   end
+
+  def room_ids
+    user_rooms = self.rooms.pluck(:id)
+    user_groups = self.groups.pluck(:id)
+    [user_rooms, user_groups].flatten.uniq
+  end
 end

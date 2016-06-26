@@ -126,6 +126,8 @@ describe Api::V1::TopicsController do
           }
         }
 
+        expect(user.rooms).to include(room1)
+        expect(room2.participants).not_to include(user)
         expect(response.body).to eql(expected_response.to_json)
         expect(room1.reload.topics.size).to eql(4)
       end
@@ -158,6 +160,8 @@ describe Api::V1::TopicsController do
           }
         }
 
+        expect(user.rooms).to include(room1)
+        expect(room2.participants).to include(user)
         expect(room2.reload.topics.size).to eql(4)
         expect(room2.participants).to include(user)
         expect(response.body).to eql(expected_response.to_json)
@@ -184,11 +188,185 @@ describe Api::V1::TopicsController do
           error: 'Not authorized'
         }
 
+        expect(user.rooms).not_to include(room2)
+        expect(room2.participants).not_to include(user)
         expect(room2.reload.topics.size).to eql(3)
         expect(room2.participants).not_to include(user)
         expect(response.body).to eql(expected_response.to_json)
         expect(response.status).to eql(401)
       end
+    end
+  end
+
+  describe '#PUT update' do
+    describe 'topic for room owned by user' do
+      it 'updates topic' do
+        request.env['HTTP_AUTHORIZATION'] = "Token token=#{api_key.token}"
+
+        params = {
+          name: 'My topic',
+          content: 'lorem ipsum lala'
+        }
+
+        expect(topic3.name).to eql('Topic title 3')
+
+        put :update, room_id: room1.id, id: topic3.id, topic: params, format: :json
+
+        topic = Topic.find(topic3.id)
+
+        expected_response = {
+          topic: {
+            id: topic3.id,
+            name: 'My topic',
+            content: 'lorem ipsum lala'
+          }
+        }
+
+        expect(user.rooms).to include(room1)
+        expect(room2.participants).not_to include(user)
+        expect(response.body).to eql(expected_response.to_json)
+        expect(topic3.reload.name).to eql('My topic')
+        expect(topic3.content).to eql('lorem ipsum lala')
+        expect(response.status).to eql(200)
+      end
+    end
+
+    describe 'topic for room user is participating' do
+      before :each do
+        room2.participants << user
+      end
+
+      it 'creates a valid topic' do
+        request.env['HTTP_AUTHORIZATION'] = "Token token=#{api_key.token}"
+
+        params = {
+          name: 'My topic',
+          content: 'lorem ipsum lala'
+        }
+
+        expect(topic6.name).to eql('Topic title 6')
+
+        put :update, room_id: room2.id, id: topic6.id, topic: params, format: :json
+
+        topic = Topic.find(topic6.id)
+
+        expected_response = {
+          topic: {
+            id: topic6.id,
+            name: 'My topic',
+            content: 'lorem ipsum lala'
+          }
+        }
+
+        expect(user.rooms).to include(room1)
+        expect(room2.participants).to include(user)
+        expect(response.body).to eql(expected_response.to_json)
+        expect(topic6.reload.name).to eql('My topic')
+        expect(topic6.content).to eql('lorem ipsum lala')
+        expect(response.status).to eql(200)
+      end
+    end
+
+    describe 'topic for room not owned or participating by user' do
+      it 'cant update topic' do
+        request.env['HTTP_AUTHORIZATION'] = "Token token=#{api_key.token}"
+
+        params = {
+          name: 'My topic',
+          content: 'lorem ipsum lala'
+        }
+
+        expect(topic6.name).to eql('Topic title 6')
+
+        put :update, room_id: room2.id, id: topic6.id, topic: params, format: :json
+
+        topic = Topic.find(topic6.id)
+
+        expected_response = {
+          error: 'Not authorized'
+        }
+
+        expect(user.rooms).not_to include(room2)
+        expect(room2.participants).not_to include(user)
+        expect(response.body).to eql(expected_response.to_json)
+        expect(topic6.reload.name).to eql('Topic title 6')
+        expect(topic6.content).to eql('lorem ipsum lari lara')
+        expect(response.status).to eql(401)
+      end
+    end
+  end
+
+  describe '#DELETE destroy' do
+    describe 'topic for room owned by user' do
+      it 'deletes topic' do
+        request.env['HTTP_AUTHORIZATION'] = "Token token=#{api_key.token}"
+
+        expect(room1.topics.size).to eql(3)
+
+        delete :destroy, room_id: room1.id, id: topic3.id, format: :json
+
+        expected_response = {
+          topic: {
+            id: topic3.id,
+            name: topic3.name,
+            content: topic3.content
+          }
+        }
+
+        expect(user.rooms).to include(room1)
+        expect(room2.participants).not_to include(user)
+        expect(response.body).to eql(expected_response.to_json)
+        expect(room1.reload.topics.size).to eql(2)
+        expect(response.status).to eql(200)
+      end
+    end
+  end
+
+  describe 'topic for room user is participating' do
+    before :each do
+      room2.participants << user
+    end
+
+    it 'deletes topic' do
+      request.env['HTTP_AUTHORIZATION'] = "Token token=#{api_key.token}"
+
+      expect(room2.topics.size).to eql(3)
+
+      delete :destroy, room_id: room2.id, id: topic6.id, format: :json
+
+      expected_response = {
+        topic: {
+          id: topic6.id,
+          name: topic6.name,
+          content: topic6.content
+        }
+      }
+
+      expect(user.rooms).to include(room1)
+      expect(room2.participants).to include(user)
+      expect(response.body).to eql(expected_response.to_json)
+      expect(room2.reload.topics.size).to eql(2)
+      expect(response.status).to eql(200)
+    end
+  end
+
+  describe 'topic for room not owned or participating by user' do
+    it 'cant delete topic' do
+      request.env['HTTP_AUTHORIZATION'] = "Token token=#{api_key.token}"
+
+      expect(room2.topics.size).to eql(3)
+
+      delete :destroy, room_id: room2.id, id: topic6.id, format: :json
+
+      expected_response = {
+        error: 'Not authorized'
+      }
+
+      expect(user.rooms).not_to include(room2)
+      expect(room2.participants).not_to include(user)
+      expect(response.body).to eql(expected_response.to_json)
+      expect(room2.reload.topics.size).to eql(3)
+      expect(response.status).to eql(401)
     end
   end
 end
