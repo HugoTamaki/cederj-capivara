@@ -92,12 +92,12 @@ describe Api::V1::TopicsController do
         get :index, room_id: room2.id, format: :json
 
         expected_response = {
-          topics: []
+          error: 'Forbidden'
         }
 
         expect(room2.participants).to match([])
         expect(response.body).to eql(expected_response.to_json)
-        expect(response.status).to eql(200)
+        expect(response.status).to eql(403)
       end
     end
   end

@@ -19,15 +19,25 @@ class TopicPolicy < ApplicationPolicy
     @topic = topic
   end
 
+  def index?
+    room_belongs_to_user?
+  end
+
   def create?
-    @user.room_ids.include? @topic.room.id
+    room_belongs_to_user?
   end
 
   def update?
-    @user.room_ids.include? @topic.room.id
+    room_belongs_to_user?
   end
 
   def destroy?
+    room_belongs_to_user?
+  end
+
+  private
+
+  def room_belongs_to_user?
     @user.room_ids.include? @topic.room.id
   end
 end
