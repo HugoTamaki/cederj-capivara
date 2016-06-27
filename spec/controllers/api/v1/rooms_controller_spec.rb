@@ -109,7 +109,7 @@ describe Api::V1::RoomsController do
         get :create, room: params, format: :json
 
         expected_response = {
-          error: 'Bad credentials'
+          error: 'Not authorized'
         }
 
         expect(response.body).to eql(expected_response.to_json)
@@ -148,7 +148,7 @@ describe Api::V1::RoomsController do
         get :show, id: room1.id, format: :json
 
         expected_response = {
-          error: 'Bad credentials'
+          error: 'Not authorized'
         }
 
         expect(response.body).to eql(expected_response.to_json)
@@ -192,7 +192,7 @@ describe Api::V1::RoomsController do
         put :update, id: room1.id, room: {name: 'PDA room', public: true}, format: :json
 
         expected_response = {
-          error: 'Bad credentials'
+          error: 'Not authorized'
         }
 
         expect(response.body).to eql(expected_response.to_json)
@@ -250,7 +250,7 @@ describe Api::V1::RoomsController do
         delete :destroy, id: room1.id, format: :json
 
         expected_response = {
-          error: 'Bad credentials'
+          error: 'Not authorized'
         }
 
         expect(response.body).to eql(expected_response.to_json)

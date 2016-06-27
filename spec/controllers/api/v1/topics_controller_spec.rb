@@ -185,7 +185,7 @@ describe Api::V1::TopicsController do
         topic = Topic.last
 
         expected_response = {
-          error: 'Not authorized'
+          error: 'Forbidden'
         }
 
         expect(user.rooms).not_to include(room2)
@@ -193,7 +193,7 @@ describe Api::V1::TopicsController do
         expect(room2.reload.topics.size).to eql(3)
         expect(room2.participants).not_to include(user)
         expect(response.body).to eql(expected_response.to_json)
-        expect(response.status).to eql(401)
+        expect(response.status).to eql(403)
       end
     end
   end
@@ -283,7 +283,7 @@ describe Api::V1::TopicsController do
         topic = Topic.find(topic6.id)
 
         expected_response = {
-          error: 'Not authorized'
+          error: 'Forbidden'
         }
 
         expect(user.rooms).not_to include(room2)
@@ -291,7 +291,7 @@ describe Api::V1::TopicsController do
         expect(response.body).to eql(expected_response.to_json)
         expect(topic6.reload.name).to eql('Topic title 6')
         expect(topic6.content).to eql('lorem ipsum lari lara')
-        expect(response.status).to eql(401)
+        expect(response.status).to eql(403)
       end
     end
   end
@@ -359,14 +359,14 @@ describe Api::V1::TopicsController do
       delete :destroy, room_id: room2.id, id: topic6.id, format: :json
 
       expected_response = {
-        error: 'Not authorized'
+        error: 'Forbidden'
       }
 
       expect(user.rooms).not_to include(room2)
       expect(room2.participants).not_to include(user)
       expect(response.body).to eql(expected_response.to_json)
       expect(room2.reload.topics.size).to eql(3)
-      expect(response.status).to eql(401)
+      expect(response.status).to eql(403)
     end
   end
 end

@@ -9,6 +9,6 @@ class ApplicationController < ActionController::Base
   private
 
   def not_authorized
-    render json: { error: 'Not authorized' }, status: 401
+    render json: { error: 'Forbidden' }, status: 403
   end
 end

@@ -75,6 +75,6 @@ class Users::SessionsController < Devise::SessionsController
 
   def render_unauthorized
     self.headers['WWW-Authenticate'] = 'Token realm="Application"'
-    render json: {error: 'Bad credentials'}, status: 401
+    render json: {error: 'Not authorized'}, status: 401
   end
 end

@@ -111,7 +111,7 @@ describe Users::SessionsController do
         data = JSON.parse(response.body)
 
         expect(data).to eql({
-            'error' => 'Bad credentials'
+            'error' => 'Not authorized'
           })
         expect(response.status).to eql(401)
       end
@@ -142,7 +142,7 @@ describe Users::SessionsController do
         data = JSON.parse(response.body)
 
         expect(data).to eql({
-            'error' => 'Bad credentials'
+            'error' => 'Not authorized'
           })
         expect(response.status).to eql(401)
       end
