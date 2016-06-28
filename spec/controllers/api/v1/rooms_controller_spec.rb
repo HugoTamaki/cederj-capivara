@@ -41,6 +41,34 @@ describe Api::V1::RoomsController do
     end
   end
 
+  describe 'GET #participating_rooms' do
+    let!(:user2) { FactoryGirl.create(:user, email: 'janedoe@email.com', password: '123123123', password_confirmation: '123123123', course: computacao) }
+    let!(:api_key2)    { FactoryGirl.create(:api_key, user: user2, expires_at: Time.now + 7.days) }
+
+    before(:each) do
+      room1.participants << user2
+    end
+
+    it 'sends users participating rooms' do
+      request.env['HTTP_AUTHORIZATION'] = "Token token=#{api_key2.token}"
+
+      get :participating_rooms, format: :json
+
+      expected_response = {
+        rooms: [
+          {
+            id: room1.id,
+            name: room1.name,
+            public: room1.public
+          }
+        ]
+      }
+
+      expect(response.body).to eql(expected_response.to_json)
+      expect(response.status).to eql(200)
+    end
+  end
+
   describe 'POST #create' do
     context 'valid' do
       it 'creates a room' do

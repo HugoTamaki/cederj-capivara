@@ -11,6 +11,11 @@ module Api
         @rooms = user.rooms
       end
 
+      def participating_rooms
+        user = @api_key.user
+        @participating_rooms = user.groups
+      end
+
       def create
         user = @api_key.user
         @room = user.rooms.build(room_params)

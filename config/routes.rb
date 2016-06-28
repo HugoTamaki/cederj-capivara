@@ -10,6 +10,8 @@ Rails.application.routes.draw do
         registrations: 'users/registrations',
         sessions: 'users/sessions'
       }
+
+      get 'participating_rooms', to: 'rooms#participating_rooms'
       resources :rooms do
         resources :topics
       end
