@@ -1,29 +1,39 @@
 app.controller('ForumCtrl', [
   '$scope',
   '$state',
+  'Room',
   'User',
+  'ForumService',
   'LabelService',
   'usSpinnerService',
 
   function ($scope,
             $state,
+            Room,
             User,
+            ForumService,
             LabelService,
             usSpinnerService) {
 
     $scope.user = User
 
-    usSpinnerService.spin('rooms')
+    usSpinnerService.spin('my-rooms')
 
-    User.getMyRooms()
+    ForumService.getRooms()
       .then(function (response) {
-        $scope.rooms = response.rooms
+        $scope.rooms = response.rooms.map(function (data) {
+          return new Room(data)
+        })
       })
       .catch(function () {
         $scope.error = LabelService.error.somethingWrong
       })
       .finally(function () {
-        usSpinnerService.stop('rooms')
+        usSpinnerService.stop('my-rooms')
       })
+
+    $scope.goToRoom = function (room) {
+      $state.go('room', { room_id: room.id })
+    }
   }
 ])

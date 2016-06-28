@@ -24,13 +24,17 @@
 //= require www/app
 //= require www/directives/directives
 //= require www/services/login_services
+//= require www/services/forum_services
 //= require www/services/app_services
 //= require www/services/api_services
+//= require www/factories/room_factory
+//= require www/factories/topic_factory
 //= require www/services/course_services
 //= require www/controllers/app_controller
 //= require www/controllers/signup_controller
 //= require www/controllers/login_controller
 //= require www/controllers/profile_controller
 //= require www/controllers/forum_controller
+//= require www/controllers/room_controller
 //= require www/controllers/menu_controller
 //= require lib/bootstrap/bootstrap.min
