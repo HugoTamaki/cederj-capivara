@@ -1,17 +1,18 @@
 <div class="container">
   <menu></menu>
 
+  <div class="alert alert-success" ng-show="notice">
+    {{ notice }}
+  </div>
+
+  <div class="alert alert-danger" ng-show="error">
+    {{ error }}
+  </div>
+
+  <h1>{{ room.name }} - Topicos</h1>
+  <button class="btn btn-primary" ng-click="newTopic()">Novo Tópico</button>
+
   <div class="row">
-    <div class="alert alert-success" ng-show="notice">
-      {{ notice }}
-    </div>
-
-    <div class="alert alert-danger" ng-show="error">
-      {{ error }}
-    </div>
-
-    <h1>Topicos</h1>
-
     <div class="col-lg-6">
       <span us-spinner spinner-theme="small" spinner-key="my-topics"></span>
       <ul>

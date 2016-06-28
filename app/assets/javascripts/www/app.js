@@ -66,7 +66,7 @@ app.config([
 
       .state('room', {
         url: 'room/:room_id',
-        templateUrl: 'forum/rooms.html',
+        templateUrl: 'forum/room.html',
         controller: 'RoomCtrl',
         data: {
           requireLogin: true
