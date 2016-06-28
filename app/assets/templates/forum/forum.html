@@ -1,0 +1,38 @@
+<div class="container">
+  <menu></menu>
+
+  <div class="row">
+    <div class="alert alert-success" ng-show="notice">
+      {{ notice }}
+    </div>
+
+    <div class="alert alert-danger" ng-show="error">
+      {{ error }}
+    </div>
+
+    <h1>Salas</h1>
+
+    <div class="col-lg-6">
+      <h2>Minhas salas</h2>
+      <span us-spinner spinner-theme="small" spinner-key="my-rooms"></span>
+      <ul>
+        <li ng-repeat="room in rooms">
+          <a href="javascript:;" ng-click="goToRoom(room)">
+            <h3>{{ room.name }}</h3>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="col-lg-6">
+      <h2>Salas a que pertenço</h2>
+      <span us-spinner spinner-theme="small" spinner-key="participating-rooms"></span>
+      <ul>
+        <li ng-repeat="participatingRoom in participatingRooms">
+          <a href="javascript:;" ng-click="goToRoom(participatingRoom)">
+            <h3>{{ participatingRoom.name }}</h3>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
