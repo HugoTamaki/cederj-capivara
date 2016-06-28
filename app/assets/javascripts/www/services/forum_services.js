@@ -5,10 +5,24 @@ app.service('ForumService', [
   function ($q,
             $http) {
     var ForumService = {
-      getRooms: function (user) {
+      getRooms: function () {
         var deferred = $q.defer(),
-            url = Conf.baseUrl + '/rooms',
-            self = this
+            url = Conf.baseUrl + '/rooms'
+
+        $http.get(url)
+          .success(function (response) {
+            deferred.resolve(response)
+          })
+          .error(function (response) {
+            deferred.reject(response.error)
+          })
+
+        return deferred.promise
+      },
+
+      getParticipatingRooms: function () {
+        var deferred = $q.defer(),
+            url = Conf.baseUrl + 'participating_rooms'
 
         $http.get(url)
           .success(function (response) {
