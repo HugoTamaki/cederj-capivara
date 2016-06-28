@@ -73,6 +73,15 @@ app.config([
         }
       })
 
+      .state('new_room', {
+        url: 'room/new',
+        templateUrl: 'forum/new_room.html',
+        controller: 'NewRoomCtrl',
+        data: {
+          requireLogin: true
+        }
+      })
+
       .state('edit_profile', {
         url: '/edit_profile',
         templateUrl: 'edit_profile.html',

@@ -22,7 +22,7 @@ app.service('ForumService', [
 
       getParticipatingRooms: function () {
         var deferred = $q.defer(),
-            url = Conf.baseUrl + 'participating_rooms'
+            url = Conf.baseUrl + '/rooms/participating_rooms'
 
         $http.get(url)
           .success(function (response) {
@@ -55,6 +55,21 @@ app.service('ForumService', [
             url = Conf.baseUrl + '/rooms/' + options.room_id
 
         $http.get(url)
+          .success(function (response) {
+            deferred.resolve(response)
+          })
+          .error(function (response) {
+            deferred.reject(response.error)
+          })
+
+        return deferred.promise
+      },
+
+      createRoom: function (options) {
+        var deferred = $q.defer(),
+            url = Conf.baseUrl + '/rooms'
+
+        $http.post(url, options)
           .success(function (response) {
             deferred.resolve(response)
           })

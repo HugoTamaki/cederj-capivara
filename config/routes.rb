@@ -11,8 +11,8 @@ Rails.application.routes.draw do
         sessions: 'users/sessions'
       }
 
-      get 'participating_rooms', to: 'rooms#participating_rooms'
       resources :rooms do
+        get :participating_rooms, on: :collection
         resources :topics
       end
       resources :courses

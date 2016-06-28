@@ -49,5 +49,9 @@ app.controller('ForumCtrl', [
     $scope.goToRoom = function (room) {
       $state.go('room', { room_id: room.id })
     }
+
+    $scope.newRoom = function () {
+      $state.go('new_room')
+    }
   }
 ])
