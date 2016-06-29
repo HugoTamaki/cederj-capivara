@@ -65,7 +65,7 @@ app.config([
       })
 
       .state('room', {
-        url: 'room/:room_id',
+        url: 'room/:room_id/topics',
         templateUrl: 'forum/room.html',
         controller: 'RoomCtrl',
         data: {
@@ -74,9 +74,27 @@ app.config([
       })
 
       .state('new_room', {
-        url: 'room/new',
+        url: 'room/new_room',
         templateUrl: 'forum/new_room.html',
         controller: 'NewRoomCtrl',
+        data: {
+          requireLogin: true
+        }
+      })
+
+      .state('new_topic', {
+        url: 'room/:room_id/new_topic',
+        templateUrl: 'forum/new_topic.html',
+        controller: 'NewTopicCtrl',
+        data: {
+          requireLogin: true
+        }
+      })
+
+      .state('topic', {
+        url: 'room/:room_id/topic/:topic_id/messages',
+        templateUrl: 'forum/topic.html',
+        controller: 'TopicCtrl',
         data: {
           requireLogin: true
         }

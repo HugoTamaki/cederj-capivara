@@ -1,0 +1,27 @@
+<div class="container">
+  <menu></menu>
+
+  <div class="alert alert-success" ng-show="notice">
+    {{ notice }}
+  </div>
+
+  <div class="alert alert-danger" ng-show="error">
+    {{ error }}
+  </div>
+
+  <h1>{{ topic.name }} - Mensagens</h1>
+  <button class="btn btn-primary" ng-click="newMessage(topic)">Novo Tópico</button>
+
+  <div class="row">
+    <div class="col-lg-6">
+      <span us-spinner spinner-theme="small" spinner-key="my-topics"></span>
+      <ul>
+        <li ng-repeat="message in topic.messages">
+          <a href="javascript:;">
+            <p>{{ message.content }}</p>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

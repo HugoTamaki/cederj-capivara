@@ -36,5 +36,6 @@
 //= require www/controllers/profile_controller
 //= require www/controllers/forum_controller
 //= require www/controllers/room_controller
+//= require www/controllers/topic_controller
 //= require www/controllers/menu_controller
 //= require lib/bootstrap/bootstrap.min
