@@ -31,19 +31,34 @@ describe Api::V1::MessagesController do
               id: message1.id,
               content: message1.content,
               topic_id: message1.topic.id,
-              user_id: user.id
+              user: {
+                id: user.id,
+                first_name: user.first_name,
+                last_name: user.last_name,
+                email: user.email
+              }
             },
             {
               id: message2.id,
               content: message2.content,
               topic_id: message2.topic.id,
-              user_id: user.id
+              user: {
+                id: user.id,
+                first_name: user.first_name,
+                last_name: user.last_name,
+                email: user.email
+              }
             },
             {
               id: message3.id,
               content: message3.content,
               topic_id: message3.topic.id,
-              user_id: user.id
+              user: {
+                id: user.id,
+                first_name: user.first_name,
+                last_name: user.last_name,
+                email: user.email
+              }
             }
           ]
         }
@@ -71,19 +86,34 @@ describe Api::V1::MessagesController do
               id: message4.id,
               content: message4.content,
               topic_id: message4.topic.id,
-              user_id: user.id
+              user: {
+                id: user.id,
+                first_name: user.first_name,
+                last_name: user.last_name,
+                email: user.email
+              }
             },
             {
               id: message5.id,
               content: message5.content,
               topic_id: message5.topic.id,
-              user_id: user.id
+              user: {
+                id: user.id,
+                first_name: user.first_name,
+                last_name: user.last_name,
+                email: user.email
+              }
             },
             {
               id: message6.id,
               content: message6.content,
               topic_id: message6.topic.id,
-              user_id: user.id
+              user: {
+                id: user.id,
+                first_name: user.first_name,
+                last_name: user.last_name,
+                email: user.email
+              }
             }
           ]
         }
@@ -107,6 +137,106 @@ describe Api::V1::MessagesController do
 
         expect(room2.participants).to match([])
         expect(response.body).to eql(expected_response.to_json)
+        expect(response.status).to eql(403)
+      end
+    end
+  end
+
+  describe 'POST #create' do
+    describe 'creates message for room user owns' do
+      it 'creates message' do
+        request.env['HTTP_AUTHORIZATION'] = "Token token=#{api_key.token}"
+
+        params = {
+          content: 'lorem ipsum lala'
+        }
+
+        expect(topic1.messages.size).to eql(3)
+
+        post :create, room_id: room1.id, topic_id: topic1.id, message: params, format: :json
+
+        message = Message.last
+
+        expected_response = {
+          message: {
+            id: message.id,
+            content: message.content,
+            topic_id: message.topic_id,
+            user: {
+              id: user.id,
+              first_name: user.first_name,
+              last_name: user.last_name,
+              email: user.email
+            }
+          }
+        }
+
+        expect(user.rooms).to include(room1)
+        expect(room2.participants).not_to include(user)
+        expect(response.body).to eql(expected_response.to_json)
+        expect(topic1.reload.messages.size).to eql(4)
+      end
+    end
+
+    describe 'creates message for room user participates' do
+      before :each do
+        room2.participants << user
+      end
+
+      it 'creates message' do
+        request.env['HTTP_AUTHORIZATION'] = "Token token=#{api_key.token}"
+
+        params = {
+          content: 'lorem ipsum lala'
+        }
+
+        expect(topic1.messages.size).to eql(3)
+
+        post :create, room_id: room2.id, topic_id: topic2.id, message: params, format: :json
+
+        message = Message.last
+
+        expected_response = {
+          message: {
+            id: message.id,
+            content: message.content,
+            topic_id: message.topic_id,
+            user: {
+              id: user.id,
+              first_name: user.first_name,
+              last_name: user.last_name,
+              email: user.email
+            }
+          }
+        }
+
+        expect(user.rooms).to include(room1)
+        expect(room2.participants).to include(user)
+        expect(response.body).to eql(expected_response.to_json)
+        expect(topic2.reload.messages.size).to eql(4)
+      end
+    end
+
+    describe 'creates message for room user nor owns neither participates' do
+      it 'cant create message' do
+        request.env['HTTP_AUTHORIZATION'] = "Token token=#{api_key.token}"
+
+        params = {
+          content: 'lorem ipsum lala'
+        }
+
+        expect(topic2.messages.size).to eql(3)
+
+        post :create, room_id: room2.id, topic_id: topic2.id, message: params, format: :json
+
+        expected_response = {
+          error: 'Forbidden'
+        }
+
+        expect(user.rooms).to include(room1)
+        expect(room2.participants).not_to include(user)
+        expect(response.body).to eql(expected_response.to_json)
+        expect(topic2.reload.messages.size).to eql(3)
         expect(response.status).to eql(403)
       end
     end

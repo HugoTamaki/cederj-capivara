@@ -11,6 +11,22 @@ module Api
         @message = Message.new(topic_id: @topic.id)
         authorize @message
         @messages = @topic.messages
+        @user = @api_key.user
+      end
+
+      def create
+        @message = @topic.messages.build(message_params)
+
+        authorize @message
+
+        @message.user = @api_key.user
+        @user = @api_key.user
+
+        if @message.save
+          @message
+        else
+          render json: { errors: @topic.errors }, status: 400
+        end
       end
 
       private
@@ -43,8 +59,8 @@ module Api
         @message = Message.find(params[:id])
       end
 
-      def topic_params
-        params.require(:message).permit(:content, :user_id)
+      def message_params
+        params.require(:message).permit(:content)
       end
 
       def render_unauthorized

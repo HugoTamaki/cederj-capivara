@@ -23,6 +23,10 @@ class MessagePolicy < ApplicationPolicy
     message_belongs_to_user?
   end
 
+  def create?
+    message_belongs_to_user?
+  end
+
   private
 
   def message_belongs_to_user?
