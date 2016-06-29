@@ -16,7 +16,7 @@ describe Api::V1::TopicsController do
   let!(:topic5)      { FactoryGirl.create(:topic, name:'Topic title 5', content: 'lorem ipsum lari lara', room: room2) }
   let!(:topic6)      { FactoryGirl.create(:topic, name:'Topic title 6', content: 'lorem ipsum lari lara', room: room2) }
 
-  describe '#GET index' do
+  describe 'GET #index' do
     describe 'requests topics that user is owner' do
       it 'sends all topics from room' do
         request.env['HTTP_AUTHORIZATION'] = "Token token=#{api_key.token}"
@@ -102,7 +102,7 @@ describe Api::V1::TopicsController do
     end
   end
 
-  describe '#POST create' do
+  describe 'POST #create' do
     describe 'topic for room owned by user' do
       it 'creates a valid topic' do
         request.env['HTTP_AUTHORIZATION'] = "Token token=#{api_key.token}"
@@ -198,7 +198,7 @@ describe Api::V1::TopicsController do
     end
   end
 
-  describe '#PUT update' do
+  describe 'PUT #update' do
     describe 'topic for room owned by user' do
       it 'updates topic' do
         request.env['HTTP_AUTHORIZATION'] = "Token token=#{api_key.token}"
@@ -296,7 +296,7 @@ describe Api::V1::TopicsController do
     end
   end
 
-  describe '#DELETE destroy' do
+  describe 'DELETE #destroy' do
     describe 'topic for room owned by user' do
       it 'deletes topic' do
         request.env['HTTP_AUTHORIZATION'] = "Token token=#{api_key.token}"
