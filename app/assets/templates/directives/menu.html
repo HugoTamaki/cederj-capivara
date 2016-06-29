@@ -4,7 +4,7 @@
       <a href="javascript:;" ng-click="about()">Sobre</a>
     </li>
     <li>
-      <a href="javascript:;" ng-click="loginPage()">Login</a>
+      <a href="javascript:;" ng-click="loginPage()" ng-if="!user.logged">Login</a>
     </li>
     <li>
       <a href="javascript:;" ng-click="profile()" ng-if="user.logged">Perfil</a>
