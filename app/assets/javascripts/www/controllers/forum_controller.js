@@ -3,7 +3,7 @@ app.controller('ForumCtrl', [
   '$state',
   'Room',
   'User',
-  'ForumService',
+  'RoomService',
   'LabelService',
   'usSpinnerService',
 
@@ -11,7 +11,7 @@ app.controller('ForumCtrl', [
             $state,
             Room,
             User,
-            ForumService,
+            RoomService,
             LabelService,
             usSpinnerService) {
 
@@ -20,7 +20,7 @@ app.controller('ForumCtrl', [
     usSpinnerService.spin('my-rooms')
     usSpinnerService.spin('participating-rooms-rooms')
 
-    ForumService.getRooms()
+    RoomService.getRooms()
       .then(function (response) {
         $scope.rooms = response.rooms.map(function (data) {
           return new Room(data)
@@ -33,7 +33,7 @@ app.controller('ForumCtrl', [
         usSpinnerService.stop('my-rooms')
       })
 
-    ForumService.getParticipatingRooms()
+    RoomService.getParticipatingRooms()
       .then(function (response) {
         $scope.participatingRooms = response.rooms.map(function (data) {
           return new Room(data)

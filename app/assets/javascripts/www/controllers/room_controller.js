@@ -1,19 +1,21 @@
 app.controller('RoomCtrl', [
   '$scope',
+  '$state',
   '$stateParams',
   'User',
   'Room',
   'Topic',
-  'ForumService',
+  'RoomService',
   'LabelService',
   'usSpinnerService',
 
   function ($scope,
+            $state,
             $stateParams,
             User,
             Room,
             Topic,
-            ForumService,
+            RoomService,
             LabelService,
             usSpinnerService) {
 
@@ -21,10 +23,10 @@ app.controller('RoomCtrl', [
 
     usSpinnerService.spin('my-topics')
 
-    ForumService.getRoom($stateParams)
+    RoomService.getRoom($stateParams)
       .then(function (response) {
         $scope.room = new Room(response.room)
-        return ForumService.getRoomTopics($stateParams)
+        return RoomService.getRoomTopics($stateParams)
       })
       .then(function (response) {
         $scope.room.topics = _(response.topics).map(function (data) {
@@ -39,7 +41,11 @@ app.controller('RoomCtrl', [
       })
 
     $scope.goToTopic = function (topic) {
-      $state.go('topic', { id: topic.id })
+      $state.go('topic', { room_id: $scope.room.id, topic_id: topic.id })
+    }
+
+    $scope.newTopic = function (room) {
+      $state.go('new_topic', { room_id: room.id })
     }
   }
 ])
@@ -47,13 +53,13 @@ app.controller('RoomCtrl', [
 .controller('NewRoomCtrl', [
   '$scope',
   '$state',
-  'ForumService',
+  'RoomService',
   'LabelService',
   'usSpinnerService',
 
   function ($scope,
             $state,
-            ForumService,
+            RoomService,
             LabelService,
             usSpinnerService) {
 
@@ -63,7 +69,7 @@ app.controller('RoomCtrl', [
 
       usSpinnerService.spin('create-room')
 
-      ForumService.createRoom(room)
+      RoomService.createRoom(room)
         .then(function (response) {
           $state.go('room', { room_id: response.room.id })
         })
