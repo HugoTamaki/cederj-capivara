@@ -9,6 +9,7 @@ module Api
 
       def index
         @message = Message.new(topic_id: @topic.id)
+        authorize @message
         @messages = @topic.messages
       end
 
