@@ -13,8 +13,18 @@ app.controller('TopicCtrl', [
             LabelService,
             usSpinnerService) {
 
+    usSpinnerService.spin('topic')
 
     TopicService.getTopic($stateParams)
+      .then(function (response) {
+        $scope.topic = response.topic
+      })
+      .catch(function (response) {
+        $scope.error = LabelService.error.somethingWrong
+      })
+      .finally(function () {
+        usSpinnerService.stop('topic')
+      })
 
   }
 ])

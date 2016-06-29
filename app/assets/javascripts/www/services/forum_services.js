@@ -93,9 +93,9 @@ app.service('RoomService', [
             $http) {
 
     var TopicService = {
-      getTopic: function () {
+      getTopic: function (options) {
         var deferred = $q.defer(),
-            url = Conf.baseUrl + 'rooms/' + options.room_id + '/topics/' + options.topic_id + '/messages'
+            url = Conf.baseUrl + 'rooms/' + options.room_id + '/topics/' + options.topic_id
 
         $http.get(url)
           .success(function (response) {
