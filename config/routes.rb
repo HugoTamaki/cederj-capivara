@@ -13,7 +13,9 @@ Rails.application.routes.draw do
 
       resources :rooms do
         get :participating_rooms, on: :collection
-        resources :topics
+        resources :topics do
+          resources :messages
+        end
       end
       resources :courses
     end
