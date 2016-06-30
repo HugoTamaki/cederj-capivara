@@ -122,7 +122,8 @@ describe Api::V1::TopicsController do
           topic: {
             id: topic.id,
             name: topic.name,
-            content: topic.content
+            content: topic.content,
+            room_id: room1.id
           }
         }
 
@@ -156,7 +157,8 @@ describe Api::V1::TopicsController do
           topic: {
             id: topic.id,
             name: topic.name,
-            content: topic.content
+            content: topic.content,
+            room_id: room2.id
           }
         }
 
@@ -218,7 +220,8 @@ describe Api::V1::TopicsController do
           topic: {
             id: topic3.id,
             name: 'My topic',
-            content: 'lorem ipsum lala'
+            content: 'lorem ipsum lala',
+            room_id: room1.id
           }
         }
 
@@ -254,7 +257,8 @@ describe Api::V1::TopicsController do
           topic: {
             id: topic6.id,
             name: 'My topic',
-            content: 'lorem ipsum lala'
+            content: 'lorem ipsum lala',
+            room_id: room2.id
           }
         }
 
@@ -309,7 +313,8 @@ describe Api::V1::TopicsController do
           topic: {
             id: topic3.id,
             name: topic3.name,
-            content: topic3.content
+            content: topic3.content,
+            room_id: room1.id
           }
         }
 
@@ -338,7 +343,8 @@ describe Api::V1::TopicsController do
         topic: {
           id: topic6.id,
           name: topic6.name,
-          content: topic6.content
+          content: topic6.content,
+          room_id: room2.id
         }
       }
 

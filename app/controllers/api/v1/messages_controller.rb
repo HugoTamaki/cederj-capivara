@@ -9,8 +9,10 @@ module Api
 
       def index
         @message = Message.new(topic_id: @topic.id)
+
         authorize @message
-        @messages = @topic.messages
+
+        @messages = @topic.messages.order(created_at: :desc)
         @user = @api_key.user
       end
 
