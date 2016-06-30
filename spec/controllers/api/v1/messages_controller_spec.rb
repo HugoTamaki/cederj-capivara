@@ -28,9 +28,9 @@ describe Api::V1::MessagesController do
         expected_response = {
           messages: [
             {
-              id: message1.id,
-              content: message1.content,
-              topic_id: message1.topic.id,
+              id: message3.id,
+              content: message3.content,
+              topic_id: message3.topic.id,
               user: {
                 id: user.id,
                 first_name: user.first_name,
@@ -50,9 +50,9 @@ describe Api::V1::MessagesController do
               }
             },
             {
-              id: message3.id,
-              content: message3.content,
-              topic_id: message3.topic.id,
+              id: message1.id,
+              content: message1.content,
+              topic_id: message1.topic.id,
               user: {
                 id: user.id,
                 first_name: user.first_name,
@@ -83,9 +83,9 @@ describe Api::V1::MessagesController do
         expected_response = {
           messages: [
             {
-              id: message4.id,
-              content: message4.content,
-              topic_id: message4.topic.id,
+              id: message6.id,
+              content: message6.content,
+              topic_id: message6.topic.id,
               user: {
                 id: user.id,
                 first_name: user.first_name,
@@ -105,9 +105,9 @@ describe Api::V1::MessagesController do
               }
             },
             {
-              id: message6.id,
-              content: message6.content,
-              topic_id: message6.topic.id,
+              id: message4.id,
+              content: message4.content,
+              topic_id: message4.topic.id,
               user: {
                 id: user.id,
                 first_name: user.first_name,
