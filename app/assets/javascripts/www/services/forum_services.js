@@ -133,3 +133,48 @@ app.service('RoomService', [
     return TopicService
   }
 ])
+
+.service('MessageService', [
+  '$q',
+  '$http',
+
+  function ($q,
+            $http) {
+    var MessageService = {
+      getMessages: function (options) {
+        var deferred = $q.defer(),
+            url = Conf.baseUrl + 'rooms/' + options.room_id + '/topics/' + options.topic_id + '/messages'
+
+        $http.get(url)
+          .success(function (response) {
+            deferred.resolve(response)
+          })
+          .error(function (response) {
+            deferred.reject(response)
+          })
+
+        return deferred.promise
+      },
+
+      createMessage: function (options) {
+        var deferred = $q.defer(),
+            url = Conf.baseUrl + 'rooms/' + options.room_id + '/topics/' + options.topic_id + '/messages',
+            params
+
+        params = options.message
+
+        $http.post(url, params)
+          .success(function (response) {
+            deferred.resolve(response)
+          })
+          .error(function (response) {
+            deferred.reject(response)
+          })
+
+        return deferred.promise
+      }
+    }
+
+    return MessageService
+  }
+])

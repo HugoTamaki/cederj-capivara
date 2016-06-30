@@ -9,16 +9,29 @@
     {{ error }}
   </div>
 
+  <p ng-show="newMessageForm.name.$invalid && newMessageForm.name.$dirty" class="alert alert-danger">Preencha o nome do Tópico</p>
+
   <h1>{{ topic.name }} - Mensagens</h1>
-  <button class="btn btn-primary" ng-click="newMessage(topic)">Novo Tópico</button>
 
   <div class="row">
     <div class="col-lg-6">
-      <span us-spinner spinner-theme="small" spinner-key="my-topics"></span>
+
+      <form name="newMessageForm">
+        <span us-spinner spinner-theme="small" spinner-key="create-room"></span>
+
+        <div class="form-group">
+          Mensagem:
+          <textarea name="content" id="message-content" ng-model="message.content" class="form-control"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-default" ng-click="createMessage(topic, message)" ng-disabled="newMessageForm.$invalid">Entrar</button>
+      </form>
+
       <ul>
+        <span us-spinner spinner-theme="small" spinner-key="my-topics"></span>
         <li ng-repeat="message in topic.messages">
           <a href="javascript:;">
-            <p>{{ message.content }}</p>
+            <p>{{ message.content }} - <span>Autor: {{ message.user.first_name }}</span></p>
           </a>
         </li>
       </ul>

@@ -2,30 +2,60 @@ app.controller('TopicCtrl', [
   '$scope',
   '$state',
   '$stateParams',
+  'Topic',
   'TopicService',
+  'MessageService',
   'LabelService',
   'usSpinnerService',
 
   function ($scope,
             $state,
             $stateParams,
+            Topic,
             TopicService,
+            MessageService,
             LabelService,
             usSpinnerService) {
 
     usSpinnerService.spin('topic')
 
-    TopicService.getTopic($stateParams)
-      .then(function (response) {
-        $scope.topic = response.topic
-      })
-      .catch(function (response) {
-        $scope.error = LabelService.error.somethingWrong
-      })
-      .finally(function () {
-        usSpinnerService.stop('topic')
-      })
+    function getTopicAndMessages () {
+      TopicService.getTopic($stateParams)
+        .then(function (response) {
+          $scope.topic = new Topic(response.topic)
+          return MessageService.getMessages($stateParams)
+        })
+        .then(function (response) {
+          $scope.topic.messages = response.messages
+        })
+        .catch(function (response) {
+          $scope.error = LabelService.error.somethingWrong
+        })
+        .finally(function () {
+          usSpinnerService.stop('topic')
+        })
+    }
 
+    $scope.message = {}
+
+    getTopicAndMessages()
+
+    $scope.createMessage = function (topic, message) {
+      var options = {
+        room_id: topic.room_id,
+        topic_id: topic.id,
+        message: message
+      }
+
+      MessageService.createMessage(options)
+        .then(function () {
+          getTopicAndMessages()
+          $scope.message = {}
+        })
+        .catch(function (response) {
+          console.log(response)
+        })
+    }
   }
 ])
 
