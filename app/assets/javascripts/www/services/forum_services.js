@@ -7,7 +7,7 @@ app.service('RoomService', [
     var RoomService = {
       getRooms: function () {
         var deferred = $q.defer(),
-            url = Conf.baseUrl + '/rooms'
+            url = Conf.baseUrl + 'rooms'
 
         $http.get(url)
           .success(function (response) {
@@ -22,7 +22,7 @@ app.service('RoomService', [
 
       getParticipatingRooms: function () {
         var deferred = $q.defer(),
-            url = Conf.baseUrl + '/rooms/participating_rooms'
+            url = Conf.baseUrl + 'rooms/participating_rooms'
 
         $http.get(url)
           .success(function (response) {
@@ -37,7 +37,7 @@ app.service('RoomService', [
 
       getRoomTopics: function (options) {
         var deferred = $q.defer(),
-            url = Conf.baseUrl + '/rooms/' + options.room_id + '/topics'
+            url = Conf.baseUrl + 'rooms/' + options.room_id + '/topics'
 
         $http.get(url)
           .success(function (response) {
@@ -52,7 +52,7 @@ app.service('RoomService', [
 
       getRoom: function (options) {
         var deferred = $q.defer(),
-            url = Conf.baseUrl + '/rooms/' + options.room_id
+            url = Conf.baseUrl + 'rooms/' + options.room_id
 
         $http.get(url)
           .success(function (response) {
@@ -67,7 +67,7 @@ app.service('RoomService', [
 
       createRoom: function (options) {
         var deferred = $q.defer(),
-            url = Conf.baseUrl + '/rooms'
+            url = Conf.baseUrl + 'rooms'
 
         $http.post(url, options)
           .success(function (response) {
