@@ -7,14 +7,14 @@ describe Api::V1::TopicsController do
   let!(:user)        { FactoryGirl.create(:user, email: 'johndoe@email.com', password: '123123123', password_confirmation: '123123123', course: computacao) }
   let!(:api_key)     { FactoryGirl.create(:api_key, user: user, expires_at: Time.now + 7.days) }
   let!(:room1)       { FactoryGirl.create(:room, user: user, name: 'Room 1', public: false) }
-  let!(:topic1)      { FactoryGirl.create(:topic, name:'Topic title 1', content: 'lorem ipsum lari lara', room: room1) }
-  let!(:topic2)      { FactoryGirl.create(:topic, name:'Topic title 2', content: 'lorem ipsum lari lara', room: room1) }
-  let!(:topic3)      { FactoryGirl.create(:topic, name:'Topic title 3', content: 'lorem ipsum lari lara', room: room1) }
+  let!(:topic1)      { FactoryGirl.create(:topic, name:'Topic title 1', content: 'lorem ipsum lari lara', room: room1, user: user) }
+  let!(:topic2)      { FactoryGirl.create(:topic, name:'Topic title 2', content: 'lorem ipsum lari lara', room: room1, user: user) }
+  let!(:topic3)      { FactoryGirl.create(:topic, name:'Topic title 3', content: 'lorem ipsum lari lara', room: room1, user: user) }
   let!(:user2)       { FactoryGirl.create(:user, email: 'janedoe@email.com', password: '123123123', password_confirmation: '123123123', course: computacao) }
   let!(:room2)       { FactoryGirl.create(:room, user: user2, name: 'Room 2', public: false) }
-  let!(:topic4)      { FactoryGirl.create(:topic, name:'Topic title 4', content: 'lorem ipsum lari lara', room: room2) }
-  let!(:topic5)      { FactoryGirl.create(:topic, name:'Topic title 5', content: 'lorem ipsum lari lara', room: room2) }
-  let!(:topic6)      { FactoryGirl.create(:topic, name:'Topic title 6', content: 'lorem ipsum lari lara', room: room2) }
+  let!(:topic4)      { FactoryGirl.create(:topic, name:'Topic title 4', content: 'lorem ipsum lari lara', room: room2, user: user2) }
+  let!(:topic5)      { FactoryGirl.create(:topic, name:'Topic title 5', content: 'lorem ipsum lari lara', room: room2, user: user2) }
+  let!(:topic6)      { FactoryGirl.create(:topic, name:'Topic title 6', content: 'lorem ipsum lari lara', room: room2, user: user2) }
 
   describe 'GET #index' do
     describe 'requests topics that user is owner' do
@@ -28,17 +28,35 @@ describe Api::V1::TopicsController do
             {
               id: topic1.id,
               name: topic1.name,
-              content: topic1.content
+              content: topic1.content,
+              user: {
+                id: topic1.user.id,
+                first_name: topic1.user.first_name,
+                last_name: topic1.user.last_name,
+                email: topic1.user.email
+              }
             },
             {
               id: topic2.id,
               name: topic2.name,
-              content: topic2.content
+              content: topic2.content,
+              user: {
+                id: topic2.user.id,
+                first_name: topic2.user.first_name,
+                last_name: topic2.user.last_name,
+                email: topic2.user.email
+              }
             },
             {
               id: topic3.id,
               name: topic3.name,
-              content: topic3.content
+              content: topic3.content,
+              user: {
+                id: topic2.user.id,
+                first_name: topic2.user.first_name,
+                last_name: topic2.user.last_name,
+                email: topic2.user.email
+              }
             }
           ]
         }
@@ -64,17 +82,35 @@ describe Api::V1::TopicsController do
             {
               id: topic4.id,
               name: topic4.name,
-              content: topic4.content
+              content: topic4.content,
+              user: {
+                id: topic4.user.id,
+                first_name: topic4.user.first_name,
+                last_name: topic4.user.last_name,
+                email: topic4.user.email
+              }
             },
             {
               id: topic5.id,
               name: topic5.name,
-              content: topic5.content
+              content: topic5.content,
+              user: {
+                id: topic5.user.id,
+                first_name: topic5.user.first_name,
+                last_name: topic5.user.last_name,
+                email: topic5.user.email
+              }
             },
             {
               id: topic6.id,
               name: topic6.name,
-              content: topic6.content
+              content: topic6.content,
+              user: {
+                id: topic6.user.id,
+                first_name: topic6.user.first_name,
+                last_name: topic6.user.last_name,
+                email: topic6.user.email
+              }
             }
           ]
         }
@@ -123,7 +159,13 @@ describe Api::V1::TopicsController do
             id: topic.id,
             name: topic.name,
             content: topic.content,
-            room_id: room1.id
+            room_id: room1.id,
+            user: {
+              id: topic.user.id,
+              first_name: topic.user.first_name,
+              last_name: topic.user.last_name,
+              email: topic.user.email
+            }
           }
         }
 
@@ -158,7 +200,13 @@ describe Api::V1::TopicsController do
             id: topic.id,
             name: topic.name,
             content: topic.content,
-            room_id: room2.id
+            room_id: room2.id,
+            user: {
+              id: topic.user.id,
+              first_name: topic.user.first_name,
+              last_name: topic.user.last_name,
+              email: topic.user.email
+            }
           }
         }
 
@@ -221,7 +269,13 @@ describe Api::V1::TopicsController do
             id: topic3.id,
             name: 'My topic',
             content: 'lorem ipsum lala',
-            room_id: room1.id
+            room_id: room1.id,
+            user: {
+              id: topic3.user.id,
+              first_name: topic3.user.first_name,
+              last_name: topic3.user.last_name,
+              email: topic3.user.email
+            }
           }
         }
 
@@ -258,7 +312,13 @@ describe Api::V1::TopicsController do
             id: topic6.id,
             name: 'My topic',
             content: 'lorem ipsum lala',
-            room_id: room2.id
+            room_id: room2.id,
+            user: {
+              id: topic6.user.id,
+              first_name: topic6.user.first_name,
+              last_name: topic6.user.last_name,
+              email: topic6.user.email
+            }
           }
         }
 
@@ -314,7 +374,13 @@ describe Api::V1::TopicsController do
             id: topic3.id,
             name: topic3.name,
             content: topic3.content,
-            room_id: room1.id
+            room_id: room1.id,
+            user: {
+              id: topic3.user.id,
+              first_name: topic3.user.first_name,
+              last_name: topic3.user.last_name,
+              email: topic3.user.email
+            }
           }
         }
 
@@ -344,7 +410,13 @@ describe Api::V1::TopicsController do
           id: topic6.id,
           name: topic6.name,
           content: topic6.content,
-          room_id: room2.id
+          room_id: room2.id,
+          user: {
+            id: topic6.user.id,
+            first_name: topic6.user.first_name,
+            last_name: topic6.user.last_name,
+            email: topic6.user.email
+          }
         }
       }
 

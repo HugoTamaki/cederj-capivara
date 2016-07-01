@@ -21,17 +21,35 @@ describe Api::V1::RoomsController do
           {
             id: room1.id,
             name: room1.name,
-            public: room1.public
+            public: room1.public,
+            user: {
+              id: room1.user.id,
+              first_name: room1.user.first_name,
+              last_name: room1.user.last_name,
+              email: room1.user.email
+            }
           },
           {
             id: room2.id,
             name: room2.name,
-            public: room2.public
+            public: room2.public,
+            user: {
+              id: room2.user.id,
+              first_name: room2.user.first_name,
+              last_name: room2.user.last_name,
+              email: room2.user.email
+            }
           },
           {
             id: room3.id,
             name: room3.name,
-            public: room3.public
+            public: room3.public,
+            user: {
+              id: room3.user.id,
+              first_name: room3.user.first_name,
+              last_name: room3.user.last_name,
+              email: room3.user.email
+            }
           }
         ]
       }
@@ -59,7 +77,13 @@ describe Api::V1::RoomsController do
           {
             id: room1.id,
             name: room1.name,
-            public: room1.public
+            public: room1.public,
+            user: {
+              id: room1.user.id,
+              first_name: room1.user.first_name,
+              last_name: room1.user.last_name,
+              email: room1.user.email
+            }
           }
         ]
       }
@@ -89,7 +113,13 @@ describe Api::V1::RoomsController do
           room: {
             id: room.id,
             name: 'CPW room',
-            public: false
+            public: false,
+            user: {
+              id: room.user.id,
+              first_name: room.user.first_name,
+              last_name: room.user.last_name,
+              email: room.user.email
+            }
           }
         }
 
@@ -158,7 +188,13 @@ describe Api::V1::RoomsController do
           room: {
             id: room1.id,
             name: room1.name,
-            public: room1.public
+            public: room1.public,
+            user: {
+              id: room1.user.id,
+              first_name: room1.user.first_name,
+              last_name: room1.user.last_name,
+              email: room1.user.email
+            }
           }
         }
 
@@ -198,7 +234,13 @@ describe Api::V1::RoomsController do
           room: {
             id: room1.id,
             name: 'PDA room',
-            public: true
+            public: true,
+            user: {
+              id: room1.user.id,
+              first_name: room1.user.first_name,
+              last_name: room1.user.last_name,
+              email: room1.user.email
+            }
           }
         }
 
@@ -257,7 +299,13 @@ describe Api::V1::RoomsController do
           room: {
             id: room1.id,
             name: room1.name,
-            public: room1.public
+            public: room1.public,
+            user: {
+              id: room1.user.id,
+              first_name: room1.user.first_name,
+              last_name: room1.user.last_name,
+              email: room1.user.email
+            }
           }
         }
 

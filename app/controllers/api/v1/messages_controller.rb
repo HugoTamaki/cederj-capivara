@@ -13,7 +13,6 @@ module Api
         authorize @message
 
         @messages = @topic.messages.order(created_at: :desc)
-        @user = @api_key.user
       end
 
       def create
@@ -22,7 +21,6 @@ module Api
         authorize @message
 
         @message.user = @api_key.user
-        @user = @api_key.user
 
         if @message.save
           @message

@@ -15,7 +15,10 @@ module Api
 
       def create
         @topic = @room.topics.build(topic_params)
+        @topic.user = @api_key.user
+
         authorize @topic
+
         if @topic.save
           @topic
         else

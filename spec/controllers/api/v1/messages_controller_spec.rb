@@ -32,10 +32,10 @@ describe Api::V1::MessagesController do
               content: message3.content,
               topic_id: message3.topic.id,
               user: {
-                id: user.id,
-                first_name: user.first_name,
-                last_name: user.last_name,
-                email: user.email
+                id: message3.user.id,
+                first_name: message3.user.first_name,
+                last_name: message3.user.last_name,
+                email: message3.user.email
               }
             },
             {
@@ -43,10 +43,10 @@ describe Api::V1::MessagesController do
               content: message2.content,
               topic_id: message2.topic.id,
               user: {
-                id: user.id,
-                first_name: user.first_name,
-                last_name: user.last_name,
-                email: user.email
+                id: message2.user.id,
+                first_name: message2.user.first_name,
+                last_name: message2.user.last_name,
+                email: message2.user.email
               }
             },
             {
@@ -54,10 +54,10 @@ describe Api::V1::MessagesController do
               content: message1.content,
               topic_id: message1.topic.id,
               user: {
-                id: user.id,
-                first_name: user.first_name,
-                last_name: user.last_name,
-                email: user.email
+                id: message1.user.id,
+                first_name: message1.user.first_name,
+                last_name: message1.user.last_name,
+                email: message1.user.email
               }
             }
           ]
@@ -87,10 +87,10 @@ describe Api::V1::MessagesController do
               content: message6.content,
               topic_id: message6.topic.id,
               user: {
-                id: user.id,
-                first_name: user.first_name,
-                last_name: user.last_name,
-                email: user.email
+                id: message6.user.id,
+                first_name: message6.user.first_name,
+                last_name: message6.user.last_name,
+                email: message6.user.email
               }
             },
             {
@@ -98,10 +98,10 @@ describe Api::V1::MessagesController do
               content: message5.content,
               topic_id: message5.topic.id,
               user: {
-                id: user.id,
-                first_name: user.first_name,
-                last_name: user.last_name,
-                email: user.email
+                id: message5.user.id,
+                first_name: message5.user.first_name,
+                last_name: message5.user.last_name,
+                email: message5.user.email
               }
             },
             {
@@ -109,10 +109,10 @@ describe Api::V1::MessagesController do
               content: message4.content,
               topic_id: message4.topic.id,
               user: {
-                id: user.id,
-                first_name: user.first_name,
-                last_name: user.last_name,
-                email: user.email
+                id: message4.user.id,
+                first_name: message4.user.first_name,
+                last_name: message4.user.last_name,
+                email: message4.user.email
               }
             }
           ]
@@ -163,10 +163,10 @@ describe Api::V1::MessagesController do
             content: message.content,
             topic_id: message.topic_id,
             user: {
-              id: user.id,
-              first_name: user.first_name,
-              last_name: user.last_name,
-              email: user.email
+              id: message.user.id,
+              first_name: message.user.first_name,
+              last_name: message.user.last_name,
+              email: message.user.email
             }
           }
         }
@@ -202,10 +202,10 @@ describe Api::V1::MessagesController do
             content: message.content,
             topic_id: message.topic_id,
             user: {
-              id: user.id,
-              first_name: user.first_name,
-              last_name: user.last_name,
-              email: user.email
+              id: message.user.id,
+              first_name: message.user.first_name,
+              last_name: message.user.last_name,
+              email: message.user.email
             }
           }
         }

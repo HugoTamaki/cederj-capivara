@@ -1,18 +1,19 @@
 <div class="container">
   <menu></menu>
 
+  <div class="alert alert-success" ng-show="notice">
+    {{ notice }}
+  </div>
+
+  <div class="alert alert-danger" ng-show="error">
+    {{ error }}
+  </div>
+
+  <h1>Configurações</h1>
+
   <div class="row">
-    <div class="alert alert-success" ng-show="notice">
-      {{ notice }}
-    </div>
-
-    <div class="alert alert-danger" ng-show="error">
-      {{ error }}
-    </div>
-
     <div class="col-lg-6">
       <span us-spinner spinner-theme="small" spinner-key="edit_profile"></span>
-      <h1>Configurações</h1>
 
       <p ng-show="editForm.firstName.$invalid && editForm.firstName.$dirty" class="alert alert-danger">Preencha o campo de Nome</p>
       <p ng-show="editForm.lastName.$invald && editForm.lastName.$dirty" class="alert alert-danger">Preencha seu sobrenome</p>

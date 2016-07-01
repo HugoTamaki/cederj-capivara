@@ -9,11 +9,12 @@
     {{ error }}
   </div>
 
-  <h1>{{ room.name }} - Topicos</h1>
+  <h1>{{ room.name }}</h1>
   <button class="btn btn-primary" ng-click="newTopic(room)">Novo Tópico</button>
 
   <div class="row">
     <div class="col-lg-6">
+      <h2>Tópicos</h2>
       <span us-spinner spinner-theme="small" spinner-key="my-topics"></span>
       <ul class="list-group">
         <li ng-repeat="topic in room.topics" class="list-group-item">
