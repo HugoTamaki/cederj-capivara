@@ -3,6 +3,7 @@ app.controller('TopicCtrl', [
   '$state',
   '$stateParams',
   'Topic',
+  'Message',
   'TopicService',
   'MessageService',
   'LabelService',
@@ -12,6 +13,7 @@ app.controller('TopicCtrl', [
             $state,
             $stateParams,
             Topic,
+            Message,
             TopicService,
             MessageService,
             LabelService,
@@ -26,7 +28,9 @@ app.controller('TopicCtrl', [
           return MessageService.getMessages($stateParams)
         })
         .then(function (response) {
-          $scope.topic.messages = response.messages
+          $scope.topic.messages = _(response.messages).map(function (message) {
+            return new Message(message)
+          })
         })
         .catch(function (response) {
           $scope.error = LabelService.error.somethingWrong

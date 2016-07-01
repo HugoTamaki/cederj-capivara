@@ -29,6 +29,7 @@
 //= require www/services/api_services
 //= require www/factories/room_factory
 //= require www/factories/topic_factory
+//= require www/factories/message_factory
 //= require www/services/course_services
 //= require www/controllers/app_controller
 //= require www/controllers/signup_controller
