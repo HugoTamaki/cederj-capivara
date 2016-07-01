@@ -24,12 +24,16 @@
           <textarea name="content" id="message-content" ng-model="message.content" class="form-control"></textarea>
         </div>
 
-        <button type="submit" class="btn btn-default" ng-click="createMessage(topic, message)" ng-disabled="newMessageForm.$invalid">Entrar</button>
+        <button type="submit" class="btn btn-default btn-primary" ng-click="createMessage(topic, message)" ng-disabled="newMessageForm.$invalid">Entrar</button>
       </form>
 
-      <ul>
+      <ul class="list-group">
         <span us-spinner spinner-theme="small" spinner-key="my-topics"></span>
-        <li ng-repeat="message in topic.messages">
+        <li class="list-group-item">
+          <h2>{{ topic.name }}</h2>
+          <p>{{ topic.content }}</p>
+        </li>
+        <li ng-repeat="message in topic.messages" class="list-group-item">
           <a href="javascript:;">
             <p>{{ message.content }} - <span>Autor: {{ message.user.first_name }}</span></p>
           </a>
