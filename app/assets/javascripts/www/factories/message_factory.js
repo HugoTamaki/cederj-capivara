@@ -1,6 +1,7 @@
 app.factory('Message', [
+  'User',
 
-  function () {
+  function (User) {
 
     function Message(options) {
       this.id = options.id,
@@ -10,6 +11,10 @@ app.factory('Message', [
 
       this.authorFullName = function () {
         return this.author.first_name + ' ' + this.author.last_name
+      }
+
+      this.authorIsUser = function () {
+        return User.id === this.author.id
       }
     }
 
