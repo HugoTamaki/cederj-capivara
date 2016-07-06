@@ -19,7 +19,7 @@ app.controller('TopicCtrl', [
             LabelService,
             usSpinnerService) {
 
-    usSpinnerService.spin('topic')
+    usSpinnerService.spin('my-messages')
 
     function getTopicAndMessages () {
       TopicService.getTopic($stateParams)
@@ -36,7 +36,7 @@ app.controller('TopicCtrl', [
           $scope.error = LabelService.error.somethingWrong
         })
         .finally(function () {
-          usSpinnerService.stop('topic')
+          usSpinnerService.stop('my-messages')
         })
     }
 
