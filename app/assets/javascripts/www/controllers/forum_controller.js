@@ -53,5 +53,9 @@ app.controller('ForumCtrl', [
     $scope.newRoom = function () {
       $state.go('new_room')
     }
+
+    $scope.deleteRoom = function (room) {
+
+    }
   }
 ])
