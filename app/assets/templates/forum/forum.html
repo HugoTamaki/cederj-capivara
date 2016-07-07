@@ -36,13 +36,22 @@
     <div class="col-lg-6">
       <h2>Salas a que pertenço</h2>
       <span us-spinner spinner-theme="small" spinner-key="participating-rooms"></span>
-      <ul class="list-group">
-        <li ng-repeat="participatingRoom in participatingRooms" class="list-group-item">
-          <a href="javascript:;" ng-click="goToRoom(participatingRoom)">
-            <h3>{{ participatingRoom.name }}</h3>
-          </a>
-        </li>
-      </ul>
+      <table class="table">
+        <tbody>
+          <tr ng-repeat="participatingRoom in participatingRooms">
+            <td class="room-label">
+              <a href="javascript:;" ng-click="goToRoom(participatingRoom)">
+                {{ room.name }}
+              </a>
+            </td>
+            <td class="delete-button">
+              <a href="javascript:;" class="btn btn-danger delete-button" ng-click="deleteRoom(participatingRoom)" ng-if="participatingRoom.authorIsUser()">
+                Apagar
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>

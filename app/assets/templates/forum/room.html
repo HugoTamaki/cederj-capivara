@@ -16,14 +16,25 @@
     <div class="col-lg-6">
       <h2>Tópicos</h2>
       <span us-spinner spinner-theme="small" spinner-key="my-topics" spinner-start-active="true"></span>
-      <ul class="list-group">
-        <li ng-repeat="topic in room.topics" class="list-group-item">
-          <a href="javascript:;" ng-click="goToTopic(topic)">
-            <h2>{{ topic.name }}</h2>
-            <span>por: {{ topic.authorFullName() }}</span>
-          </a>
-        </li>
-      </ul>
+      <table class="table">
+        <tbody>
+          <tr ng-repeat="topic in room.topics">
+            <td class="room-label">
+              <a href="javascript:;" ng-click="goToTopic(topic)">
+                {{ topic.name }}
+              </a>
+            </td>
+            <td>
+              por: {{ topic.authorFullName() }}
+            </td>
+            <td class="delete-button">
+              <a href="javascript:;" class="btn btn-danger delete-button" ng-click="deleteTopic(topic)" ng-if="room.authorIsUser()">
+                Apagar
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>
