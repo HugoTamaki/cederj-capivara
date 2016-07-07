@@ -46,7 +46,7 @@ app.controller('TopicCtrl', [
 
     $scope.createMessage = function (topic, message) {
       var options = {
-        room_id: topic.room_id,
+        room: topic.room,
         topic_id: topic.id,
         message: message
       }

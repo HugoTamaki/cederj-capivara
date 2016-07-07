@@ -7,7 +7,7 @@ app.factory('Topic', [
       this.id = options.id
       this.name = options.name
       this.content = options.content
-      this.room_id = options.room_id
+      this.room = options.room
       this.messages = []
       this.author = options.user
 
