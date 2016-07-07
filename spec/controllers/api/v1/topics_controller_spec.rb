@@ -29,6 +29,10 @@ describe Api::V1::TopicsController do
               id: topic1.id,
               name: topic1.name,
               content: topic1.content,
+              room: {
+                id: room1.id,
+                name: room1.name
+              },
               user: {
                 id: topic1.user.id,
                 first_name: topic1.user.first_name,
@@ -40,6 +44,10 @@ describe Api::V1::TopicsController do
               id: topic2.id,
               name: topic2.name,
               content: topic2.content,
+              room: {
+                id: room1.id,
+                name: room1.name
+              },
               user: {
                 id: topic2.user.id,
                 first_name: topic2.user.first_name,
@@ -51,6 +59,10 @@ describe Api::V1::TopicsController do
               id: topic3.id,
               name: topic3.name,
               content: topic3.content,
+              room: {
+                id: room1.id,
+                name: room1.name
+              },
               user: {
                 id: topic2.user.id,
                 first_name: topic2.user.first_name,
@@ -83,6 +95,10 @@ describe Api::V1::TopicsController do
               id: topic4.id,
               name: topic4.name,
               content: topic4.content,
+              room: {
+                id: room2.id,
+                name: room2.name
+              },
               user: {
                 id: topic4.user.id,
                 first_name: topic4.user.first_name,
@@ -94,6 +110,10 @@ describe Api::V1::TopicsController do
               id: topic5.id,
               name: topic5.name,
               content: topic5.content,
+              room: {
+                id: room2.id,
+                name: room2.name
+              },
               user: {
                 id: topic5.user.id,
                 first_name: topic5.user.first_name,
@@ -105,6 +125,10 @@ describe Api::V1::TopicsController do
               id: topic6.id,
               name: topic6.name,
               content: topic6.content,
+              room: {
+                id: room2.id,
+                name: room2.name
+              },
               user: {
                 id: topic6.user.id,
                 first_name: topic6.user.first_name,
@@ -159,7 +183,10 @@ describe Api::V1::TopicsController do
             id: topic.id,
             name: topic.name,
             content: topic.content,
-            room_id: room1.id,
+            room: {
+              id: room1.id,
+              name: room1.name
+            },
             user: {
               id: topic.user.id,
               first_name: topic.user.first_name,
@@ -200,7 +227,10 @@ describe Api::V1::TopicsController do
             id: topic.id,
             name: topic.name,
             content: topic.content,
-            room_id: room2.id,
+            room: {
+              id: room2.id,
+              name: room2.name
+            },
             user: {
               id: topic.user.id,
               first_name: topic.user.first_name,
@@ -269,7 +299,10 @@ describe Api::V1::TopicsController do
             id: topic3.id,
             name: 'My topic',
             content: 'lorem ipsum lala',
-            room_id: room1.id,
+            room: {
+              id: room1.id,
+              name: room1.name
+            },
             user: {
               id: topic3.user.id,
               first_name: topic3.user.first_name,
@@ -312,7 +345,10 @@ describe Api::V1::TopicsController do
             id: topic6.id,
             name: 'My topic',
             content: 'lorem ipsum lala',
-            room_id: room2.id,
+            room: {
+              id: room2.id,
+              name: room2.name
+            },
             user: {
               id: topic6.user.id,
               first_name: topic6.user.first_name,
@@ -374,7 +410,10 @@ describe Api::V1::TopicsController do
             id: topic3.id,
             name: topic3.name,
             content: topic3.content,
-            room_id: room1.id,
+            room: {
+              id: room1.id,
+              name: room1.name
+            },
             user: {
               id: topic3.user.id,
               first_name: topic3.user.first_name,
@@ -410,7 +449,10 @@ describe Api::V1::TopicsController do
           id: topic6.id,
           name: topic6.name,
           content: topic6.content,
-          room_id: room2.id,
+          room: {
+            id: room2.id,
+            name: room2.name
+          },
           user: {
             id: topic6.user.id,
             first_name: topic6.user.first_name,
