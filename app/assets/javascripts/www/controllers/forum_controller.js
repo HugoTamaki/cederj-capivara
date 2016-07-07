@@ -55,7 +55,24 @@ app.controller('ForumCtrl', [
     }
 
     $scope.deleteRoom = function (room) {
+      usSpinnerService.spin('my-rooms')
 
+      RoomService.deleteRoom(room)
+        .then(function (response) {
+          return RoomService.getRooms()
+        })
+        .then(function (response) {
+          $scope.notice = LabelService.notification.roomDelete.success
+          $scope.rooms = response.rooms.map(function (data) {
+            return new Room(data)
+          })
+        })
+        .catch(function (response) {
+          $scope.error = LabelService.error.somethingWrong
+        })
+        .finally(function () {
+          usSpinnerService.stop('my-rooms')
+        })
     }
   }
 ])

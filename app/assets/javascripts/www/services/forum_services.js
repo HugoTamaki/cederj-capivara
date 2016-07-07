@@ -78,6 +78,21 @@ app.service('RoomService', [
           })
 
         return deferred.promise
+      },
+
+      deleteRoom: function (options) {
+        var deferred = $q.defer(),
+            url = Conf.baseUrl + 'rooms/' + options.id
+
+        $http.delete(url)
+          .success(function (response) {
+            deferred.resolve(response)
+          })
+          .error(function (response) {
+            deferred.reject(response.error)
+          })
+
+        return deferred.promise
       }
     }
 
@@ -127,6 +142,21 @@ app.service('RoomService', [
           })
 
         return deferred.promise
+      },
+
+      deleteTopic: function (options) {
+        var deferred = $q.defer(),
+            url = Conf.baseUrl + 'rooms/' + options.room.id + '/topics/' + options.id
+
+        $http.delete(url)
+          .success(function (response) {
+            deferred.resolve(response)
+          })
+          .error(function (reject) {
+            deferred.reject(response.error)
+          })
+
+        return deferred.promise
       }
     }
 
@@ -158,7 +188,7 @@ app.service('RoomService', [
 
       createMessage: function (options) {
         var deferred = $q.defer(),
-            url = Conf.baseUrl + 'rooms/' + options.room_id + '/topics/' + options.topic_id + '/messages',
+            url = Conf.baseUrl + 'rooms/' + options.room.id + '/topics/' + options.topic_id + '/messages',
             params
 
         params = options.message

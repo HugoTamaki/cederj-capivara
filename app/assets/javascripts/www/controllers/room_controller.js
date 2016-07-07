@@ -6,6 +6,7 @@ app.controller('RoomCtrl', [
   'Room',
   'Topic',
   'RoomService',
+  'TopicService',
   'LabelService',
   'usSpinnerService',
 
@@ -16,6 +17,7 @@ app.controller('RoomCtrl', [
             Room,
             Topic,
             RoomService,
+            TopicService,
             LabelService,
             usSpinnerService) {
 
@@ -46,6 +48,31 @@ app.controller('RoomCtrl', [
 
     $scope.newTopic = function (room) {
       $state.go('new_topic', { room_id: room.id })
+    }
+
+    $scope.deleteTopic = function(topic) {
+      usSpinnerService.spin('my-topics')
+
+      TopicService.deleteTopic(topic)
+        .then(function (response) {
+          return RoomService.getRoom($stateParams)
+        })
+        .then(function (response) {
+          $scope.room = new Room(response.room)
+          return RoomService.getRoomTopics($stateParams)
+        })
+        .then(function (response) {
+          $scope.notice = LabelService.notification.topicDelete.success
+          $scope.room.topics = _(response.topics).map(function (data) {
+            return new Topic(data)
+          })
+        })
+        .catch(function () {
+          $scope.error = LabelService.error.somethingWrong
+        })
+        .finally(function () {
+          usSpinnerService.stop('my-topics')
+        })
     }
   }
 ])
