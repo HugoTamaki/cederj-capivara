@@ -35,6 +35,12 @@ app.service('CacheService', [
       notification: {
         profileEdit: {
           success: 'Usuário editado com sucesso.'
+        },
+        roomDelete: {
+          success: 'Sala de discussão apagada com sucesso.'
+        },
+        topicDelete: {
+          success: 'Tópico apagado com sucesso.'
         }
       }
     }
