@@ -7,17 +7,21 @@ var app = angular.module('capivara', [
 
 app.config([
   '$stateProvider',
+  '$locationProvider',
   '$urlRouterProvider',
   'usSpinnerConfigProvider',
   'localStorageServiceProvider',
 
   function ($stateProvider,
+            $locationProvider,
             $urlRouterProvider,
             usSpinnerConfigProvider,
             localStorageServiceProvider) {
 
     localStorageServiceProvider
       .setPrefix('capivara')
+
+    $locationProvider.html5Mode(true)
 
     $stateProvider
       .state('login', {

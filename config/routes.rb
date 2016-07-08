@@ -2,7 +2,6 @@ Rails.application.routes.draw do
 
   root 'home#index'
 
-
   namespace :api, as: nil, defaults: {format: :json} do
     namespace :v1, as: nil do
       devise_for :users,
@@ -20,6 +19,8 @@ Rails.application.routes.draw do
       resources :courses
     end
   end
+
+  get '*path' => "home#index"
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
