@@ -44,7 +44,7 @@ app.controller('ForumCtrl', [
         $scope.error = LabelService.error.somethingWrong
       })
       .finally(function () {
-        usSpinnerService.stop('participating_rooms')
+        usSpinnerService.stop('participating-rooms')
       })
 
     RoomService.getSearch()
