@@ -16,6 +16,11 @@ module Api
         @participating_rooms = user.groups
       end
 
+      def search
+        @rooms = Room.first(5) unless params[:term]
+        @rooms = Room.where("LOWER(name) LIKE ?", "%#{params[:term].downcase}%") if params[:term]
+      end
+
       def create
         user = @api_key.user
         @room = user.rooms.build(room_params)

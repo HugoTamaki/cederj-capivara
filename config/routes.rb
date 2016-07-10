@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       }
 
       resources :rooms do
+        get :search, on: :collection
         get :participating_rooms, on: :collection
         resources :topics do
           resources :messages

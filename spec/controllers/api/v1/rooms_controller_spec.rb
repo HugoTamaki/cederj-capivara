@@ -59,6 +59,85 @@ describe Api::V1::RoomsController do
     end
   end
 
+  describe 'GET #search' do
+    it 'gets first 5 rooms if no term is passed' do
+      request.env['HTTP_AUTHORIZATION'] = "Token token=#{api_key.token}"
+
+      get :search, format: :json
+
+      expected_response = {
+        rooms: [
+          {
+            id: room1.id,
+            name: room1.name,
+            public: room1.public,
+            user: {
+              id: room1.user.id,
+              first_name: room1.user.first_name,
+              last_name: room1.user.last_name,
+              email: room1.user.email
+            }
+          },
+          {
+            id: room2.id,
+            name: room2.name,
+            public: room2.public,
+            user: {
+              id: room2.user.id,
+              first_name: room2.user.first_name,
+              last_name: room2.user.last_name,
+              email: room2.user.email
+            }
+          },
+          {
+            id: room3.id,
+            name: room3.name,
+            public: room3.public,
+            user: {
+              id: room3.user.id,
+              first_name: room3.user.first_name,
+              last_name: room3.user.last_name,
+              email: room3.user.email
+            }
+          }
+        ]
+      }
+
+      expect(response.body).to eql(expected_response.to_json)
+      expect(response.status).to eql(200)
+    end
+
+    it 'gets result of search' do
+      request.env['HTTP_AUTHORIZATION'] = "Token token=#{api_key.token}"
+
+      params = {
+        term: 'Room 1',
+        format: :json
+      }
+
+      get :search, params
+
+      expected_response = {
+        rooms: [
+          {
+            id: room1.id,
+            name: room1.name,
+            public: room1.public,
+            user: {
+              id: room1.user.id,
+              first_name: room1.user.first_name,
+              last_name: room1.user.last_name,
+              email: room1.user.email
+            }
+          }
+        ]
+      }
+
+      expect(response.body).to eql(expected_response.to_json)
+      expect(response.status).to eql(200)
+    end
+  end
+
   describe 'GET #participating_rooms' do
     let!(:user2) { FactoryGirl.create(:user, email: 'janedoe@email.com', password: '123123123', password_confirmation: '123123123', course: computacao) }
     let!(:api_key2)    { FactoryGirl.create(:api_key, user: user2, expires_at: Time.now + 7.days) }
