@@ -41,7 +41,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
         first_name: resource.first_name,
         last_name: resource.last_name,
         email: resource.email,
-        disciplines: disciplines_hash
+        disciplines: disciplines_hash,
+        room_ids: resource.room_ids
       },
       api_key: api_key.token
     }

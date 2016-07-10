@@ -48,7 +48,8 @@ describe Users::RegistrationsController do
                 description: cpw.description,
                 status: 'incomplete'
               }
-            ]
+            ],
+            room_ids: user.room_ids
           },
           api_key: api_key.token
         }
@@ -169,7 +170,8 @@ describe Users::RegistrationsController do
                   description: cpw.description,
                   status: 'incomplete'
                 }
-              ]
+              ],
+              room_ids: user.room_ids
             },
             api_key: api_key.token
           }
@@ -218,7 +220,8 @@ describe Users::RegistrationsController do
                   description: cpw.description,
                   status: 'incomplete'
                 }
-              ]
+              ],
+              room_ids: user.room_ids
             },
             api_key: api_key.token
           }
@@ -274,7 +277,8 @@ describe Users::RegistrationsController do
                   description: cpw.description,
                   status: 'doing'
                 }
-              ]
+              ],
+              room_ids: user.room_ids
             },
             api_key: api_key.token
           }

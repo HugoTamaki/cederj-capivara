@@ -51,7 +51,8 @@ describe Users::SessionsController do
                 description: cpw.description,
                 status: 'incomplete'
               }
-            ]
+            ],
+            room_ids: user.room_ids
           },
           api_key: api_key.token
         }
