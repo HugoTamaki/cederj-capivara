@@ -18,7 +18,8 @@ app.controller('ForumCtrl', [
     $scope.user = User
 
     usSpinnerService.spin('my-rooms')
-    usSpinnerService.spin('participating-rooms-rooms')
+    usSpinnerService.spin('participating-rooms')
+    usSpinnerService.spin('search-rooms')
 
     RoomService.getRooms()
       .then(function (response) {
@@ -44,6 +45,19 @@ app.controller('ForumCtrl', [
       })
       .finally(function () {
         usSpinnerService.stop('participating_rooms')
+      })
+
+    RoomService.getSearch()
+      .then(function (response) {
+        $scope.searchedRooms = response.rooms.map(function (data) {
+          return new Room(data)
+        })
+      })
+      .catch(function () {
+        $scope.error = LabelService.error.somethingWrong
+      })
+      .finally(function () {
+        usSpinnerService.stop('search-rooms')
       })
 
     $scope.goToRoom = function (room) {

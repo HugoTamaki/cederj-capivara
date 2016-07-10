@@ -5,6 +5,8 @@ app.service('RoomService', [
   function ($q,
             $http) {
     var RoomService = {
+      term: '',
+
       getRooms: function () {
         var deferred = $q.defer(),
             url = Conf.baseUrl + 'rooms'
@@ -30,6 +32,25 @@ app.service('RoomService', [
           })
           .error(function (response) {
             deferred.reject(response.error)
+          })
+
+        return deferred.promise
+      },
+
+      getSearch: function () {
+        var deferred = $q.defer(),
+            url = Conf.baseUrl + 'rooms/search'
+
+        var params = {
+          term: this.term
+        }
+
+        $http.get(url, params)
+          .success(function (response) {
+            deferred.resolve(response)
+          })
+          .error(function (response) {
+            deferred.resolve(response.error)
           })
 
         return deferred.promise

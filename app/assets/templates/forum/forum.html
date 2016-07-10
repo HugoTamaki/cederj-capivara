@@ -10,48 +10,83 @@
   </div>
 
   <h1>Salas</h1>
-  <button class="btn btn-primary" ng-click="newRoom()">Nova Sala</button>
+  <div class="buttons">
+    <button class="btn btn-primary" ng-click="newRoom()">Nova Sala</button>
+  </div>
 
   <div class="row">
-    <div class="col-lg-6">
-      <h2>Minhas salas</h2>
-      <span us-spinner spinner-theme="small" spinner-key="my-rooms" spinner-start-active="true"></span>
-      <table class="table">
-        <tbody>
-          <tr ng-repeat="room in rooms">
-            <td class="room-label">
-              <a href="javascript:;" ng-click="goToRoom(room)">
-                {{ room.name }}
-              </a>
-            </td>
-            <td class="delete-button">
-              <a href="javascript:;" class="btn btn-danger delete-button" ng-click="deleteRoom(room)" ng-if="room.authorIsUser()">
-                Apagar
-              </a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="col-lg-6">
-      <h2>Salas a que pertenço</h2>
-      <span us-spinner spinner-theme="small" spinner-key="participating-rooms"></span>
-      <table class="table">
-        <tbody>
-          <tr ng-repeat="participatingRoom in participatingRooms">
-            <td class="room-label">
-              <a href="javascript:;" ng-click="goToRoom(participatingRoom)">
-                {{ room.name }}
-              </a>
-            </td>
-            <td class="delete-button">
-              <a href="javascript:;" class="btn btn-danger delete-button" ng-click="deleteRoom(participatingRoom)" ng-if="participatingRoom.authorIsUser()">
-                Apagar
-              </a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+    <ul class="nav nav-tabs">
+      <li role="presentation">
+        <a href="#my-rooms" data-toggle="tab">Minhas Salas</a>
+      </li>
+      <li role="presentation">
+        <a href="#participating-rooms" data-toggle="tab">Salas a que pertenço</a>
+      </li>
+      <li role="presentation">
+        <a href="#search-rooms" data-toggle="tab">Buscar</a>
+      </li>
+    </ul>
+    <div class="tab-content clearfix">
+      <div class="col-lg-12 tab-pane active" id="my-rooms">
+        <h2>Minhas salas</h2>
+        <span us-spinner spinner-theme="small" spinner-key="my-rooms" spinner-start-active="true"></span>
+        <table class="table">
+          <tbody>
+            <tr ng-repeat="room in rooms">
+              <td class="room-label">
+                <a href="javascript:;" ng-click="goToRoom(room)">
+                  {{ room.name }}
+                </a>
+              </td>
+              <td class="delete-button">
+                <a href="javascript:;" class="btn btn-danger delete-button" ng-click="deleteRoom(room)" ng-if="room.authorIsUser()">
+                  Apagar
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-lg-12 tab-pane" id="participating-rooms">
+        <h2>Salas a que pertenço</h2>
+        <span us-spinner spinner-theme="small" spinner-key="participating-rooms" spinner-start-active="true"></span>
+        <table class="table">
+          <tbody>
+            <tr ng-repeat="participatingRoom in participatingRooms">
+              <td class="room-label">
+                <a href="javascript:;" ng-click="goToRoom(participatingRoom)">
+                  {{ participatingRoom.name }}
+                </a>
+              </td>
+              <td class="delete-button">
+                <a href="javascript:;" class="btn btn-danger delete-button" ng-click="deleteRoom(participatingRoom)" ng-if="participatingRoom.authorIsUser()">
+                  Apagar
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-lg-12 tab-pane" id="search-rooms">
+        <h2>Buscar salas</h2>
+        <span us-spinner spinner-theme="small" spinner-key="search-rooms" spinner-start-active="true"></span>
+        <table class="table">
+          <tbody>
+            <tr ng-repeat="searchedRoom in searchedRooms">
+              <td class="room-label">
+                <a href="javascript:;" ng-click="goToRoom(searchedRoom)">
+                  {{ searchedRoom.name }}
+                </a>
+              </td>
+              <td class="delete-button">
+                <a href="javascript:;" class="btn btn-danger delete-button" ng-click="deleteRoom(searchedRoom)" ng-if="searchedRoom.authorIsUser()">
+                  Apagar
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>
