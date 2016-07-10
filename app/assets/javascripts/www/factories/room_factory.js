@@ -16,6 +16,10 @@ app.factory('Room', [
       this.authorIsUser = function () {
         return User.id === this.author.id
       }
+
+      this.belongsToUserParticipatingRooms = function () {
+        return _(User.room_ids).contains(this.id)
+      }
     }
 
     return Room

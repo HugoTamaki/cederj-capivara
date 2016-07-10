@@ -10,11 +10,23 @@
   </div>
 
   <h1>{{ room.name }}</h1>
-  <button class="btn btn-primary" ng-click="newTopic(room)">Novo Tópico</button>
+  <div class="buttons">
+    <button class="btn btn-primary" ng-click="newTopic(room)" ng-if="room.authorIsUser() || room.belongsToUserParticipatingRooms()">Novo Tópico</button>
+  </div>
 
   <div class="row">
-    <div class="col-lg-6">
-      <h2>Tópicos</h2>
+    <h2>Tópicos</h2>
+    <div class="col-lg-12" ng-if="!room.belongsToUserParticipatingRooms()">
+      Você não faz parte deste grupo. Gostaria de participar?
+
+      <button ng-if="!room.public" class="btn btn-primary">
+        Enviar convite
+      </button>
+      <button ng-if="room.public" class="btn btn-primary">
+        Participar
+      </button>
+    </div>
+    <div class="col-lg-12" ng-if="room.belongsToUserParticipatingRooms()">
       <span us-spinner spinner-theme="small" spinner-key="my-topics" spinner-start-active="true"></span>
       <table class="table">
         <tbody>
