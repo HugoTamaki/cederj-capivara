@@ -8,8 +8,6 @@ module Api
       before_action :set_topic, only: [:show, :update, :destroy]
 
       def index
-        @topic = Topic.new(room: @room)
-        authorize @topic
         @topics = TopicPolicy::Scope.new(@api_key.user, @room.topics).resolve
       end
 

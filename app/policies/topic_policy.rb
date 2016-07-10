@@ -19,10 +19,6 @@ class TopicPolicy < ApplicationPolicy
     @topic = topic
   end
 
-  def index?
-    room_belongs_to_user?
-  end
-
   def create?
     room_belongs_to_user?
   end
