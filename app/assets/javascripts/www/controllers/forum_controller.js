@@ -17,6 +17,8 @@ app.controller('ForumCtrl', [
 
     $scope.user = User
 
+    $scope.roomService = RoomService
+
     usSpinnerService.spin('my-rooms')
     usSpinnerService.spin('participating-rooms')
     usSpinnerService.spin('search-rooms')
@@ -61,11 +63,30 @@ app.controller('ForumCtrl', [
       })
 
     $scope.goToRoom = function (room) {
+      $scope.roomService.term = ''
       $state.go('room', { room_id: room.id })
     }
 
     $scope.newRoom = function () {
+      $scope.roomService.term = ''
       $state.go('new_room')
+    }
+
+    $scope.search = function () {
+      usSpinnerService.spin('search-rooms')
+
+      RoomService.getSearch()
+        .then(function (response) {
+          $scope.searchedRooms = response.rooms.map(function (data) {
+            return new Room(data)
+          })
+        })
+        .catch(function () {
+          $scope.error = LabelService.error.somethingWrong
+        })
+        .finally(function () {
+          usSpinnerService.stop('search-rooms')
+        })
     }
 
     $scope.deleteRoom = function (room) {

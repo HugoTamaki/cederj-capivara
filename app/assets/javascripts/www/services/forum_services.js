@@ -41,11 +41,13 @@ app.service('RoomService', [
         var deferred = $q.defer(),
             url = Conf.baseUrl + 'rooms/search'
 
-        var params = {
-          term: this.term
+        var options = {
+          params: {
+            term: this.term
+          }
         }
 
-        $http.get(url, params)
+        $http.get(url, options)
           .success(function (response) {
             deferred.resolve(response)
           })
