@@ -91,6 +91,11 @@ app.service('User', [
           })
 
         return deferred.promise
+      },
+
+      updateRoomIds: function (room) {
+        this.room_ids.push(room.id)
+        cache()
       }
     }
 

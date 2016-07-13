@@ -80,12 +80,14 @@ app.controller('RoomCtrl', [
 .controller('NewRoomCtrl', [
   '$scope',
   '$state',
+  'User',
   'RoomService',
   'LabelService',
   'usSpinnerService',
 
   function ($scope,
             $state,
+            User,
             RoomService,
             LabelService,
             usSpinnerService) {
@@ -98,6 +100,7 @@ app.controller('RoomCtrl', [
 
       RoomService.createRoom(room)
         .then(function (response) {
+          User.updateRoomIds(response.room)
           $state.go('room', { room_id: response.room.id })
         })
         .catch(function (response) {
