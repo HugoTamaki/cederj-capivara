@@ -12,13 +12,14 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require underscore/underscore-min
 //= require_tree ./www/shared
-//= require angular/angular
-//= require angular-local-storage/dist/angular-local-storage.min
-//= require angular-ui-router/release/angular-ui-router
-//= require spin.js/spin.min
-//= require angular-spinner/angular-spinner.min
+//= require lib/underscore/underscore-min
+//= require lib/angular/angular
+//= require lib/angular-local-storage/dist/angular-local-storage.min
+//= require lib/angular-ui-router/release/angular-ui-router
+//= require lib/spin.js/spin.min
+//= require lib/bootstrap/bootstrap.min
+//= require lib/angular-spinner/angular-spinner.min
 //= require angular-rails-templates
 //= require_tree ../templates
 //= require www/app
@@ -39,4 +40,3 @@
 //= require www/controllers/room_controller
 //= require www/controllers/topic_controller
 //= require www/controllers/menu_controller
-//= require lib/bootstrap/bootstrap.min

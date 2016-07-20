@@ -25,7 +25,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'devise'
 gem 'rabl'
-gem 'bower-rails'
 gem 'angular-rails-templates'
 gem 'pundit'
 

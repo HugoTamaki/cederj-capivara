@@ -20,7 +20,7 @@ bundle install
 After instalation of dependencies, run this to add angular dependencies
 
 ```
-rake bower:install
+bower install
 ```
 
 To create the database, run:
