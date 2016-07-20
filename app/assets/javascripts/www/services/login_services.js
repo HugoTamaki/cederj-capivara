@@ -94,7 +94,7 @@ app.service('User', [
       },
 
       updateRoomIds: function (room) {
-        this.room_ids.push(room.id)
+        this.room_ids = room.user.room_ids
         cache()
       }
     }
