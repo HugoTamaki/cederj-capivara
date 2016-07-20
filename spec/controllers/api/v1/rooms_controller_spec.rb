@@ -197,7 +197,8 @@ describe Api::V1::RoomsController do
               id: room.user.id,
               first_name: room.user.first_name,
               last_name: room.user.last_name,
-              email: room.user.email
+              email: room.user.email,
+              room_ids: room.user.room_ids
             }
           }
         }
@@ -272,7 +273,8 @@ describe Api::V1::RoomsController do
               id: room1.user.id,
               first_name: room1.user.first_name,
               last_name: room1.user.last_name,
-              email: room1.user.email
+              email: room1.user.email,
+              room_ids: room1.user.room_ids
             }
           }
         }
@@ -318,7 +320,8 @@ describe Api::V1::RoomsController do
               id: room1.user.id,
               first_name: room1.user.first_name,
               last_name: room1.user.last_name,
-              email: room1.user.email
+              email: room1.user.email,
+              room_ids: room1.user.room_ids
             }
           }
         }
@@ -383,7 +386,8 @@ describe Api::V1::RoomsController do
               id: room1.user.id,
               first_name: room1.user.first_name,
               last_name: room1.user.last_name,
-              email: room1.user.email
+              email: room1.user.email,
+              room_ids: room1.user.room_ids.reject { |id| id === room1.id }
             }
           }
         }
