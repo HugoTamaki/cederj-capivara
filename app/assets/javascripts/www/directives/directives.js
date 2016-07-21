@@ -12,6 +12,17 @@ app.directive('menu', [
   }
 ])
 
+.directive('notice', [
+  function () {
+
+    return {
+      restrict: 'E',
+      scope: true,
+      templateUrl: 'directives/notice.html'
+    }
+  }
+])
+
 .directive('compareTo', [
 
   function () {
