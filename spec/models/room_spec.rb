@@ -13,5 +13,6 @@ describe Room do
   describe :relationships do
     it { expect(room).to respond_to(:user) }
     it { expect(room).to respond_to(:participants) }
+    it { expect(room).to respond_to(:room_entry_requests) }
   end
 end

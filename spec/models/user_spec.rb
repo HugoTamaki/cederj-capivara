@@ -22,6 +22,8 @@ describe User do
     it { expect(user).to respond_to(:user_disciplines) }
     it { expect(user).to respond_to(:rooms) }
     it { expect(user).to respond_to(:groups) }
+    it { expect(user).to respond_to(:room_requests) }
+    it { expect(user).to respond_to(:room_sent_requests) }
   end
 
   describe :methods do
