@@ -5,6 +5,7 @@ class CreateRoomEntryRequests < ActiveRecord::Migration
       t.integer :sender_id
       t.integer :receiver_id
       t.string :token
+      t.boolean :accepted, default: false
 
       t.timestamps null: false
     end

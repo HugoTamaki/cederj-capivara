@@ -56,8 +56,9 @@ ActiveRecord::Schema.define(version: 20160722005523) do
     t.integer  "sender_id"
     t.integer  "receiver_id"
     t.string   "token"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.boolean  "accepted",    default: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   add_index "room_entry_requests", ["receiver_id"], name: "index_room_entry_requests_on_receiver_id", using: :btree
