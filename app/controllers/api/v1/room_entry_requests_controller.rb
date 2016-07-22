@@ -7,12 +7,12 @@ module Api
 
       def index
         @user = @api_key.user
-        @invitations = @user.room_requests
+        @invitations = @user.room_requests.not_accepted
       end
 
       def create
-        receiver = User.find(params[:receiver_id])
-        room = Room.find(params[:room_id])
+        receiver = User.find_by(id: params[:room_entry_request][:receiver_id])
+        room = Room.find_by(id: params[:room_entry_request][:room_id])
         sender = @api_key.user
 
         @room_entry_request = RoomEntryRequest.new(room: room, sender: sender, receiver: receiver)
