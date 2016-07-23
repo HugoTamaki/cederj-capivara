@@ -13,7 +13,7 @@
     <div class="col-lg-12" ng-if="!room.belongsToUserParticipatingRooms()">
       Você não faz parte deste grupo. Gostaria de participar?
 
-      <button ng-if="!room.public" class="btn btn-primary">
+      <button ng-if="!room.public" class="btn btn-primary" ng-click="createRoomEntryRequest(room)">
         Enviar convite
       </button>
       <button ng-if="room.public" class="btn btn-primary">

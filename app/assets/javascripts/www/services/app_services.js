@@ -41,6 +41,11 @@ app.service('CacheService', [
         },
         topicDelete: {
           success: 'Tópico apagado com sucesso.'
+        },
+        roomEntryRequest: {
+          invitation: {
+            success: 'Pedido enviado com sucesso.'
+          }
         }
       }
     }

@@ -116,6 +116,21 @@ app.service('RoomService', [
           })
 
         return deferred.promise
+      },
+
+      createRoomEntryRequest: function (options) {
+        var deferred = $q.defer(),
+            url = Conf.baseUrl + 'room_entry_requests'
+
+        $http.post(url, options)
+          .success(function (response) {
+            deferred.resolve(response.room_entry_request)
+          })
+          .error(function (response) {
+            deferred.reject(response.error)
+          })
+
+        return deferred.promise
       }
     }
 

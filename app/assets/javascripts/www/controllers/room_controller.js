@@ -74,6 +74,21 @@ app.controller('RoomCtrl', [
           usSpinnerService.stop('my-topics')
         })
     }
+
+    $scope.createRoomEntryRequest = function (room) {
+      var options = {
+        room_id: room.id,
+        receiver_id: room.author.id
+      }
+
+      RoomService.createRoomEntryRequest(options)
+        .then(function () {
+          $scope.notice = LabelService.notification.roomEntryRequest.invitation.success
+        })
+        .catch(function () {
+          $scope.error = LabelService.error.somethingWrong
+        })
+    }
   }
 ])
 
