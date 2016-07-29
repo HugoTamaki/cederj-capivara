@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       }
 
       resources :room_entry_requests, only: [:index, :create] do
+        get :sent_requests, on: :collection
         get :accept, on: :collection
       end
 
