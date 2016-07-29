@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
       resources :room_entry_requests, only: [:index, :create] do
         get :sent_requests, on: :collection
-        get :accept, on: :collection
+        get :accept, on: :member
       end
 
       resources :rooms do

@@ -31,7 +31,7 @@ module Api
       end
 
       def accept
-        @room_entry_request = RoomEntryRequest.find_by(token: params[:token])
+        @room_entry_request = RoomEntryRequest.find_by(id: params[:id])
 
         if @room_entry_request
           sender = @room_entry_request.sender
@@ -39,6 +39,7 @@ module Api
 
           @room_entry_request.update(accepted: true)
           room.participants << sender
+          @room_entry_request
         else
           render json: { error: 'Invitation not found' }, status: 404
         end
