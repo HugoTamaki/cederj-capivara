@@ -36,6 +36,7 @@ class User < ActiveRecord::Base
   def room_ids
     user_rooms = self.rooms.pluck(:id)
     user_groups = self.groups.pluck(:id)
-    [user_rooms, user_groups].flatten.uniq
+    accepted_rooms = self.room_sent_requests.where(accepted: true).pluck(:room_id)
+    [user_rooms, user_groups, accepted_rooms].flatten.uniq
   end
 end
