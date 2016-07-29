@@ -92,7 +92,8 @@ app.controller('RoomCtrl', [
       }
 
       RoomService.createRoomEntryRequest(options)
-        .then(function () {
+        .then(function (response) {
+          $scope.sentRoomEntryRequest = response.room_entry_request
           $scope.notice = LabelService.notification.roomEntryRequest.invitation.success
         })
         .catch(function () {

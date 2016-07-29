@@ -124,7 +124,7 @@ app.service('RoomService', [
 
         $http.post(url, options)
           .success(function (response) {
-            deferred.resolve(response.room_entry_request)
+            deferred.resolve(response)
           })
           .error(function (response) {
             deferred.reject(response.error)
