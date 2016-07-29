@@ -5,12 +5,12 @@
 
   <h1>{{ room.name }}</h1>
   <div class="buttons">
-    <button class="btn btn-primary" ng-click="newTopic(room)" ng-if="room.authorIsUser() || room.belongsToUserParticipatingRooms()">Novo Tópico</button>
+    <button class="btn btn-primary" ng-click="newTopic(room)" ng-if="room.authorIsUser() || room.belongsToUserParticipatingRooms() || sentRoomEntryRequest.accepted">Novo Tópico</button>
   </div>
 
   <div class="row">
     <h2>Tópicos</h2>
-    <div class="col-lg-12" ng-if="!room.belongsToUserParticipatingRooms()">
+    <div class="col-lg-12" ng-if="!sentRoomEntryRequest && !room.belongsToUserParticipatingRooms()">
       Você não faz parte deste grupo. Gostaria de participar?
 
       <button ng-if="!room.public" class="btn btn-primary" ng-click="createRoomEntryRequest(room)">
@@ -20,7 +20,12 @@
         Participar
       </button>
     </div>
-    <div class="col-lg-12" ng-if="room.belongsToUserParticipatingRooms()">
+
+    <div class="col-lg-12" ng-if="sentRoomEntryRequest && !sentRoomEntryRequest.accepted">
+      Seu convite aguarda aprovação.
+    </div>
+
+    <div class="col-lg-12" ng-if="room.belongsToUserParticipatingRooms() || sentRoomEntryRequest.accepted">
       <span us-spinner spinner-theme="small" spinner-key="my-topics" spinner-start-active="true"></span>
       <table class="table">
         <tbody>
