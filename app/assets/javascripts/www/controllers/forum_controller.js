@@ -80,7 +80,7 @@ app.controller('ForumCtrl', [
 
       RoomEntryRequestService.accept(request)
         .then(function () {
-          $scope.notice = LabelService.notification.accepted.success
+          $scope.notice = LabelService.notification.roomEntryRequest.accepted.success
           return RoomEntryRequestService.getRoomEntryRequests()
         })
         .then(function (response) {
