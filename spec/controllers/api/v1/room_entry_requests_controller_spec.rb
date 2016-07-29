@@ -29,9 +29,19 @@ describe Api::V1::RoomEntryRequestsController do
           room_entry_requests: [
             {
               id: room_entry_request.id,
-              sender_id: sender.id,
-              receiver_id: receiver.id,
               accepted: room_entry_request.accepted,
+              sender: {
+                id: room_entry_request.sender.id,
+                first_name: room_entry_request.sender.first_name,
+                last_name: room_entry_request.sender.last_name,
+                email: room_entry_request.sender.email
+              },
+              receiver: {
+                id: room_entry_request.receiver.id,
+                first_name: room_entry_request.receiver.first_name,
+                last_name: room_entry_request.receiver.last_name,
+                email: room_entry_request.receiver.email
+              }, 
               room: {
                 id: room.id,
                 name: room.name,
@@ -85,9 +95,19 @@ describe Api::V1::RoomEntryRequestsController do
           room_entry_requests: [
             {
               id: room_entry_request.id,
-              sender_id: sender.id,
-              receiver_id: receiver.id,
               accepted: room_entry_request.accepted,
+              sender: {
+                id: room_entry_request.sender.id,
+                first_name: room_entry_request.sender.first_name,
+                last_name: room_entry_request.sender.last_name,
+                email: room_entry_request.sender.email
+              },
+              receiver: {
+                id: room_entry_request.receiver.id,
+                first_name: room_entry_request.receiver.first_name,
+                last_name: room_entry_request.receiver.last_name,
+                email: room_entry_request.receiver.email
+              },
               room: {
                 id: room.id,
                 name: room.name,
@@ -103,9 +123,19 @@ describe Api::V1::RoomEntryRequestsController do
             },
             {
               id: room_entry_request2.id,
-              sender_id: sender.id,
-              receiver_id: receiver2.id,
               accepted: room_entry_request2.accepted,
+              sender: {
+                id: room_entry_request2.sender.id,
+                first_name: room_entry_request2.sender.first_name,
+                last_name: room_entry_request2.sender.last_name,
+                email: room_entry_request2.sender.email
+              },
+              receiver: {
+                id: room_entry_request2.receiver.id,
+                first_name: room_entry_request2.receiver.first_name,
+                last_name: room_entry_request2.receiver.last_name,
+                email: room_entry_request2.receiver.email
+              }, 
               room: {
                 id: room2.id,
                 name: room2.name,
@@ -121,9 +151,19 @@ describe Api::V1::RoomEntryRequestsController do
             },
             {
               id: room_entry_request3.id,
-              sender_id: sender.id,
-              receiver_id: receiver3.id,
               accepted: room_entry_request3.accepted,
+              sender: {
+                id: room_entry_request3.sender.id,
+                first_name: room_entry_request3.sender.first_name,
+                last_name: room_entry_request3.sender.last_name,
+                email: room_entry_request3.sender.email
+              },
+              receiver: {
+                id: room_entry_request3.receiver.id,
+                first_name: room_entry_request3.receiver.first_name,
+                last_name: room_entry_request3.receiver.last_name,
+                email: room_entry_request3.receiver.email
+              }, 
               room: {
                 id: room3.id,
                 name: room3.name,
@@ -159,9 +199,19 @@ describe Api::V1::RoomEntryRequestsController do
         room_entry_requests: [
           {
             id: room_entry_request.id,
-            sender_id: sender.id,
-            receiver_id: receiver.id,
             accepted: room_entry_request.accepted,
+            sender: {
+              id: room_entry_request.sender.id,
+              first_name: room_entry_request.sender.first_name,
+              last_name: room_entry_request.sender.last_name,
+              email: room_entry_request.sender.email
+            },
+            receiver: {
+              id: room_entry_request.receiver.id,
+              first_name: room_entry_request.receiver.first_name,
+              last_name: room_entry_request.receiver.last_name,
+              email: room_entry_request.receiver.email
+            },
             room: {
               id: room.id,
               name: room.name,
@@ -222,9 +272,19 @@ describe Api::V1::RoomEntryRequestsController do
         expected_response = {
           room_entry_request: {
             id: room_entry_request.id,
-            sender_id: sender.id,
-            receiver_id: receiver.id,
             accepted: room_entry_request.accepted,
+            sender: {
+              id: room_entry_request.sender.id,
+              first_name: room_entry_request.sender.first_name,
+              last_name: room_entry_request.sender.last_name,
+              email: room_entry_request.sender.email
+            },
+            receiver: {
+              id: room_entry_request.receiver.id,
+              first_name: room_entry_request.receiver.first_name,
+              last_name: room_entry_request.receiver.last_name,
+              email: room_entry_request.receiver.email
+            },
             room: {
               id: room.id,
               name: room.name,
@@ -293,5 +353,9 @@ describe Api::V1::RoomEntryRequestsController do
         expect(RoomEntryRequest.count).to eql(3)
       end
     end
+  end
+
+  describe 'POST #accept' do
+    
   end
 end
