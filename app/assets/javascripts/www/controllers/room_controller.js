@@ -6,6 +6,7 @@ app.controller('RoomCtrl', [
   'Room',
   'Topic',
   'RoomService',
+  'RoomEntryRequestService',
   'TopicService',
   'LabelService',
   'usSpinnerService',
@@ -17,6 +18,7 @@ app.controller('RoomCtrl', [
             Room,
             Topic,
             RoomService,
+            RoomEntryRequestService,
             TopicService,
             LabelService,
             usSpinnerService) {
@@ -25,10 +27,18 @@ app.controller('RoomCtrl', [
 
     usSpinnerService.spin('my-topics')
 
-    RoomService.getRoom($stateParams)
+    RoomEntryRequestService.getSentRoomEntryRequests($stateParams)
+      .then(function (response) {
+        $scope.sentRoomEntryRequest = response.room_entry_requests[0]
+        return RoomService.getRoom($stateParams)
+      })
       .then(function (response) {
         $scope.room = new Room(response.room)
-        return RoomService.getRoomTopics($stateParams)
+        if (roomIsAccepted() || $scope.room.belongsToUserParticipatingRooms()) {
+          return RoomService.getRoomTopics($stateParams)
+        } else {
+          return {}.topics = []
+        }
       })
       .then(function (response) {
         $scope.room.topics = _(response.topics).map(function (data) {
@@ -88,6 +98,10 @@ app.controller('RoomCtrl', [
         .catch(function () {
           $scope.error = LabelService.error.somethingWrong
         })
+    }
+
+    function roomIsAccepted () {
+      return $scope.sentRoomEntryRequest && $scope.sentRoomEntryRequest.accepted
     }
   }
 ])
