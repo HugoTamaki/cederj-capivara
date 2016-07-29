@@ -3,7 +3,7 @@ class Room < ActiveRecord::Base
   has_many :topics, dependent: :destroy
   has_many :room_users
   has_many :participants, through: :room_users, class_name: 'User'
-  has_many :room_entry_requests
+  has_many :room_entry_requests, dependent: :destroy
 
   validates :name, presence: true
 end

@@ -10,8 +10,8 @@ class User < ActiveRecord::Base
   has_many :topics
   has_many :messages
   has_many :room_users
-  has_many :room_requests, class_name: 'RoomEntryRequest', foreign_key: 'receiver_id'
-  has_many :room_sent_requests, class_name: 'RoomEntryRequest', foreign_key: 'sender_id'
+  has_many :room_requests, class_name: 'RoomEntryRequest', foreign_key: 'receiver_id', dependent: :destroy
+  has_many :room_sent_requests, class_name: 'RoomEntryRequest', foreign_key: 'sender_id', dependent: :destroy
   has_many :groups, through: :room_users, class_name: 'Room'
   has_many :user_disciplines
   has_many :disciplines, through: :user_disciplines
