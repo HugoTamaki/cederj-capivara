@@ -41,7 +41,7 @@ describe Api::V1::RoomEntryRequestsController do
                 first_name: room_entry_request.receiver.first_name,
                 last_name: room_entry_request.receiver.last_name,
                 email: room_entry_request.receiver.email
-              }, 
+              },
               room: {
                 id: room.id,
                 name: room.name,
@@ -135,7 +135,7 @@ describe Api::V1::RoomEntryRequestsController do
                 first_name: room_entry_request2.receiver.first_name,
                 last_name: room_entry_request2.receiver.last_name,
                 email: room_entry_request2.receiver.email
-              }, 
+              },
               room: {
                 id: room2.id,
                 name: room2.name,
@@ -163,7 +163,7 @@ describe Api::V1::RoomEntryRequestsController do
                 first_name: room_entry_request3.receiver.first_name,
                 last_name: room_entry_request3.receiver.last_name,
                 email: room_entry_request3.receiver.email
-              }, 
+              },
               room: {
                 id: room3.id,
                 name: room3.name,
@@ -355,7 +355,94 @@ describe Api::V1::RoomEntryRequestsController do
     end
   end
 
-  describe 'POST #accept' do
-    
+  describe 'GET #accept' do
+    context 'accept invitation' do
+      it 'changes invitation status' do
+        request.env['HTTP_AUTHORIZATION'] = "Token token=#{api_key.token}"
+
+        get :accept, id: room_entry_request.id, format: :json
+
+        expected_response = {
+          room_entry_request: {
+            id: room_entry_request.id,
+            accepted: room_entry_request.reload.accepted,
+            sender: {
+              id: room_entry_request.sender.id,
+              first_name: room_entry_request.sender.first_name,
+              last_name: room_entry_request.sender.last_name,
+              email: room_entry_request.sender.email
+            },
+            receiver: {
+              id: room_entry_request.receiver.id,
+              first_name: room_entry_request.receiver.first_name,
+              last_name: room_entry_request.receiver.last_name,
+              email: room_entry_request.receiver.email
+            },
+            room: {
+              id: room.id,
+              name: room.name,
+              public: room.public,
+              user: {
+                id: room.user.id,
+                first_name: room.user.first_name,
+                last_name: room.user.last_name,
+                email: room.user.email,
+                room_ids: room.user.room_ids
+              }
+            }
+          }
+        }
+
+        expect(response.body).to eql(expected_response.to_json)
+        expect(response.status).to eql(200)
+      end
+
+      it 'sender becomes room participant' do
+        expect(room.participants).not_to include(sender)
+        expect(room_entry_request.accepted).to eql(false)
+
+        request.env['HTTP_AUTHORIZATION'] = "Token token=#{api_key.token}"
+
+        get :accept, id: room_entry_request.id, format: :json
+
+        expect(room.reload.participants).to include(sender)
+        expect(room_entry_request.reload.accepted).to eql(true)
+      end
+    end
+
+    context 'dont find invitation' do
+      it 'sends error message' do
+        request.env['HTTP_AUTHORIZATION'] = "Token token=#{api_key.token}"
+
+        get :accept, id: 9999, format: :json
+
+        expected_response = {
+          error: 'Invitation not found'
+        }
+
+        expect(response.body).to eql(expected_response.to_json)
+        expect(response.status).to eql(404)
+      end
+    end
+
+    context 'api_key is invalid' do
+      before(:each) do
+        api_key.expires_at = Time.now - 7.days
+        api_key.save
+      end
+
+      it 'sends not authorized error' do
+        request.env['HTTP_AUTHORIZATION'] = "Token token=#{api_key.token}"
+
+        get :accept, id: room_entry_request.id, format: :json
+
+        expected_response = {
+          error: 'Not authorized'
+        }
+
+        expect(response.body).to eql(expected_response.to_json)
+        expect(response.status).to eql(401)
+      end
+    end
   end
 end
