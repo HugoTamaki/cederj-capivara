@@ -218,7 +218,7 @@ app.service('RoomService', [
             deferred.resolve(response)
           })
           .error(function (response) {
-            deferred.reject(response)
+            deferred.reject(response.error)
           })
 
         return deferred.promise
@@ -236,7 +236,7 @@ app.service('RoomService', [
             deferred.resolve(response)
           })
           .error(function (response) {
-            deferred.reject(response)
+            deferred.reject(response.error)
           })
 
         return deferred.promise
@@ -244,5 +244,44 @@ app.service('RoomService', [
     }
 
     return MessageService
+  }
+])
+
+.service('RoomEntryRequestService', [
+  '$q',
+  '$http',
+
+  function ($q,
+            $http) {
+
+    var RoomEntryRequestService = {
+      getRoomEntryRequests: function () {
+
+      },
+
+      getSentRoomEntryRequests: function (options) {
+        var deferred = $q.defer(),
+            url = Conf.baseUrl + 'room_entry_requests/sent_requests/',
+            data
+
+        data = {
+          params: {
+            room_id: options.room_id
+          }
+        }
+
+        $http.get(url, data)
+          .success(function (response) {
+            deferred.resolve(response)
+          })
+          .error(function (response) {
+            deferred.reject(response.error)
+          })
+
+        return deferred.promise
+      }
+    }
+
+    return RoomEntryRequestService
   }
 ])
