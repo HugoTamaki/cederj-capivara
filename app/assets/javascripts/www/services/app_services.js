@@ -45,6 +45,9 @@ app.service('CacheService', [
         roomEntryRequest: {
           invitation: {
             success: 'Pedido enviado com sucesso.'
+          },
+          accepted: {
+            success: 'Pedido aceito com sucesso.'
           }
         }
       }

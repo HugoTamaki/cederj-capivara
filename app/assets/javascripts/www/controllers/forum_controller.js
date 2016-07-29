@@ -4,6 +4,8 @@ app.controller('ForumCtrl', [
   'Room',
   'User',
   'RoomService',
+  'RoomEntryRequestService',
+  'RoomEntryRequest',
   'LabelService',
   'usSpinnerService',
 
@@ -12,6 +14,8 @@ app.controller('ForumCtrl', [
             Room,
             User,
             RoomService,
+            RoomEntryRequestService,
+            RoomEntryRequest,
             LabelService,
             usSpinnerService) {
 
@@ -22,6 +26,15 @@ app.controller('ForumCtrl', [
     usSpinnerService.spin('my-rooms')
     usSpinnerService.spin('participating-rooms')
     usSpinnerService.spin('search-rooms')
+    usSpinnerService.spin('entry-requests')
+
+    RoomEntryRequestService.getRoomEntryRequests()
+      .then(function (response) {
+        usSpinnerService.stop('entry-requests')
+        $scope.roomEntryRequests = _(response.room_entry_requests).map(function (data) {
+          return new RoomEntryRequest(data)
+        })
+      })
 
     RoomService.getRooms()
       .then(function (response) {
@@ -61,6 +74,28 @@ app.controller('ForumCtrl', [
       .finally(function () {
         usSpinnerService.stop('search-rooms')
       })
+
+    $scope.accept = function (request) {
+      usSpinnerService.spin('entry-requests')
+
+      RoomEntryRequestService.accept(request)
+        .then(function () {
+          $scope.notice = LabelService.notification.accepted.success
+          return RoomEntryRequestService.getRoomEntryRequests()
+        })
+        .then(function (response) {
+          usSpinnerService.stop('entry-requests')
+          $scope.roomEntryRequests = _(response.room_entry_requests).map(function (data) {
+            return new RoomEntryRequest(data)
+          })
+        })
+        .catch(function () {
+          $scope.error = LabelService.error.somethingWrong
+        })
+        .finally(function () {
+          usSpinnerService.stop('entry-requests')
+        })
+    }
 
     $scope.goToRoom = function (room) {
       $scope.roomService.term = ''
