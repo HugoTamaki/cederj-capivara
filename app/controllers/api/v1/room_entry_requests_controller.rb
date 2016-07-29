@@ -10,6 +10,12 @@ module Api
         @invitations = @user.room_requests.not_accepted
       end
 
+      def sent_requests
+        @user = @api_key.user
+        @invitations = @user.room_sent_requests
+        @invitations = @invitations.where(room_id: params[:room_id]) if params[:room_id]
+      end
+
       def create
         receiver = User.find_by(id: params[:room_entry_request][:receiver_id])
         room = Room.find_by(id: params[:room_entry_request][:room_id])
