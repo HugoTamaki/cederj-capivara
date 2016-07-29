@@ -92,10 +92,10 @@
           <tbody>
             <tr ng-repeat="request in roomEntryRequests">
               <td class="request-label">
-                {{ request.senderFullName() }} - {{ request.sender.email }}
+                {{ request.senderFullName() }} quer entrar na sala {{ request.room.name }}
               </td>
               <td class="delete-button">
-                <a href="javascript:;" class="btn btn-danger delete-button" ng-click="accept(request)">
+                <a href="javascript:;" class="btn btn-primary" ng-click="accept(request)">
                   Aceitar
                 </a>
               </td>
