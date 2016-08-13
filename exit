@@ -1,0 +1,1483 @@
+[33mcommit 589d5d71e21b41fecf53c66ba393c4943092ae2e[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Fri Jul 29 20:26:42 2016 -0300
+
+    Applying dependence on room or users destructions to invitations
+
+[33mcommit 3ad92f83d53eb2939f2f7e63884b2f52eeaef304[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Fri Jul 29 20:26:13 2016 -0300
+
+    Changing message and button of invitations made
+
+[33mcommit f704b51bd898675f2a0f3982dc23782b4dcdce47[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Fri Jul 29 20:26:01 2016 -0300
+
+    Fixing message bug
+
+[33mcommit c2e09970d076835f378bc149627c63872075527c[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Fri Jul 29 20:25:50 2016 -0300
+
+    Updating template after request sent
+
+[33mcommit a9e71689e8a879e6f4faee00fd95f1e6158c9fac[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Fri Jul 29 09:23:00 2016 -0300
+
+    Adding invitation acceptance specs
+
+[33mcommit 813ebd901d10be403b0d5e3ec5612369d2a702d2[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Fri Jul 29 08:26:32 2016 -0300
+
+    Updating room entry request controller specs
+
+[33mcommit 193051a991dd8c45e33eff580cc4c0764ee63089[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Fri Jul 29 08:26:09 2016 -0300
+
+    Adding template for accept
+
+[33mcommit d5e10182c62659f34b6f31c073745c5c311c027c[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Fri Jul 29 08:25:57 2016 -0300
+
+    Fix room_ids for user
+
+[33mcommit 67239c99a5b04944befe0c5dd2ebbe340425d361[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Fri Jul 29 08:25:42 2016 -0300
+
+    Creating template for invitation lists
+
+[33mcommit 70dd0521fd9d062961e87e033dcda04efdd5bf41[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Fri Jul 29 08:24:58 2016 -0300
+
+    Adding sender and receiver info to invitation json
+
+[33mcommit 83b1d4c8da073685968dc949eb2653bc25bbe1eb[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Fri Jul 29 08:24:28 2016 -0300
+
+    Fixing room_entry_request accept action
+
+[33mcommit 8e91a59adf19cf029615abcbe3c67150d39b86ef[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Fri Jul 29 08:24:06 2016 -0300
+
+    Creating RoomEntryRequest factory
+
+[33mcommit c8c98cdc4c7749e9d23cd5e97ebb16d07fe1713e[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Thu Jul 28 22:14:56 2016 -0300
+
+    Route and view of sent responses
+
+[33mcommit d2c409debddd8d169dd852d98fced7eb38cfa8b6[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Thu Jul 28 22:14:40 2016 -0300
+
+    Specs for sent invitations endpoint
+
+[33mcommit 634c459f38c78a4614219dfd1c68ebb389075211[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Thu Jul 28 22:14:16 2016 -0300
+
+    Endpoint to sent invitations
+
+[33mcommit 5b20a0863a1503a3aedc852d44702a139c6fde4d[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Thu Jul 28 22:13:58 2016 -0300
+
+    Adds accepted room ids to user room_ids
+
+[33mcommit b9f6e97fde1afbdeb4fac6cf52e5282cb2d1ef1f[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Thu Jul 28 22:13:36 2016 -0300
+
+    Adds accepted status to invitations json
+
+[33mcommit 3c60cdcaafe03844c8961b90e0770a40912dacd8[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Thu Jul 28 22:12:09 2016 -0300
+
+    Adds message for waiting for acceptance
+
+[33mcommit 6f130ccd8a22687c4eb4c1ae196c3fa5bfe4d8af[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Thu Jul 28 22:11:47 2016 -0300
+
+    Gets invitation before getting topics to see acceptance on group
+
+[33mcommit 2eb700934a5887a3d76ea2ff7be76d31cdb9b26d[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Thu Jul 28 22:11:13 2016 -0300
+
+    Creates invitations service
+
+[33mcommit 676888261df3b51a3b33d5236a143eaa8d8aa03c[m
+Merge: b203a35 4179e32
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Sat Jul 23 17:14:27 2016 -0300
+
+    Merge branch 'master' into invitations
+
+[33mcommit 4179e32401f3b5fca92e599483d1a68ce92fa02f[m
+Author: cyprianoeduardo <cypriano.eduardo@gmail.com>
+Date:   Sat Jul 23 15:25:17 2016 -0300
+
+    Fixing Api case
+
+[33mcommit b203a352dec3afae341f1f9f80182092da153cdb[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Sat Jul 23 07:52:09 2016 -0300
+
+    Adds action to room entry request creation button
+
+[33mcommit 95c2cbafda3e7cf239ed077937c5ada56fa1132c[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Fri Jul 22 10:08:58 2016 -0300
+
+    RoomEntryRequests views
+
+[33mcommit b2bc8dee6120ec0239b8255ba9ed8d6186cbf557[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Fri Jul 22 10:08:40 2016 -0300
+
+    Specs for index and create of room_entry_request
+
+[33mcommit 9bab7b0a5bb585651356c20ce79e1047308c9d90[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Fri Jul 22 10:08:18 2016 -0300
+
+    Fixing index params and sending only not accepted invitations
+
+[33mcommit 2978d84a50d5e5e30da8d57171bfa17d1376662f[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Thu Jul 21 22:55:42 2016 -0300
+
+    Creating entry requests controller
+
+[33mcommit 5c2f91380e7b7835b0f2bf389631d46cbc018f90[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Thu Jul 21 22:55:07 2016 -0300
+
+    Adds accepted and token as attributes to entry request
+
+[33mcommit 5364e1095958fa726ad824b761764634b6680a0c[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Thu Jul 21 22:54:40 2016 -0300
+
+    Validates presence of room, sender and receiver
+
+[33mcommit f329523b0b7aa1be8b639790199ed12063670a44[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Thu Jul 21 22:18:19 2016 -0300
+
+    Creates room_entry_request model
+
+[33mcommit 6b3d44474808568d88fd49dcce5d86ce8c12b01f[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Thu Jul 21 16:12:23 2016 -0300
+
+    Updating readme
+
+[33mcommit 2894bd585e1accb7dcfd9f201d8bd3e52b65ba84[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Thu Jul 21 14:31:03 2016 -0300
+
+    Transforming notice to directive
+
+[33mcommit c810406c54dcc043542d05fef99ed333c43cc551[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Wed Jul 20 17:46:20 2016 -0300
+
+    Caching user room_ids on room creation
+
+[33mcommit f4b320e1505a27cd26cc2a0e27ed0085a2f0303a[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Wed Jul 20 17:45:54 2016 -0300
+
+    Getting user room_ids for room show
+
+[33mcommit b0721a5d541581882763c4d321f5781aa126dc2c[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Wed Jul 20 17:45:17 2016 -0300
+
+    Changing use of Bower-rails to pure bower
+
+[33mcommit da76305e4ef6ff0d59b11942bf65581251df655f[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Wed Jul 13 18:20:18 2016 -0300
+
+    Updating room ids on user service
+
+[33mcommit 9526f0da5f9e25a0af56cf570d52df1a59a2fd79[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Tue Jul 12 21:43:44 2016 -0300
+
+    Adding search functionality
+
+[33mcommit bca086643afd009d511d497bbe789e6f83cf5843[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Sun Jul 10 20:49:07 2016 -0300
+
+    Changes topic public attribute default
+
+[33mcommit 360b7864fb15b649735a0ac745940fdb7345c9e2[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Sun Jul 10 20:48:50 2016 -0300
+
+    Adding room ids to user response
+
+[33mcommit e593334ea4d9bb1dcce552b241c85d90f569fc4f[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Sun Jul 10 20:48:31 2016 -0300
+
+    Removing topic index authorization
+
+[33mcommit 806b1ec177644246c9af8817c82aef1a75eba47a[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Sun Jul 10 20:47:43 2016 -0300
+
+    Showing not participating template to user if user don't belongs to room
+
+[33mcommit fdb1c31d3a2c50ed0171fba2ea09a8a20557f1fe[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Sun Jul 10 20:47:06 2016 -0300
+
+    Fixing participating rooms spinner
+
+[33mcommit 57bc8f1b76c360ffc9f3d223239a79dc6024bdb4[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Sun Jul 10 19:46:18 2016 -0300
+
+    Adding searching room feature and tabs to forum
+
+[33mcommit 35c9fc0e3eadb5bb753405d5ecbc31cf1ebc73e7[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Sun Jul 10 19:21:19 2016 -0300
+
+    Adds search endpoint to API
+
+[33mcommit bcc58641abfe34578a3d9534524a3195d96e55b4[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Fri Jul 8 07:03:59 2016 -0300
+
+    Fixing route for other urls and taking out #
+
+[33mcommit ad0746b406483a8efa66f6377ed9acbd6240476e[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Fri Jul 8 06:56:02 2016 -0300
+
+    Small style fixes
+
+[33mcommit bc9a1eadee10ce4432e5f50d76210c3c36b84eba[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Wed Jul 6 21:45:30 2016 -0300
+
+    Using table for listing topics and rooms
+
+[33mcommit 29cdd1a282f61bab70263615848bb1b89bfdfd34[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Wed Jul 6 21:45:09 2016 -0300
+
+    Label for deletion of room and topic
+
+[33mcommit ae11b672828922072607edb7ef7b0491949303be[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Wed Jul 6 21:44:58 2016 -0300
+
+    Fixing room params
+
+[33mcommit 1edc5ae151d7ec16842ceccf4df0f841f738b020[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Wed Jul 6 21:43:46 2016 -0300
+
+    Creating deleting method for topics and rooms
+
+[33mcommit ec9c0fa330c2797e11c4fbc8839bb7ea7512a98a[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Wed Jul 6 21:42:58 2016 -0300
+
+    Adding messages dependencies to topic on destroy
+
+[33mcommit 63c142d9864e7248ecb2ecb00e8ec048d9f35a4b[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Wed Jul 6 21:32:02 2016 -0300
+
+    Adding dependency destruction to room topics
+
+[33mcommit 804da82b4d7e840f1874e6047ddaeeb3e4a2a8fd[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Wed Jul 6 21:31:48 2016 -0300
+
+    Adding room info to topic views
+
+[33mcommit 985628292cf22cbd60be69cbda0e1c104916ae7b[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Tue Jul 5 21:24:01 2016 -0300
+
+    Fixing bootstrap calling order
+
+[33mcommit 8d61264097b9beb1911bd8800132b20395715d7d[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Tue Jul 5 21:22:21 2016 -0300
+
+    Adding delete button
+
+[33mcommit 08ec0783c1008890778f8be721abc378c23188a1[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Tue Jul 5 21:22:14 2016 -0300
+
+    Changing style to use tables
+
+[33mcommit bf090fffb1b5f325a9bc477cc481772952dd2178[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Tue Jul 5 21:21:54 2016 -0300
+
+    Fixing spinners
+
+[33mcommit eb45a1befefb114d5503d6e61d6a695a54b9131a[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Tue Jul 5 21:21:37 2016 -0300
+
+    Adding logged user checking method
+
+[33mcommit a5da7b3a676d537780433e1a3971f53d336a9222[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Tue Jul 5 21:21:03 2016 -0300
+
+    Deleting unnecessary css files
+
+[33mcommit cea56cb3aa4a2ea8cf9764a4cbdef22a9337b480[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Sat Jul 2 16:42:00 2016 -0300
+
+    Adding author to topics and rooms factories
+
+[33mcommit 87b4211fe92d5392d56a165509d69e21a2978155[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Fri Jul 1 20:58:31 2016 -0300
+
+    Adding user to topic, room and messages json
+
+[33mcommit 7b4e2bfeba04be4d9b41053d9a253d542c29a09b[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Fri Jul 1 20:58:16 2016 -0300
+
+    Adding author to message factory
+
+[33mcommit f54ebb9debf6d5710dd3cf4eaf6bdc239dc63870[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Thu Jun 30 21:17:13 2016 -0300
+
+    Stylizing lists
+
+[33mcommit 5cef8a4f1ce7c92f04d3878bfad0959fd8ce95a3[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Wed Jun 29 22:46:49 2016 -0300
+
+    Fixing order of messages
+
+[33mcommit 3e4c40868a934574f3ea47eb0a328f2d701043e0[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Wed Jun 29 22:08:53 2016 -0300
+
+    Fixing urls
+
+[33mcommit 34d68fa047b94d8130505ca0634b03cfe4eba75a[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Wed Jun 29 22:04:20 2016 -0300
+
+    Editing response of topic
+
+[33mcommit 8c1d4587a384c50a73e692d3f4f7440bfb8edbbb[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Wed Jun 29 22:04:02 2016 -0300
+
+    Message unitary specs
+
+[33mcommit 8a658b986999fc3f51a6ab4553735997c16ef3b5[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Wed Jun 29 22:03:51 2016 -0300
+
+    Message creation functionality
+
+[33mcommit 651d17a1f100b5477e037c4251898917f1f7e2b5[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Wed Jun 29 22:02:51 2016 -0300
+
+    Refactors topic factory
+
+[33mcommit 165523029ae0add65c3f160e84e0b6c9e3360d96[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Wed Jun 29 17:37:31 2016 -0300
+
+    Making create action to messages
+
+[33mcommit d612798a71e36bf1c0dfe885831fb6acef96d99b[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Wed Jun 29 16:51:01 2016 -0300
+
+    Commenting policy specs
+
+[33mcommit 3ba20c7804bfff14e3efc66b29dbc2aac23d1f6a[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Wed Jun 29 16:50:52 2016 -0300
+
+    Fixing specs descriptions
+
+[33mcommit 344c5532bf0be1eff7b506e5797d9048df69b29c[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Wed Jun 29 16:50:43 2016 -0300
+
+    Messages Index action spec
+
+[33mcommit 6042056b024ca40dc8a19f3cb867d1a6fcf5a31b[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Wed Jun 29 16:50:25 2016 -0300
+
+    Creates index action and authorization
+
+[33mcommit 2b13cd0b2dac6dd4a489d80f042f9ac5a43b0351[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Wed Jun 29 16:49:37 2016 -0300
+
+    Removing unnecessary spec files
+
+[33mcommit 8d7dce045d96026b56617f60e6bd6715d97cee0c[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Wed Jun 29 15:55:16 2016 -0300
+
+    Adding scope for messages to get
+
+[33mcommit b986020e2eee20f512400787b5a9ef205b83d2ab[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Wed Jun 29 15:55:06 2016 -0300
+
+    Adding messages routes and controller
+
+[33mcommit 8f4bac8446451b1c86a676d20f9ee8de08e0a2d0[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Wed Jun 29 15:54:46 2016 -0300
+
+    Creates migration for messages
+
+[33mcommit a113f9e30f87857cae0c7f7b0e0bae8df31c9e87[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Wed Jun 29 15:54:28 2016 -0300
+
+    Adds Message relationship
+
+[33mcommit 74443cf40a3b6a0ac3e7833363af7910aa0e80b5[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Wed Jun 29 15:54:02 2016 -0300
+
+    Creates message model
+
+[33mcommit a3673f6ff9301becc54ee258916cb0d7071bd984[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Wed Jun 29 13:43:00 2016 -0300
+
+    Getting topic on messages page
+
+[33mcommit 4ddf8ef057c2ac82b9183259c59433fed9abb0e8[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Wed Jun 29 10:31:45 2016 -0300
+
+    Passing room to get room id when creating new topic
+
+[33mcommit 6baef2c73b13d0cdb9cffa5886b4db70e18cb038[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Wed Jun 29 10:31:23 2016 -0300
+
+    Shows login link only if not logged
+
+[33mcommit 88d729028a0f8f25ced1b7283b0504245cf2e1b4[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Wed Jun 29 10:31:09 2016 -0300
+
+    Renaming ForumService to RoomService
+
+[33mcommit 19f8a8a5e39cad385654823640bf47969ff28686[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Wed Jun 29 10:30:46 2016 -0300
+
+    Topic creation template and service
+
+[33mcommit 4593738cf68d93e4f4d01a5e2bddc69a8f6ae74d[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Wed Jun 29 10:30:05 2016 -0300
+
+    Adding new topic template
+
+[33mcommit 5bb7d6d4209bddbd7da7ec31f5b5616b4fe4806c[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Tue Jun 28 17:45:54 2016 -0300
+
+    Changes file name
+
+[33mcommit 09f0802daeb36f23b15901ee6eb478a91a439884[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Tue Jun 28 17:36:20 2016 -0300
+
+    Adding new route and templates for new room page
+
+[33mcommit 8ba5c8b7db6ac0ba4f2d9fb28624c51de9fdce0c[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Tue Jun 28 14:17:48 2016 -0300
+
+    Adds participating rooms getter on Forum Service
+
+[33mcommit 84862c0be7040ee8c4002d815b1030d88edfed9b[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Tue Jun 28 14:17:08 2016 -0300
+
+    Adding participating rooms endpoint
+
+[33mcommit fdb3ad3b13b57205f2c26858dee77eb84e699fcc[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Tue Jun 28 14:00:03 2016 -0300
+
+    Adding new states and new factories for room and topic
+
+[33mcommit 05fef69b5b4c5b43e705d8d1c6b0dd20991c116e[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Tue Jun 28 13:59:40 2016 -0300
+
+    Adding new forum service and forum controllers
+
+[33mcommit 5a5a6b437c76dccf096e622db7f1be03ea22c742[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Tue Jun 28 13:59:02 2016 -0300
+
+    Changing template location
+
+[33mcommit 04f17f6949f50d061c2d7cca21bc4fa6b9ee48ae[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Mon Jun 27 14:02:01 2016 -0300
+
+    Authorising index topics by user's rooms
+
+[33mcommit d8950f0eeed415f597e2ca1ec040eed56297514d[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Mon Jun 27 10:39:09 2016 -0300
+
+    Fixing unauthorised and forbidden statuses
+
+[33mcommit 6e0f3ca20238ee36adb992d394a79cc65e6d1f97[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Sun Jun 26 20:26:55 2016 -0300
+
+    Refactoring user room_ids getter
+
+[33mcommit 19237ba933712d724a23b62f2b78f65183fc1905[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Sun Jun 26 20:21:32 2016 -0300
+
+    Creates update and destroy action
+
+[33mcommit cd929f7265064e1278ef3de65a56974e0484d194[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Sat Jun 25 10:31:51 2016 -0300
+
+    Room and topic specs
+
+[33mcommit 7bc866792f25b040caba887570b9155540adc593[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Sat Jun 25 10:31:33 2016 -0300
+
+    Adds has_many relation to user and topics
+
+[33mcommit 7b57318b00f4d36697084e30696e673cec6fa320[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Sat Jun 25 10:31:11 2016 -0300
+
+    Creates default authorization response for pundit
+
+[33mcommit c2e4d7bccd915db60cf9ab7d803706162d443721[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Sat Jun 25 10:30:57 2016 -0300
+
+    Adding topic authorization for creation
+
+[33mcommit 18c2ea6eda4f16e2b12c06af0535a27a24880080[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Sat Jun 25 05:59:54 2016 -0300
+
+    Adding scope specs for topics index
+
+[33mcommit 7b2ec3b8dda30601dda0be6a8fad0520a31e08b2[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Fri Jun 24 23:18:02 2016 -0300
+
+    Adding pundit and defining topics scope
+
+[33mcommit 3328b969531970ef0443ca8a82c189fe41e02e30[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Fri Jun 24 21:30:14 2016 -0300
+
+    Topics controller and model
+
+[33mcommit 5a6eb4689df850a351fb1015e579cc8954914ce4[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Fri Jun 24 17:59:30 2016 -0300
+
+    Adding specs
+
+[33mcommit 741acffebf0b81d97f5c9d71a3860c7465d39f6a[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Fri Jun 24 17:26:39 2016 -0300
+
+    Creates room and user connection
+
+[33mcommit fbc4d69b93349b88b61fdd8660168144e11f5ccd[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Fri Jun 24 13:57:25 2016 -0300
+
+    Adds show, update and delete actions
+
+[33mcommit 8b0aa3fad139a2e23b0554da29ffd0d2298d44ac[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Fri Jun 24 13:08:56 2016 -0300
+
+    Taking out user id from room routes
+
+[33mcommit d7d72702b47d5b9d99eb3379c38efdf1fcfdeaa3[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Thu Jun 23 23:56:20 2016 -0300
+
+    Validating name and room spec
+
+[33mcommit 9177db1e2bf0943f6da46d70656f36a1ce10be1d[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Thu Jun 23 23:56:04 2016 -0300
+
+    Room creation action
+
+[33mcommit 031382818342944f57cad153701dc3cce8096be1[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Thu Jun 23 23:55:08 2016 -0300
+
+    Taking out room spec helper
+
+[33mcommit 599dc3fe27d2679124846a10bf96e90f4446fdfc[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Sun Jun 19 18:34:15 2016 -0300
+
+    Adding first spec for rooms index
+
+[33mcommit 88fc6cda87dab97d9efe37292b9c35b9dc7c580e[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Sun Jun 19 17:43:45 2016 -0300
+
+    Fixing rooms location
+
+[33mcommit e48136ed3e0e7c7166ba437d0ac70735d2190e99[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Sun Jun 19 17:27:16 2016 -0300
+
+    Adding user model, controller, routes and other stuffs
+
+[33mcommit ea4e92667a9994f548fb8f0b81376340da063bea[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Sun Jun 19 17:16:13 2016 -0300
+
+    Adding forum template, controller and adding user id on api response
+
+[33mcommit 68024c70aa8ba9ccea9b9e40a62eac7038e2eeea[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Wed Jun 8 07:23:14 2016 -0300
+
+    Adds home page and login item to menu
+
+[33mcommit 35e01c26f989d3a73e500a12a2ea604b35662894[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Wed Jun 8 07:18:13 2016 -0300
+
+    Sends to login page if not logged in
+
+[33mcommit 62f849a27a10c55c1ca6678dd52613e783b7a2c7[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Sun Jun 5 20:12:18 2016 -0300
+
+    Ignoring node modules files
+
+[33mcommit e9797c03e3d11e2e167075ba8eb306344c5705eb[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Sun Jun 5 08:39:37 2016 -0300
+
+    Adding more courses to seed
+
+[33mcommit c41f217e945564bab7e0fec3968a2d1e99e40455[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Sun Jun 5 08:39:26 2016 -0300
+
+    Adding course_id to user creation
+
+[33mcommit 7627b5f3789c6a0b560bd25e5846c9ee36ce9fee[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Sun Jun 5 08:39:06 2016 -0300
+
+    Fixes error and notice messages appearing at same time
+
+[33mcommit 095dd185b64a5d193dff3c24d6166ab91961c538[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Sun Jun 5 08:21:01 2016 -0300
+
+    Sets discipline after creation of user with course
+
+[33mcommit 685d60ffc44b4dcc3ded6ac50fe893480be222e0[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Sat Jun 4 21:58:00 2016 -0300
+
+    Adds course to sign up form
+
+[33mcommit 9271a1f32c5d92e4341d81e7910b9f9523af2720[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Sat Jun 4 21:57:49 2016 -0300
+
+    Creates course service
+
+[33mcommit 7e2b9211f81ee49d46aa9947cca063f566627514[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Sat Jun 4 12:28:55 2016 -0300
+
+    Course controller and specs
+
+[33mcommit 26c435c6ca7628991b8bc724165fca28e6aff050[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Sat Jun 4 12:28:43 2016 -0300
+
+    Course model
+
+[33mcommit eef7e2f8d12496912aebe0ec144ece5a6965196e[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Sat Jun 4 12:28:29 2016 -0300
+
+    Adds course creation to seed
+
+[33mcommit 33b455a4578cbcba20c2db03c371b5080ecc2920[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Sat Jun 4 12:28:00 2016 -0300
+
+    Takes out unnecessary css file
+
+[33mcommit 3ef8d4a930b851509292ba4247a8c5bb7e3ae327[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Sat Jun 4 12:27:44 2016 -0300
+
+    Fixing user discipline specs
+
+[33mcommit dbc5c9ca5f0c161df894954da2cecd68dd734a1b[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Sat Jun 4 12:26:02 2016 -0300
+
+    Adds course_id to user creation
+
+[33mcommit e602b134afde17f6879049000531d08b374ded33[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Sat Jun 4 12:25:35 2016 -0300
+
+    Fixes user discipline association
+
+[33mcommit 9b59b84cad51e4dc7bcaa489bb4e8aef28c37602[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Sat Jun 4 12:25:12 2016 -0300
+
+    Changes api_v1_user params root to user
+
+[33mcommit 289f5ba784e98bd5f8834de72e4af54891595121[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Sat Jun 4 12:24:05 2016 -0300
+
+    Adds Course model and relationship with user and discipline
+
+[33mcommit 79771921178cd30d908b2a243dfc31cacef9a37d[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Sun May 22 21:40:39 2016 -0300
+
+    Adds discipline status edition
+
+[33mcommit c32fd2ebf3e6e3bc7c248cd78e11a9949803cb6e[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Sun May 22 21:06:04 2016 -0300
+
+    Adds discipline on user session creation response
+
+[33mcommit 237740b741c11b080cfee0bebf95ce80c8d2a9da[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Sun May 22 20:11:22 2016 -0300
+
+    Adds discipline status to profile page
+
+[33mcommit 9665e2547756830dbdb6afdad178aeb9d2fb690e[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Sun May 22 18:57:17 2016 -0300
+
+    Adding user_discipline id to json response
+
+[33mcommit 6f01239b502bf55211224eb9d23b522b1242d520[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Sat May 21 19:34:05 2016 -0300
+
+    Adds update for user_disciplines
+
+[33mcommit d00c4c74de6171503c2087e9ccb59374b0bbe19f[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Sat May 21 15:44:32 2016 -0300
+
+    User creation, discipline and user_discipline specs
+
+[33mcommit f9bf7dee24dcc7e3898070ca6b626901439fc381[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Sat May 21 15:44:11 2016 -0300
+
+    migration
+
+[33mcommit e990c699e329a03190758a0a461d3b2df021b4a0[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Sat May 21 15:44:02 2016 -0300
+
+    Creates discipline and user_discipline models
+
+[33mcommit e34a7a801bd7db7d51cfe9b028c4eca5d7c9a5d7[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Sat May 21 15:43:25 2016 -0300
+
+    Discipline seeds
+
+[33mcommit 2569ddcd782756acd41321bcc56fd3db6169ece7[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Sat May 21 15:43:13 2016 -0300
+
+    Defines discipline relationship and associates disciplines on creation
+
+[33mcommit eee2c51c566d915b464fd38aac08ea886245bf7d[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Thu May 19 21:15:08 2016 -0300
+
+    Fixing password edition
+
+[33mcommit 4e59d35899790d12fbcbb8935454eb8d21db1b2a[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Thu May 19 20:56:58 2016 -0300
+
+    Adding new style for config page
+
+[33mcommit a64a3476a9592be521435db040a7641e7ce5f734[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Thu May 19 20:56:38 2016 -0300
+
+    Organizes edition messages on label
+
+[33mcommit b8ffc162e92c712cebbb4ff01c8c7e06b49e7498[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Thu May 19 05:00:27 2016 -0300
+
+    Fixes redirection if user is not logged in
+
+[33mcommit c17cb9bb9e0e3428f6c100d2ba1655f474242c4e[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Thu May 19 04:40:13 2016 -0300
+
+    Fixes startup service location
+
+[33mcommit d667f8f6db7633133ab57abe24a786e22a1593b2[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Thu May 19 04:40:02 2016 -0300
+
+    Adds edit profile at menu and creates template
+
+[33mcommit fb3c8ce3952bd73a9b0127cb77508b3d235a20c6[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Thu May 19 04:39:40 2016 -0300
+
+    Creates edit profile controller and service
+
+[33mcommit b81a09e990d482e45cc446ade285c2de0c0ae058[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Thu May 19 04:39:05 2016 -0300
+
+    Adds edit profile on menu
+
+[33mcommit 3b4bc8d31b0275a3eaa5223077ba9a4db38ecf2e[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Thu May 19 04:38:49 2016 -0300
+
+    Creates edit profile state
+
+[33mcommit a01c3cc45e331e20b61d2e63739473dbbcb179b4[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Sun May 15 05:42:51 2016 -0300
+
+    Fixing test of password presence
+
+[33mcommit 0271f3f2821d462445281306bbe780be9b1da174[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Sat May 14 22:32:08 2016 -0300
+
+    Adds specs for invalid password situations
+
+[33mcommit 6c5083dc5b01b28c24c923f071cd812fb490124a[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Sat May 14 22:31:50 2016 -0300
+
+    Checks for current password presence with password too
+
+[33mcommit 2275086d8c727f3ddc98309d1a02b2120d840a98[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Sat May 14 22:09:31 2016 -0300
+
+    Fixing specs and adding update user attr
+
+[33mcommit 3902bdf686c15da322460ce8a4a96c0a1153a578[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Thu May 12 21:38:35 2016 -0300
+
+    Editing profile page
+
+[33mcommit 51ee6fb471d4ad63a2aadbf7695dd330486e197d[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Thu May 12 21:38:29 2016 -0300
+
+    Calls spinner service on login and sign up
+
+[33mcommit c3dc105107677edc143d617a1b4094380b43f238[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Thu May 12 21:38:14 2016 -0300
+
+    Setting spinner config
+
+[33mcommit 56ac395b5bf80362bcd1d8d0263945438c877f64[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Thu May 12 21:38:03 2016 -0300
+
+    Adding spinner lib and image
+
+[33mcommit 4315d727ce8d45930651a7807edd06db9256345d[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Wed May 11 21:19:51 2016 -0300
+
+    Fixing redirection if not logged and changing user data attributes level
+
+[33mcommit ff32fb1d92ace6a45b04c9f6259bfc99eff31261[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Wed May 11 21:19:16 2016 -0300
+
+    Adding constants
+
+[33mcommit b3c0cf56b9d409fc415355b032cee2e2f42f2179[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Wed May 11 21:19:07 2016 -0300
+
+    Creates interceptor file
+
+[33mcommit b352b89321ea956d832010d6e0cd3c292e098e60[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Wed May 11 21:18:54 2016 -0300
+
+    Changing login service name
+
+[33mcommit 9d4060cc2d9a112a1464f84ab1d7b6ddaf330d12[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Sun May 8 10:35:45 2016 -0300
+
+    Fixing links
+
+[33mcommit 8470deafcaaea05d55786dd0606cff485dbe344b[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Sun May 8 10:35:21 2016 -0300
+
+    Fixing error for existing user
+
+[33mcommit 464804dbb60c074b62f51f0dbaac900bc381dea5[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Sun May 8 10:35:00 2016 -0300
+
+    Changing initial state runner to app controller
+
+[33mcommit 5306a98bf1035472de6e264d72dee3939fd17976[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Sat May 7 21:41:18 2016 -0300
+
+    Adds validation for sign up form
+
+[33mcommit c9bd949bee5db36178c5c6d66769ced99ffe648b[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Sat May 7 21:12:15 2016 -0300
+
+    Adds validation to login form
+
+[33mcommit 0a1ca2ad3c4609695502909cbb08d788447bd179[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Sat May 7 21:11:49 2016 -0300
+
+    Creates label service
+
+[33mcommit 462d311914476b0f440e2356d2ac3b2616df6d5d[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Fri May 6 21:43:31 2016 -0300
+
+    Adding signup controller, view, and routes
+
+[33mcommit 5ea187e017f393a47479875d27c3985de325d769[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Tue May 3 22:21:37 2016 -0300
+
+    logout specs
+
+[33mcommit 7813eba9f7f8dc0a8ec46828522c4b9538ad704c[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Tue May 3 22:21:27 2016 -0300
+
+    Removes unnecessary method
+
+[33mcommit 6ec3c064b04ac6a44f5067361e7c75f77b93e786[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Tue May 3 22:21:14 2016 -0300
+
+    api_key not_expired method
+
+[33mcommit 64b634701afa4b0298c94d915dc4606ca4a525ff[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Tue May 3 22:20:04 2016 -0300
+
+    Adding token auth
+
+[33mcommit 386356b0f8df2c93e64813eeb1b2991d3e34f100[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Tue May 3 22:19:52 2016 -0300
+
+    logout action
+
+[33mcommit 636c73fe0c19aaa38c9ef395a8a662a6abfa15f8[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Tue May 3 22:19:21 2016 -0300
+
+    Caching token
+
+[33mcommit c10ea1d1668bb7e09598b1fe476a938170790b27[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Tue May 3 17:58:34 2016 -0300
+
+    default format as json
+
+[33mcommit 37139d462c0e8612071dcb7ffc1c72c42278e32d[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Tue May 3 17:58:22 2016 -0300
+
+    Adding sign out action to api
+
+[33mcommit fe2fcd7ec6af17ac6c63993b5093104f9d308828[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Tue May 3 17:58:02 2016 -0300
+
+    Refactoring startup service
+
+[33mcommit 9d93fcc0ad954ac2ad92d20d4595d8702a2ddc5c[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Tue May 3 17:57:47 2016 -0300
+
+    Pass signout responsibility to user
+
+[33mcommit 61b6c76923375c19dfe1af9f4321b5e941e0fde7[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Tue May 3 17:56:56 2016 -0300
+
+    Changing name of signIn method
+
+[33mcommit 0612d70c2dcfce72b70afdb21a58d60e4330a86f[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Tue May 3 17:56:46 2016 -0300
+
+    Renaming methods and creating sign out method
+
+[33mcommit 560cba62e6eec9cedc37f67826aa0cd5fe354301[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Mon May 2 22:40:18 2016 -0300
+
+    Setting base url
+
+[33mcommit 496d916917cb4611e5994f8f96ed3c946bb65ea6[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Mon May 2 22:40:09 2016 -0300
+
+    Creates user service
+
+[33mcommit 6af1d1ccbfa192f7193c74c258b07a57c846c1a4[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Mon May 2 22:40:00 2016 -0300
+
+    Creates Startup service
+
+[33mcommit 54ccad9f5a1508ad8bea12ebf12c481d7dc03746[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Mon May 2 22:39:46 2016 -0300
+
+    Adding menu controller to menu directive
+
+[33mcommit 72eb5a022a6b8fccde9b573e508932306b415117[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Mon May 2 22:39:29 2016 -0300
+
+    Makes req to api and send user to profile path
+
+[33mcommit 5cc3a4cb49a876ef90609f136365816b374be5e5[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Mon May 2 22:38:54 2016 -0300
+
+    Creates profile path, controller and template
+
+[33mcommit d7300c8453e95e8fa49c9c9b019177959a04ef9e[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Mon May 2 22:38:24 2016 -0300
+
+    Calling extra files
+
+[33mcommit cd3e15d178226c2dfc53abce4dd03b0827bbfb44[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Sun May 1 20:02:56 2016 -0300
+
+    Removing whitespace
+
+[33mcommit ef1dfdeca843738f24c1451c883dd2721fb599f3[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Sun May 1 19:48:01 2016 -0300
+
+    fixing typo
+
+[33mcommit 2cf4d600e60368c1cccae50230885b6dab6a5730[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Sun May 1 19:46:22 2016 -0300
+
+    editing readme
+
+[33mcommit a2b3ec6ffa986c27d9feb3b3800955e257dbf717[m
+Merge: 320ac7e 9008b12
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Sun May 1 19:42:18 2016 -0300
+
+    Merge branch 'login'
+
+[33mcommit 9008b123ac6a3f4bbc1bd7ac91f7311043bad5bd[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Sun May 1 19:40:37 2016 -0300
+
+    Adds sessions and registrations controller specs
+
+[33mcommit e226d5d3ed96e7c54e860c8b676e26f8f056fd57[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Sun May 1 19:40:19 2016 -0300
+
+    Adding database cleaner config
+
+[33mcommit d00c812a8b72b9236eda431de27d96717383dc7a[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Sun May 1 19:39:56 2016 -0300
+
+    Adding presence of user checking
+
+[33mcommit c442bc7ae60e743055c1e859f4353904331ebacd[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Sun May 1 19:39:21 2016 -0300
+
+    Adding json formatter to sessions and registrations controller
+
+[33mcommit e3c5b0f510e52168db11b8813643dc284bc67629[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Sat Apr 30 17:28:16 2016 -0300
+
+    changing name of default database name
+
+[33mcommit 170e322540c8bb4a8c3b82c5df0206e8d024332a[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Sat Apr 30 17:28:06 2016 -0300
+
+    Adding fuubar
+
+[33mcommit fa2742f958792de8e3309f979b63259e07bf0237[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Sat Apr 30 17:24:04 2016 -0300
+
+    User and Api Key unit tests
+
+[33mcommit ac38813c1a47c54039ddd73cdc40bb13c839750b[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Sat Apr 30 17:23:52 2016 -0300
+
+    Creates user and api key factories
+
+[33mcommit 45f49e273d037fd56e68631d30c77aea4779063b[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Sat Apr 30 16:48:56 2016 -0300
+
+    expiration check method for apikey
+
+[33mcommit 35a3e52c1e7b3904e007d813a022b7008e9cdaf1[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Sat Apr 30 16:48:41 2016 -0300
+
+    Creates action for login
+
+[33mcommit 8c4391f046f42883edafb004f52d13d18435db5f[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Sat Apr 30 16:48:18 2016 -0300
+
+    Taking out sessions elements from registration
+
+[33mcommit 6a68febf17ab3771a0f1d00707bcffc83dbcf707[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Fri Apr 29 19:41:51 2016 -0300
+
+    Removing blank spaces
+
+[33mcommit 01349ded8892195b30735ffadb87a19b7324b4c6[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Fri Apr 29 19:41:42 2016 -0300
+
+    including angular local storage and changing app name
+
+[33mcommit 0d4f440a8aaacde6795fd80dc28810f81e20cb7c[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Fri Apr 29 19:36:14 2016 -0300
+
+    Adding underscore lib
+
+[33mcommit 5d25424fa35fe84607860320bba719786d3e6deb[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Fri Apr 29 14:51:57 2016 -0300
+
+    fixing angular and ui-router paths on application.js
+
+[33mcommit e4eff7bf20ae0d10512952cea056958e32d2da87[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Fri Apr 29 14:46:23 2016 -0300
+
+    removing unnecessary file from bower lib
+
+[33mcommit 8272445c69215f43805c1781b3723fa1e56889ef[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Fri Apr 29 09:55:03 2016 -0300
+
+    Adds validation to first_name and last_name
+
+[33mcommit 1b380b8c2adab59cb89a553a6fdee5a458316706[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Fri Apr 29 09:54:48 2016 -0300
+
+    Creates token method to api_key
+
+[33mcommit 324b3615317a2b14715a659f6e2dd074fc6db2cc[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Fri Apr 29 09:54:32 2016 -0300
+
+    Fixing new way to permit params and treating response with son
+
+[33mcommit ee3ea3a44f4b7b8b417faf06e37d049327b9a782[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Fri Apr 29 09:36:12 2016 -0300
+
+    Adding api creation when creating user
+
+[33mcommit 74a325cf667511fe0f2b2b5b1ab0ec5c431082f1[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Fri Apr 29 09:35:48 2016 -0300
+
+    Setting expiration on api creation and adding dependency on user
+
+[33mcommit 46f0fc901a6b96181294ed878a5ddd026dd21e52[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Fri Apr 29 09:35:22 2016 -0300
+
+    Creating api destruction method
+
+[33mcommit 320ac7e5d1fce800ec01a049a2a0db23f473a468[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Fri Apr 29 08:01:52 2016 -0300
+
+    bower rails initializer
+
+[33mcommit b45ca0f8b88b876de1e8644bab0109d4c6f01190[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Fri Apr 29 08:01:29 2016 -0300
+
+    removing .bower son file from lib
+
+[33mcommit 46e89b6afcd33d2156eab5563454100b0895d6dd[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Fri Apr 29 06:09:57 2016 -0300
+
+    Fixing routes
+
+[33mcommit 986b8de416b82682d331d85ca720aba94602a703[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Fri Apr 29 06:09:47 2016 -0300
+
+    Changing controllers from place
+
+[33mcommit c1cd8154cdd0892420526995cf19447a0d1dabff[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Thu Apr 28 22:03:06 2016 -0300
+
+    Adding devise and overriding registrations and sessions controllers
+
+[33mcommit 31dca777d94d820000a9b5a9564321d94c8674fd[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Wed Apr 27 21:12:13 2016 -0300
+
+    taking out bootstrap map
+
+[33mcommit dc9cd006e597fcefc6a9d8ad8ccb665cb8fe2c62[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Wed Apr 27 21:11:03 2016 -0300
+
+    including js source files at application.js
+
+[33mcommit 2ab3a83aa67e8eb8abb9e3662d5d296fba730467[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Wed Apr 27 21:10:45 2016 -0300
+
+    Adding login state
+
+[33mcommit 4a0fc7f15e093c9ca0d42e41b6b5d115b2f4bdd9[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Wed Apr 27 21:10:28 2016 -0300
+
+    Taking out elements from ui-view
+
+[33mcommit 3b9ce6df77c29fd7811bd820d52d4a793da8b236[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Wed Apr 27 21:10:18 2016 -0300
+
+    Adding bootstrap
+
+[33mcommit 20d3f8164f28c7f331ff245b8c2da36bed1835c2[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Wed Apr 27 21:10:09 2016 -0300
+
+    Adding new controllers
+
+[33mcommit f4496809534d1948fee62aae4c70071cb1ea331b[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Wed Apr 27 21:09:49 2016 -0300
+
+    Creating menu directive
+
+[33mcommit 3f971d79fd2230689dce0f1d58f955c0d3f35111[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Wed Apr 27 21:09:34 2016 -0300
+
+    Creating login template
+
+[33mcommit 502e042bd9080ded77f41f5b0811cdc97d2f85ec[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Wed Apr 27 21:09:23 2016 -0300
+
+    Changing about html from place
+
+[33mcommit 7c29a4ed34cf6e67745a441ce88709a663fde91b[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Wed Apr 27 20:24:53 2016 -0300
+
+    Changing name of application css
+
+[33mcommit 1ab6cd562b1f298134d93a491e25e554d10f54be[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Wed Apr 27 20:23:43 2016 -0300
+
+    finishing readme
+
+[33mcommit 2c6273e4b3336330bb764048f77253a80660826b[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Wed Apr 27 20:19:41 2016 -0300
+
+    Setting version of libs
+
+[33mcommit 6b3109ebcbb9464f534c339eee909f02c2680b24[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Wed Apr 27 20:14:22 2016 -0300
+
+    Changing read me
+
+[33mcommit 8438cbd0358ba370fa3102777dc7d48aedcc52da[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Wed Apr 27 10:59:28 2016 -0300
+
+    changes template changer div
+
+[33mcommit 15f0ba293846153409f69f07e0b954c5b3a21872[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Wed Apr 27 10:48:47 2016 -0300
+
+    Includes templates on app module
+
+[33mcommit f49a7dd6133f0ab64c41f6280df70620c1c36d24[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Wed Apr 27 06:42:55 2016 -0300
+
+    Adding about page
+
+[33mcommit 1d481a1cf7d2fa57ea888f9925139787c57b1219[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Wed Apr 27 06:42:46 2016 -0300
+
+    Adding angular rails templates gem
+
+[33mcommit 8e418409bb8afe9d1cb5b995503fda5fdda89e8b[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Wed Apr 27 05:55:59 2016 -0300
+
+    Adds angular file
+
+[33mcommit 76cab121779f36ab1f475c8485b07c3a1f8dbdc1[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Wed Apr 27 05:55:53 2016 -0300
+
+    Adding bower components to assets precompile
+
+[33mcommit f82f853dd70c8e347faa913930e666474336c3bb[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Wed Apr 27 05:55:39 2016 -0300
+
+    Renames application.css file
+
+[33mcommit 166df7e8551b2ba8e0a8a4b3d834ab07f5d9f07c[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Wed Apr 27 05:51:04 2016 -0300
+
+    Removing angular js reference and updates gitignore
+
+[33mcommit c14fd986116bc4b365905156eafd9f360cc47671[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Wed Apr 27 05:48:17 2016 -0300
+
+    Adding bower-rails gem
+
+[33mcommit 5550b2aaabaf523616bfb2035c2412fb52bb886f[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Wed Apr 27 05:47:45 2016 -0300
+
+    Removing angular js file
+
+[33mcommit ca64e7e8e0096f3348c899507a654b1a7067cec4[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Tue Apr 26 21:58:44 2016 -0300
+
+    Creating first page
+
+[33mcommit f963667155282608c911217215754fe5c067a6e0[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Tue Apr 26 21:58:37 2016 -0300
+
+    Adding angular and new js files
+
+[33mcommit c7b03d428e58213a766e552ee10d85ddcdc93161[m
+Author: Hugo Tamaki <hugokt2005@yahoo.com.br>
+Date:   Tue Apr 26 21:38:35 2016 -0300
+
+    Initial commit
