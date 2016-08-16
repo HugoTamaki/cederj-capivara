@@ -28,8 +28,7 @@ class ApplicationController < ActionController::Base
   def authenticate_token
     authenticate_with_http_token do |token, options|
       secret, key = token.split(':')
-      @api_key = ApiKey.find_by(secret: secret, key: key)
-      @api_key && @api_key.not_expired? ? true : false
+      @api_key = ApiKey.valid?(secret, key)
     end
   end
 
