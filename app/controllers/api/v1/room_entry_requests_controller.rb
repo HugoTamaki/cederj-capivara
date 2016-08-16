@@ -31,18 +31,14 @@ module Api
       end
 
       def accept
-        @room_entry_request = RoomEntryRequest.find_by(id: params[:id])
+        @room_entry_request = RoomEntryRequest.find(params[:id])
 
-        if @room_entry_request
-          sender = @room_entry_request.sender
-          room = @room_entry_request.room
+        sender = @room_entry_request.sender
+        room = @room_entry_request.room
 
-          @room_entry_request.update(accepted: true)
-          room.participants << sender
-          @room_entry_request
-        else
-          render json: { error: 'Invitation not found' }, status: 404
-        end
+        @room_entry_request.update(accepted: true)
+        room.participants << sender
+        @room_entry_request
       end
 
       private

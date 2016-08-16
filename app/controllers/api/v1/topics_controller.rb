@@ -26,6 +26,7 @@ module Api
 
       def update
         authorize @topic
+
         if @topic.update(topic_params)
           @topic
         else
