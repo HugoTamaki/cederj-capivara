@@ -3,7 +3,6 @@ module Api
     class RoomsController < ApplicationController
       respond_to :json
 
-      before_action :authenticate
       before_action :set_room, only: [:show, :update, :destroy]
 
       def index
@@ -53,29 +52,12 @@ module Api
 
       private
 
-      def authenticate
-        authenticate_token || render_unauthorized
-      end
-
-      def authenticate_token
-        authenticate_with_http_token do |token, options|
-          secret, key = token.split(':')
-          @api_key = ApiKey.find_by(secret: secret, key: key)
-          @api_key && @api_key.not_expired? ? true : false
-        end
-      end
-
       def set_room
         @room = Room.find(params[:id])
       end
 
       def room_params
         params.require(:room).permit(:name, :public)
-      end
-
-      def render_unauthorized
-        self.headers['WWW-Authenticate'] = 'Token realm="Application"'
-        render json: {error: 'Not authorized'}, status: 401
       end
     end
   end

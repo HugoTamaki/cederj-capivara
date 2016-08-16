@@ -3,7 +3,6 @@ module Api
     class MessagesController < ApplicationController
       respond_to :json
 
-      before_action :authenticate
       before_action :set_room, :set_topic
       before_action :set_message, only: [:show, :update, :destroy]
 
@@ -35,18 +34,6 @@ module Api
         @api_key.user
       end
 
-      def authenticate
-        authenticate_token || render_unauthorized
-      end
-
-      def authenticate_token
-        authenticate_with_http_token do |token, options|
-          secret, key = token.split(':')
-          @api_key = ApiKey.find_by(secret: secret, key: key)
-          @api_key && @api_key.not_expired? ? true : false
-        end
-      end
-
       def set_room
         @room = Room.find(params[:room_id])
       end
@@ -61,11 +48,6 @@ module Api
 
       def message_params
         params.require(:message).permit(:content)
-      end
-
-      def render_unauthorized
-        self.headers['WWW-Authenticate'] = 'Token realm="Application"'
-        render json: {error: 'Not authorized'}, status: 401
       end
     end
   end
