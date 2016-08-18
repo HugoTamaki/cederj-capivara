@@ -3,8 +3,6 @@ module Api
     class RoomEntryRequestsController < ApplicationController
       respond_to :json
 
-      before_action :authenticate
-
       def index
         @user = @api_key.user
         @invitations = @user.room_requests.not_accepted
@@ -31,37 +29,14 @@ module Api
       end
 
       def accept
-        @room_entry_request = RoomEntryRequest.find_by(id: params[:id])
+        @room_entry_request = RoomEntryRequest.find(params[:id])
 
-        if @room_entry_request
-          sender = @room_entry_request.sender
-          room = @room_entry_request.room
+        sender = @room_entry_request.sender
+        room = @room_entry_request.room
 
-          @room_entry_request.update(accepted: true)
-          room.participants << sender
-          @room_entry_request
-        else
-          render json: { error: 'Invitation not found' }, status: 404
-        end
-      end
-
-      private
-
-      def authenticate
-        authenticate_token || render_unauthorized
-      end
-
-      def authenticate_token
-        authenticate_with_http_token do |token, options|
-          secret, key = token.split(':')
-          @api_key = ApiKey.find_by(secret: secret, key: key)
-          @api_key && @api_key.not_expired? ? true : false
-        end
-      end
-
-      def render_unauthorized
-        self.headers['WWW-Authenticate'] = 'Token realm="Application"'
-        render json: {error: 'Not authorized'}, status: 401
+        @room_entry_request.update(accepted: true)
+        room.participants << sender
+        @room_entry_request
       end
     end
   end

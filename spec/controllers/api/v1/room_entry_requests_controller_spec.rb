@@ -417,7 +417,7 @@ describe Api::V1::RoomEntryRequestsController do
         get :accept, id: 9999, format: :json
 
         expected_response = {
-          error: 'Invitation not found'
+          error: "Couldn't find RoomEntryRequest with 'id'=9999"
         }
 
         expect(response.body).to eql(expected_response.to_json)

@@ -15,6 +15,15 @@ class ApiKey < ActiveRecord::Base
     Time.now < self.expires_at
   end
 
+  class << self
+    def valid?(secret, key)
+      api_key = self.find_by(secret: secret, key: key)
+      if api_key && api_key.not_expired?
+        api_key
+      end
+    end
+  end
+
   private
 
   def set_secret_and_token

@@ -3,7 +3,6 @@ module Api
     class TopicsController < ApplicationController
       respond_to :json
 
-      before_action :authenticate
       before_action :set_room
       before_action :set_topic, only: [:show, :update, :destroy]
 
@@ -26,6 +25,7 @@ module Api
 
       def update
         authorize @topic
+
         if @topic.update(topic_params)
           @topic
         else
@@ -48,18 +48,6 @@ module Api
         @api_key.user
       end
 
-      def authenticate
-        authenticate_token || render_unauthorized
-      end
-
-      def authenticate_token
-        authenticate_with_http_token do |token, options|
-          secret, key = token.split(':')
-          @api_key = ApiKey.find_by(secret: secret, key: key)
-          @api_key && @api_key.not_expired? ? true : false
-        end
-      end
-
       def set_room
         @room = Room.find(params[:room_id])
       end
@@ -70,11 +58,6 @@ module Api
 
       def topic_params
         params.require(:topic).permit(:name, :content)
-      end
-
-      def render_unauthorized
-        self.headers['WWW-Authenticate'] = 'Token realm="Application"'
-        render json: {error: 'Not authorized'}, status: 401
       end
     end
   end
