@@ -14,6 +14,8 @@
 //= require jquery_ujs
 //= require_tree ./www/shared
 //= require lib/underscore/underscore-min
+//= require lib/moment/min/moment.min
+//= require lib/moment/min/locales.min
 //= require lib/angular/angular
 //= require lib/angular-local-storage/dist/angular-local-storage.min
 //= require lib/angular-ui-router/release/angular-ui-router
