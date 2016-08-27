@@ -109,6 +109,8 @@ app.service('CacheService', [
       if(appStarted) return;
       appStarted = 1;
       event.preventDefault()
+      moment.locale('pt-BR')
+
       StartupService.init()
 
       _(StartupService.startTasks).each(function (task) {
