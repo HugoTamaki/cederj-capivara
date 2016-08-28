@@ -36,7 +36,9 @@ describe Api::V1::MessagesController do
                 first_name: message3.user.first_name,
                 last_name: message3.user.last_name,
                 email: message3.user.email
-              }
+              },
+              created_at: message3.created_at.to_time.iso8601,
+              updated_at: message3.updated_at.to_time.iso8601
             },
             {
               id: message2.id,
@@ -47,7 +49,9 @@ describe Api::V1::MessagesController do
                 first_name: message2.user.first_name,
                 last_name: message2.user.last_name,
                 email: message2.user.email
-              }
+              },
+              created_at: message2.created_at.to_time.iso8601,
+              updated_at: message2.updated_at.to_time.iso8601
             },
             {
               id: message1.id,
@@ -58,7 +62,9 @@ describe Api::V1::MessagesController do
                 first_name: message1.user.first_name,
                 last_name: message1.user.last_name,
                 email: message1.user.email
-              }
+              },
+              created_at: message1.created_at.to_time.iso8601,
+              updated_at: message1.updated_at.to_time.iso8601
             }
           ]
         }
@@ -91,7 +97,9 @@ describe Api::V1::MessagesController do
                 first_name: message6.user.first_name,
                 last_name: message6.user.last_name,
                 email: message6.user.email
-              }
+              },
+              created_at: message6.created_at.to_time.iso8601,
+              updated_at: message6.updated_at.to_time.iso8601
             },
             {
               id: message5.id,
@@ -102,7 +110,9 @@ describe Api::V1::MessagesController do
                 first_name: message5.user.first_name,
                 last_name: message5.user.last_name,
                 email: message5.user.email
-              }
+              },
+              created_at: message5.created_at.to_time.iso8601,
+              updated_at: message5.updated_at.to_time.iso8601,
             },
             {
               id: message4.id,
@@ -113,7 +123,9 @@ describe Api::V1::MessagesController do
                 first_name: message4.user.first_name,
                 last_name: message4.user.last_name,
                 email: message4.user.email
-              }
+              },
+              created_at: message4.created_at.to_time.iso8601,
+              updated_at: message4.updated_at.to_time.iso8601,
             }
           ]
         }
