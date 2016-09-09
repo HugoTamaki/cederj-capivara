@@ -28,6 +28,8 @@ describe Api::V1::RoomsController do
               last_name: room1.user.last_name,
               email: room1.user.email
             }
+              created_at: room1.created_at.to_time.as_json,
+              updated_at: room1.updated_at.to_time.as_json,
           },
           {
             id: room2.id,
@@ -39,6 +41,8 @@ describe Api::V1::RoomsController do
               last_name: room2.user.last_name,
               email: room2.user.email
             }
+              created_at: room2.created_at.to_time.as_json,
+              updated_at: room2.updated_at.to_time.as_json
           },
           {
             id: room3.id,
@@ -50,6 +54,8 @@ describe Api::V1::RoomsController do
               last_name: room3.user.last_name,
               email: room3.user.email
             }
+              created_at: room3.created_at.to_time.as_json,
+              updated_at: room3.updated_at.to_time.as_json
           }
         ]
       }
@@ -77,6 +83,8 @@ describe Api::V1::RoomsController do
               last_name: room1.user.last_name,
               email: room1.user.email
             }
+              created_at: room1.created_at.to_time.as_json,
+              updated_at: room1.updated_at.to_time.as_json
           },
           {
             id: room2.id,
@@ -88,6 +96,8 @@ describe Api::V1::RoomsController do
               last_name: room2.user.last_name,
               email: room2.user.email
             }
+              created_at: room2.created_at.to_time.as_json,
+              updated_at: room2.updated_at.to_time.as_json
           },
           {
             id: room3.id,
@@ -99,6 +109,8 @@ describe Api::V1::RoomsController do
               last_name: room3.user.last_name,
               email: room3.user.email
             }
+              created_at: room3.created_at.to_time.as_json,
+              updated_at: room3.updated_at.to_time.as_json
           }
         ]
       }
