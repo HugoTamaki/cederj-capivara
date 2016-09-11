@@ -10,6 +10,8 @@ Rails.application.routes.draw do
         sessions: 'users/sessions'
       }
 
+      resources :users, only: [:index, :show]
+
       resources :room_entry_requests, only: [:index, :create] do
         get :sent_requests, on: :collection
         get :accept, on: :member
