@@ -36,7 +36,9 @@
             </a>
           </div>
           <div class="author">
-            {{ message.authorFullName() }} - {{ message.createdDate() }}
+            <a href="javascript:;" ng-click="goToPerson(message.author)">
+              {{ message.authorFullName() }} - {{ message.createdDate() }}
+            </a>
           </div>
         </li>
       </ul>

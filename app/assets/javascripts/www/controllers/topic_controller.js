@@ -60,6 +60,10 @@ app.controller('TopicCtrl', [
           console.log(response)
         })
     }
+
+    $scope.goToPerson = function (person) {
+      $state.go('person', { id: person.id })
+    }
   }
 ])
 

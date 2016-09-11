@@ -59,6 +59,15 @@ app.config([
         }
       })
 
+      .state('person', {
+        url: '/persons/:id',
+        templateUrl: 'persons/person.html',
+        controller: 'PersonCtrl',
+        data: {
+          requireLogin: true
+        }
+      })
+
       .state('forum', {
         url: '/forum',
         templateUrl: 'forum/forum.html',
