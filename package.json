@@ -1,0 +1,18 @@
+{
+  "name": "cederj-capivara",
+  "version": "0.0.1",
+  "description": "Cederj Capivara",
+  "dependencies": {
+    "bower": "^1.7.9",
+    "gulp": "^3.5.6"
+  },
+  "devDependencies": {
+    "jasmine": "^2.4.1",
+    "karma": "^0.13.0",
+    "karma-chrome-launcher": "^0.2.0",
+    "karma-jasmine": "^0.3.6",
+    "karma-coverage": "^1.1.1",
+    "karma-phantomjs-launcher": "^1.0.1",
+    "karma-json-fixtures-preprocessor": "^0.0.6"
+  }
+}
