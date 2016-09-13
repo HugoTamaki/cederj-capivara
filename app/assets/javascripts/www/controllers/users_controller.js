@@ -1,25 +1,25 @@
-app.controller('PersonCtrl', [
+app.controller('VisitedUserCtrl', [
   '$scope',
   '$state',
   '$stateParams',
   'usSpinnerService',
   'User',
-  'PersonService',
+  'UsersService',
 
   function ($scope,
             $state,
             $stateParams,
             usSpinnerService, 
             User,
-            PersonService) {
+            UsersService) {
 
     $scope.user = User
 
     // usSpinnerService.spin('user')
 
-    PersonService.getPerson($stateParams)
+    UsersService.getVisitedUser($stateParams)
       .then(function (response) {
-        $scope.person = response.user
+        $scope.visitedUser = response.user
       })
   }
 ])

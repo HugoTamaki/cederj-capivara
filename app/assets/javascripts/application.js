@@ -27,7 +27,7 @@
 //= require www/app
 //= require www/directives/directives
 //= require www/services/login_services
-//= require www/services/person_services
+//= require www/services/users_services
 //= require www/services/forum_services
 //= require www/services/app_services
 //= require www/services/api_services
@@ -40,7 +40,7 @@
 //= require www/controllers/signup_controller
 //= require www/controllers/login_controller
 //= require www/controllers/profile_controller
-//= require www/controllers/person_controller
+//= require www/controllers/users_controller
 //= require www/controllers/forum_controller
 //= require www/controllers/room_controller
 //= require www/controllers/topic_controller

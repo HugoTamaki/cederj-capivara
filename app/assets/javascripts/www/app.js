@@ -59,10 +59,10 @@ app.config([
         }
       })
 
-      .state('person', {
-        url: '/persons/:id',
-        templateUrl: 'persons/person.html',
-        controller: 'PersonCtrl',
+      .state('users', {
+        url: '/users/:id',
+        templateUrl: 'users/user.html',
+        controller: 'VisitedUserCtrl',
         data: {
           requireLogin: true
         }

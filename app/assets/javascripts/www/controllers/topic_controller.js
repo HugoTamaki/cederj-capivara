@@ -61,8 +61,8 @@ app.controller('TopicCtrl', [
         })
     }
 
-    $scope.goToPerson = function (person) {
-      $state.go('person', { id: person.id })
+    $scope.goToVisitedUser = function (user) {
+      $state.go('users', { id: user.id })
     }
   }
 ])

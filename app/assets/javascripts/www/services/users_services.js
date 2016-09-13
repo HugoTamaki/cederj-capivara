@@ -1,12 +1,12 @@
-app.service('PersonService', [
+app.service('UsersService', [
   '$q',
   '$http',
 
   function ($q,
             $http) {
     
-    var PersonService = {
-      getPerson: function (options) {
+    var UsersService = {
+      getVisitedUser: function (options) {
         var deferred = $q.defer(),
             url = Conf.baseUrl + 'users/' + options.id
 
@@ -22,6 +22,6 @@ app.service('PersonService', [
       }
     }
 
-    return PersonService
+    return UsersService
   }
 ])
