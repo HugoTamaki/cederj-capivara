@@ -7,6 +7,8 @@ module.exports = function (config) {
     files: [
       "../../lib/angular/angular.js",
       "../../lib/angular-mocks/angular-mocks.js",
+      "../../lib/angular-mocks/ngMock.js",
+      'phantomjs-fix.js',
       "../app.js",
       "../controllers/*.js",
       "../directives/*.js",

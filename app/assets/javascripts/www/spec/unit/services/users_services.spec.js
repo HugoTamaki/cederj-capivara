@@ -17,11 +17,11 @@ describe('UsersService', function() {
     describe('with success', function() {
       beforeEach(function() {
         $httpBackend.expect("GET", usersURL).respond(200, visitedUser)
+        $httpBackend.flush()
       })
 
       it('should get visitedUser', function() {
         var user = UsersService.getVisitedUser({id: 1})
-        $httpBackend.flush()
         expect(user).toEqual('Pananan')
       })
     })
