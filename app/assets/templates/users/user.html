@@ -5,19 +5,23 @@
 
   <h1>{{ visitedUser.first_name }} {{ visitedUser.last_name }}</h1>
 
+  <div class="col-lg-6">
+    <div class="current-disciplines">
+      <h2>Disciplinas atuais</h2>
 
-  <div class="current-disciplines">
-    <h2>Matérias correntes</h2>
+      <ul class="list-group">
+        <li ng-repeat="discipline in visitedUser.current_disciplines" class="list-group-item">
+          {{ discipline.name }}
+        </li>
+      </ul>
+    </div>
 
-    <ul class="list-group">
-      <li ng-repeat="discipline in visitedUser.current_disciplines" class="list-group-item">
+    <div class="common-disciplines">
+      <h2>Disciplinas em comum com você</h2>
+
+      <li ng-repeat="discipline in visitedUser.common_disciplines" class="list-group-item">
         {{ discipline.name }}
       </li>
-    </ul>
-  </div>
-
-  <div class="common-disciplines">
-    <h2>Matérias em comum</h2>
-
+    </div>
   </div>
 </div>
