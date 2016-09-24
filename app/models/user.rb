@@ -38,7 +38,8 @@ class User < ActiveRecord::Base
   end
 
   def common_disciplines_with(user)
-    Discipline.joins(:user_disciplines).where(user_disciplines: {user: user, status: 'doing'}) & Discipline.joins(:user_disciplines).where(user_disciplines: {user: self, status: 'doing'})
+    Discipline.in_progress_from(user) &
+    Discipline.in_progress_from(self)
   end
 
   def room_ids
