@@ -7,8 +7,11 @@ describe User do
   let!(:cpw)              { FactoryGirl.create(:discipline, name: 'CPW', description: 'some description', course: computacao) }
   let!(:paulo_freire)     { FactoryGirl.create(:discipline, name: 'Paulo Freire', description: 'some description', course: pedagogia) }
   let!(:user)             { FactoryGirl.create(:user, course: computacao) }
+  let!(:another_user)     { FactoryGirl.create(:user, course: computacao, email: 'furingo@email.com') }
   let!(:user_discipline)  { FactoryGirl.create(:user_discipline, status: 'doing', discipline: cpw, user: user) }
   let!(:user_discipline2) { FactoryGirl.create(:user_discipline, status: 'incomplete', discipline: pda, user: user) }
+  let!(:user_discipline3) { FactoryGirl.create(:user_discipline, status: 'doing', discipline: pda, user: another_user) }
+  let!(:user_discipline4) { FactoryGirl.create(:user_discipline, status: 'doing', discipline: cpw, user: another_user) }
 
   describe :attributes do
     it { expect(user).to have_attribute(:first_name) }
@@ -55,6 +58,13 @@ describe User do
       it 'returns disciplines with doing status' do
         expect(user.current_disciplines).to include(cpw)
         expect(user.current_disciplines).not_to include(pda)
+      end
+    end
+
+    describe '#common_disciplines_with' do
+      it 'returns common disciplines with doing status' do
+        expect(user.common_disciplines_with(another_user)).to include(cpw)
+        expect(user.common_disciplines_with(another_user)).not_to include(pda)
       end
     end
   end
