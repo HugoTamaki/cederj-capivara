@@ -3,11 +3,15 @@ require 'rails_helper'
 describe Api::V1::UsersController do
   render_views
 
-  let!(:computacao) { FactoryGirl.create(:course, name: 'Tecnologia em Sistemas de Computacao') }
-  let!(:john)       { FactoryGirl.create(:user, course: computacao) }
-  let!(:jane)       { FactoryGirl.create(:user, first_name: 'Jane', last_name: 'Doe', email: 'janedoe@email.com', password: '123123123', password_confirmation: '123123123', course: computacao) }
-  let!(:jake)       { FactoryGirl.create(:user, first_name: 'Jake', last_name: 'Johnson', email: 'jakejohnson@email.com', password: '123123123', password_confirmation: '123123123', course: computacao ) }
-  let!(:api_key)    { FactoryGirl.create(:api_key, user: john, expires_at: Time.now + 7.days) }
+  let!(:computacao)       { FactoryGirl.create(:course, name: 'Tecnologia em Sistemas de Computacao') }
+  let!(:cpw)              { FactoryGirl.create(:discipline, name: 'Construção de Páginas Web') }
+  let!(:pda)              { FactoryGirl.create(:discipline, name: 'Projeto de Desenvolvimento de Algoritmos') }
+  let!(:john)             { FactoryGirl.create(:user, course: computacao) }
+  let!(:jane)             { FactoryGirl.create(:user, first_name: 'Jane', last_name: 'Doe', email: 'janedoe@email.com', password: '123123123', password_confirmation: '123123123', course: computacao) }
+  let!(:jake)             { FactoryGirl.create(:user, first_name: 'Jake', last_name: 'Johnson', email: 'jakejohnson@email.com', password: '123123123', password_confirmation: '123123123', course: computacao ) }
+  let!(:api_key)          { FactoryGirl.create(:api_key, user: john, expires_at: Time.now + 7.days) }
+  let!(:user_discipline)  { FactoryGirl.create(:user_discipline, status: 'doing', discipline: cpw, user: john) }
+  let!(:user_discipline2) { FactoryGirl.create(:user_discipline, status: 'incomplete', discipline: pda, user: john) }
 
   describe 'GET #index' do
     context 'valid' do
@@ -102,7 +106,16 @@ describe Api::V1::UsersController do
             course: {
               id: john.course.id,
               name: john.course.name
-            }
+            },
+            current_disciplines: [
+              {
+                id: cpw.id,
+                name: cpw.name,
+                description: cpw.description,
+                course_id: cpw.course_id,
+                status: user_discipline.status
+              }
+            ]
           }
         }
 

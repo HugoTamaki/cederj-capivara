@@ -1,12 +1,14 @@
 require 'rails_helper'
 
 describe User do
-  let!(:computacao)    { FactoryGirl.create(:course, name: 'Tecnologia em Sistemas de Computação') }
-  let!(:pedagogia)     { FactoryGirl.create(:course, name: 'Pedagogia') }
-  let!(:pda)           { FactoryGirl.create(:discipline, name: 'PDA', description: 'some description', course: computacao) }
-  let!(:cpw)           { FactoryGirl.create(:discipline, name: 'CPW', description: 'some description', course: computacao) }
-  let!(:paulo_freire)  { FactoryGirl.create(:discipline, name: 'Paulo Freire', description: 'some description', course: pedagogia) }
-  let!(:user)          { FactoryGirl.create(:user, course: computacao) }
+  let!(:computacao)       { FactoryGirl.create(:course, name: 'Tecnologia em Sistemas de Computação') }
+  let!(:pedagogia)        { FactoryGirl.create(:course, name: 'Pedagogia') }
+  let!(:pda)              { FactoryGirl.create(:discipline, name: 'PDA', description: 'some description', course: computacao) }
+  let!(:cpw)              { FactoryGirl.create(:discipline, name: 'CPW', description: 'some description', course: computacao) }
+  let!(:paulo_freire)     { FactoryGirl.create(:discipline, name: 'Paulo Freire', description: 'some description', course: pedagogia) }
+  let!(:user)             { FactoryGirl.create(:user, course: computacao) }
+  let!(:user_discipline)  { FactoryGirl.create(:user_discipline, status: 'doing', discipline: cpw, user: user) }
+  let!(:user_discipline2) { FactoryGirl.create(:user_discipline, status: 'incomplete', discipline: pda, user: user) }
 
   describe :attributes do
     it { expect(user).to have_attribute(:first_name) }
@@ -37,11 +39,22 @@ describe User do
     end
 
     describe '#set_disciplines' do
+      before do
+        user.disciplines = []
+      end
+
       it 'sets disciplines based on user course' do
         expect(user.disciplines).to match([])
         expect(user.course).to eql(computacao)
         user.set_disciplines
         expect(user.disciplines).to include(pda, cpw)
+      end
+    end
+
+    describe '#current_disciplines' do
+      it 'returns disciplines with doing status' do
+        expect(user.current_disciplines).to include(cpw)
+        expect(user.current_disciplines).not_to include(pda)
       end
     end
   end

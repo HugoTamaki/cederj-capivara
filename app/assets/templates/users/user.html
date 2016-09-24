@@ -4,4 +4,20 @@
   <notice></notice>
 
   <h1>{{ visitedUser.first_name }} {{ visitedUser.last_name }}</h1>
+
+
+  <div class="current-disciplines">
+    <h2>Matérias correntes</h2>
+
+    <ul class="list-group">
+      <li ng-repeat="discipline in visitedUser.current_disciplines" class="list-group-item">
+        {{ discipline.name }}
+      </li>
+    </ul>
+  </div>
+
+  <div class="common-disciplines">
+    <h2>Matérias em comum</h2>
+
+  </div>
 </div>

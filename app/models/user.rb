@@ -33,6 +33,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  def current_disciplines
+    Discipline.in_progress_from(self)
+  end
+
   def room_ids
     user_rooms = self.rooms.pluck(:id)
     user_groups = self.groups.pluck(:id)
