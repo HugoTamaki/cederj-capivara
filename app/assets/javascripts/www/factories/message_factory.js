@@ -1,4 +1,4 @@
-app.factory('Message', [
+capivaraFactories.factory('Message', [
   'User',
 
   function (User) {

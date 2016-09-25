@@ -1,11 +1,18 @@
-var app = angular.module('capivara', [
+var capivaraServices  = angular.module('capivara.services', []);
+var capivaraFactories  = angular.module('capivara.factories', []);
+var capivaraDirectives  = angular.module('capivara.directives', []);
+
+var capivara = angular.module('capivara', [
   'ui.router',
   'templates',
   'angularSpinner',
-  'LocalStorageModule'
+  'LocalStorageModule',
+  'capivara.services',
+  'capivara.factories',
+  'capivara.directives'
 ])
 
-app.config([
+capivara.config([
   '$stateProvider',
   '$locationProvider',
   '$urlRouterProvider',
@@ -26,7 +33,7 @@ app.config([
     $stateProvider
       .state('login', {
         url: '/login',
-        templateUrl: 'login.html',
+        templateUrl: 'user/login.html',
         controller: 'LoginCtrl',
         data: {
           requireLogin: false
@@ -35,7 +42,7 @@ app.config([
 
       .state('sign_up', {
         url: '/sign_up',
-        templateUrl: 'sign_up.html',
+        templateUrl: 'user/sign_up.html',
         controller: 'SignUpCtrl',
         data: {
           requireLogin: false
@@ -44,7 +51,7 @@ app.config([
 
       .state('about', {
         url: '/about',
-        templateUrl: 'about.html',
+        templateUrl: 'general/about.html',
         data: {
           requireLogin: false
         }
@@ -52,7 +59,7 @@ app.config([
 
       .state('profile', {
         url: '/profile',
-        templateUrl: 'profile.html',
+        templateUrl: 'user/profile.html',
         controller: 'ProfileCtrl',
         data: {
           requireLogin: true
@@ -115,7 +122,7 @@ app.config([
 
       .state('edit_profile', {
         url: '/edit_profile',
-        templateUrl: 'edit_profile.html',
+        templateUrl: 'user/edit_profile.html',
         controller: 'ProfileEditCtrl',
         data: {
           requireLogin: true

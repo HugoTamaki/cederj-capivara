@@ -1,4 +1,4 @@
-app.factory('Room', [
+capivaraFactories.factory('Room', [
   'User',
 
   function (User) {

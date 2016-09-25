@@ -1,4 +1,4 @@
-app.controller('LoginCtrl', [
+capivara.controller('LoginCtrl', [
   '$scope',
   '$state',
   'User',

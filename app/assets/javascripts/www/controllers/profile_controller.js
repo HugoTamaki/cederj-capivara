@@ -1,4 +1,4 @@
-app.controller('ProfileCtrl', [
+capivara.controller('ProfileCtrl', [
   '$scope',
   '$state',
   'User',

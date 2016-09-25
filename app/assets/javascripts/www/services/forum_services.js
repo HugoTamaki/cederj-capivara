@@ -1,4 +1,4 @@
-app.service('RoomService', [
+capivaraServices.service('RoomService', [
   '$q',
   '$http',
 

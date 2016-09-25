@@ -1,4 +1,4 @@
-app.service('CoursesService', [
+capivaraServices.service('CoursesService', [
   '$q',
   '$http',
 

@@ -1,4 +1,4 @@
-app.controller('AppCtrl', [
+capivara.controller('AppCtrl', [
   '$scope',
   '$state',
 

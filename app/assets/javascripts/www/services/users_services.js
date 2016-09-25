@@ -1,4 +1,4 @@
-app.service('UsersService', [
+capivaraServices.service('UsersService', [
   '$q',
   '$http',
 

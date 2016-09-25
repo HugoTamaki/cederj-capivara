@@ -1,4 +1,4 @@
-app.controller('TopicCtrl', [
+capivara.controller('TopicCtrl', [
   '$scope',
   '$state',
   '$stateParams',
@@ -68,7 +68,7 @@ app.controller('TopicCtrl', [
 ])
 
 
-app.controller('NewTopicCtrl', [
+capivara.controller('NewTopicCtrl', [
   '$scope',
   '$state',
   '$stateParams',

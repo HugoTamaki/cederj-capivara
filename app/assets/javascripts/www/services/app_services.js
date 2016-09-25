@@ -1,4 +1,4 @@
-app.service('CacheService', [
+capivaraServices.service('CacheService', [
   '$window',
   'localStorageService',
 

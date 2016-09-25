@@ -1,4 +1,4 @@
-app.config([
+capivaraServices.config([
   '$httpProvider',
 
   function ($httpProvider) {

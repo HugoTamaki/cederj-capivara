@@ -1,4 +1,4 @@
-app.factory('RoomEntryRequest', [
+capivaraFactories.factory('RoomEntryRequest', [
   'Room',
 
   function (Room) {

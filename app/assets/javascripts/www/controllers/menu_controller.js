@@ -1,4 +1,4 @@
-app.controller('MenuCtrl', [
+capivara.controller('MenuCtrl', [
   '$scope',
   '$state',
   'User',

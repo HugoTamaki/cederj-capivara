@@ -1,4 +1,4 @@
-app.controller('RoomCtrl', [
+capivara.controller('RoomCtrl', [
   '$scope',
   '$state',
   '$stateParams',

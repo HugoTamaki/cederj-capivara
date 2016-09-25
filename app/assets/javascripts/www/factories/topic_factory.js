@@ -1,4 +1,4 @@
-app.factory('Topic', [
+capivaraFactories.factory('Topic', [
   'User',
 
   function (User) {

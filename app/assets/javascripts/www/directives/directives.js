@@ -1,4 +1,4 @@
-app.directive('menu', [
+capivaraDirectives.directive('menu', [
 
   function () {
 

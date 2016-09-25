@@ -1,4 +1,4 @@
-app.controller('VisitedUserCtrl', [
+capivara.controller('VisitedUserCtrl', [
   '$scope',
   '$state',
   '$stateParams',

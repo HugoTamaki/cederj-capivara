@@ -1,4 +1,4 @@
-app.controller('ForumCtrl', [
+capivara.controller('ForumCtrl', [
   '$scope',
   '$state',
   'Room',
