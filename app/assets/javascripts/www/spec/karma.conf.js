@@ -3,7 +3,7 @@ module.exports = function (config) {
     basePath: './',
     preprocessors: {
       '../../www/**/*.js': ['coverage'],
-      '../../templates/**/*.html': ['ng-html2js']
+      '../../../templates/**/*.html': ['ng-html2js']
     },
     ngHtml2JsPreprocessor: {
       moduleName: 'templates'
@@ -20,6 +20,8 @@ module.exports = function (config) {
       "../../lib/angular-local-storage/dist/angular-local-storage.min.js",
       "../../lib/spin.js/spin.min.js",
       "../../lib/angular-spinner/angular-spinner.min.js",
+
+      "../../../templates/**/*.html",
 
       "../app.js",
       "../controllers/*.js",

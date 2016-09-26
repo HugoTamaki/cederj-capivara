@@ -33,16 +33,17 @@ describe('UsersService', function() {
     describe('with success', function() {
       beforeEach(function() {
         $httpBackend.whenGET(usersURL).respond(200, visitedUser)
-        // spyOn(UsersService, 'getVisitedUser').and.returnValue(deferred.promise)
       })
 
       it('should get visitedUser', function() {
         deferred.resolve(visitedUser)
         var user
+
         UsersService.getVisitedUser({id: 1})
           .then(function(response) {
             user = response
           })
+
         $httpBackend.flush()
         expect(user).toEqual(visitedUser)
       })
