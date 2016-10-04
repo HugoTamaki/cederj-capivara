@@ -128,6 +128,24 @@ describe('User', function() {
           $httpBackend.flush()
           expect(User.logged).toEqual(true)
         })
+
+        it('calls CacheService set', function() {
+          $httpBackend.expect('POST', usersURL).respond(200, {
+            user: {
+              id: 1,
+              first_name: 'Fulano',
+              last_name: 'da Silva',
+              email: 'fulano@email.com',
+              room_ids: []
+            },
+            api_key: "0b6d7646caa040be8ac65b8969ba9e08:8356ec5c67b5436d8df57324b8e70cfd"
+          })
+
+          spyOn(CacheService, 'set')
+          User.signUp(options)
+          $httpBackend.flush()
+          expect(CacheService.set).toHaveBeenCalled()
+        })
       })
 
       describe('failure', function() {
@@ -143,16 +161,48 @@ describe('User', function() {
     })
 
     describe('signOut', function() {
+      beforeEach(function() {
+        User.logged = true
+      })
+
       describe('success', function() {
         it('calls delete on user', function() {
           $httpBackend.expect('DELETE', signOutURL).respond(200, {})
           User.signOut()
           $httpBackend.flush()
         })
+
+        it('sets user on cache with null', function() {
+          spyOn(CacheService, 'set')
+          $httpBackend.expect('DELETE', signOutURL).respond(200, {})
+          User.signOut()
+          $httpBackend.flush()
+          expect(CacheService.set).toHaveBeenCalledWith('user', null)
+        })
+
+        it('sets User as not logged', function() {
+          $httpBackend.expect('DELETE', signOutURL).respond(200, {})
+          User.signOut()
+          $httpBackend.flush()
+          expect(User.logged).toEqual(false)
+        })
       })
 
       describe('failure', function() {
+        it('does not sets user on cache with null', function() {
+          spyOn(CacheService, 'set')
+          $httpBackend.expect('DELETE', signOutURL).respond(400, {})
+          User.signOut()
+          $httpBackend.flush()
+          expect(CacheService.set).not.toHaveBeenCalledWith('user', null)
+        })
 
+        it('does not sets User as not logged', function() {
+          $httpBackend.expect('DELETE', signOutURL).respond(400, {})
+          User.signOut()
+          $httpBackend.flush()
+          expect(User.logged).toEqual(true)
+        })
       })
     })
   })
