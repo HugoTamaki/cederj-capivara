@@ -63,15 +63,15 @@ capivaraServices.service('User', [
             self = this
 
         $http.delete(url)
-        .success(function (response) {
-          CacheService.set('user', null)
-          self.data = null
-          self.logged = false
-          deferred.resolve()
-        })
-        .error(function (response) {
-          deferred.reject(response.error)
-        })
+          .success(function (response) {
+            CacheService.set('user', null)
+            self.data = null
+            self.logged = false
+            deferred.resolve()
+          })
+          .error(function (response) {
+            deferred.reject(response.error)
+          })
 
         return deferred.promise
       },
