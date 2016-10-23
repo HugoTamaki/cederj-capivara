@@ -38,9 +38,9 @@ describe Api::V1::TopicsController do
                 first_name: topic1.user.first_name,
                 last_name: topic1.user.last_name,
                 email: topic1.user.email
-              }
+              },
               created_at: topic1.created_at.to_time.as_json,
-              updated_at: topic1.updated_at.to_time.as_json,
+              updated_at: topic1.updated_at.to_time.as_json
             },
             {
               id: topic2.id,
@@ -55,9 +55,9 @@ describe Api::V1::TopicsController do
                 first_name: topic2.user.first_name,
                 last_name: topic2.user.last_name,
                 email: topic2.user.email
-              }
+              },
               created_at: topic2.created_at.to_time.as_json,
-              updated_at: topic2.updated_at.to_time.as_json,
+              updated_at: topic2.updated_at.to_time.as_json
             },
             {
               id: topic3.id,
@@ -72,9 +72,9 @@ describe Api::V1::TopicsController do
                 first_name: topic3.user.first_name,
                 last_name: topic3.user.last_name,
                 email: topic3.user.email
-              }
+              },
               created_at: topic3.created_at.to_time.as_json,
-              updated_at: topic3.updated_at.to_time.as_json,
+              updated_at: topic3.updated_at.to_time.as_json
             }
           ]
         }
@@ -110,9 +110,9 @@ describe Api::V1::TopicsController do
                 first_name: topic4.user.first_name,
                 last_name: topic4.user.last_name,
                 email: topic4.user.email
-              }
+              },
               created_at: topic4.created_at.to_time.as_json,
-              updated_at: topic4.updated_at.to_time.as_json,
+              updated_at: topic4.updated_at.to_time.as_json
             },
             {
               id: topic5.id,
@@ -127,9 +127,9 @@ describe Api::V1::TopicsController do
                 first_name: topic5.user.first_name,
                 last_name: topic5.user.last_name,
                 email: topic5.user.email
-              }
+              },
               created_at: topic5.created_at.to_time.as_json,
-              updated_at: topic5.updated_at.to_time.as_json,
+              updated_at: topic5.updated_at.to_time.as_json
             },
             {
               id: topic6.id,
@@ -144,9 +144,9 @@ describe Api::V1::TopicsController do
                 first_name: topic6.user.first_name,
                 last_name: topic6.user.last_name,
                 email: topic6.user.email
-              }
+              },
               created_at: topic6.created_at.to_time.as_json,
-              updated_at: topic6.updated_at.to_time.as_json,
+              updated_at: topic6.updated_at.to_time.as_json
             }
           ]
         }
