@@ -36,7 +36,7 @@
               </a>
             </td>
             <td>
-              por: {{ topic.authorFullName() }}
+              por: {{ topic.authorFullName() }} - {{ topic.createdDate() }}
             </td>
             <td class="delete-button">
               <a href="javascript:;" class="btn btn-danger delete-button" ng-click="deleteTopic(topic)" ng-if="room.authorIsUser()">

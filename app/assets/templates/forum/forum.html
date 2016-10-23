@@ -34,6 +34,9 @@
                 <a href="javascript:;" ng-click="goToRoom(room)">
                   {{ room.name }}
                 </a>
+                <div class='author'>
+                  {{ room.createdDate() }}
+                </div>
               </td>
               <td class="delete-button">
                 <a href="javascript:;" class="btn btn-danger delete-button" ng-click="deleteRoom(room)" ng-if="room.authorIsUser()">
