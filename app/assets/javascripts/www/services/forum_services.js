@@ -184,7 +184,7 @@ capivaraServices.service('RoomService', [
 
       deleteTopic: function (options) {
         var deferred = $q.defer(),
-            url = Conf.baseUrl + 'rooms/' + options.room.id + '/topics/' + options.id
+            url = Conf.baseUrl + 'rooms/' + options.room_id + '/topics/' + options.topic_id
 
         $http.delete(url)
           .success(function (response) {
@@ -226,7 +226,7 @@ capivaraServices.service('RoomService', [
 
       createMessage: function (options) {
         var deferred = $q.defer(),
-            url = Conf.baseUrl + 'rooms/' + options.room.id + '/topics/' + options.topic_id + '/messages',
+            url = Conf.baseUrl + 'rooms/' + options.room_id + '/topics/' + options.topic_id + '/messages',
             params
 
         params = options.message
@@ -297,8 +297,8 @@ capivaraServices.service('RoomService', [
             url = Conf.baseUrl + 'room_entry_requests/' + request.id + '/accept'
 
         $http.get(url)
-          .success(function () {
-            deferred.resolve()
+          .success(function (response) {
+            deferred.resolve(response)
           })
           .error(function (response) {
             deferred.reject(response.error)

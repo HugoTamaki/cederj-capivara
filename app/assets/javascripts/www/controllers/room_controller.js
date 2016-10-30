@@ -63,7 +63,12 @@ capivara.controller('RoomCtrl', [
     $scope.deleteTopic = function(topic) {
       usSpinnerService.spin('my-topics')
 
-      TopicService.deleteTopic(topic)
+      var params = {
+        room_id: topic.room.id,
+        topic_id: topic.id
+      }
+
+      TopicService.deleteTopic(params)
         .then(function (response) {
           return RoomService.getRoom($stateParams)
         })

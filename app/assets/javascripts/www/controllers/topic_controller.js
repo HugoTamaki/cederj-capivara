@@ -46,7 +46,7 @@ capivara.controller('TopicCtrl', [
 
     $scope.createMessage = function (topic, message) {
       var options = {
-        room: topic.room,
+        room_id: topic.room.id,
         topic_id: topic.id,
         message: message
       }
