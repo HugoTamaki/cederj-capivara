@@ -4,18 +4,18 @@ capivara.controller('SignUpCtrl', [
   'User',
   'usSpinnerService',
   'LabelService',
-  'CoursesService',
+  'CourseService',
 
   function ($scope,
             $state,
             User,
             usSpinnerService,
             LabelService,
-            CoursesService) {
+            CourseService) {
 
     $scope.user = {}
 
-    CoursesService.getCourses()
+    CourseService.getCourses()
       .then(function (response) {
         $scope.courses = response.courses
       })

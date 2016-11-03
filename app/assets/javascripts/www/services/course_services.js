@@ -1,12 +1,12 @@
-capivaraServices.service('CoursesService', [
+capivaraServices.service('CourseService', [
   '$q',
   '$http',
 
   function ($q,
             $http) {
-    var CoursesService = {
+    var CourseService = {
       getCourses: function () {
-        var url = Conf.baseUrl + 'courses/',
+        var url = Conf.baseUrl + 'courses',
             deferred = $q.defer()
 
         $http.get(url)
@@ -21,6 +21,6 @@ capivaraServices.service('CoursesService', [
       }
     }
 
-    return CoursesService
+    return CourseService
   }
 ])
