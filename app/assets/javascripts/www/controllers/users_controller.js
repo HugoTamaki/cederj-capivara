@@ -9,7 +9,7 @@ capivara.controller('VisitedUserCtrl', [
   function ($scope,
             $state,
             $stateParams,
-            usSpinnerService, 
+            usSpinnerService,
             User,
             UsersService) {
 

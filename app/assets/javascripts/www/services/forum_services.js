@@ -52,7 +52,7 @@ capivaraServices.service('RoomService', [
             deferred.resolve(response)
           })
           .error(function (response) {
-            deferred.resolve(response.error)
+            deferred.reject(response.error)
           })
 
         return deferred.promise
@@ -190,7 +190,7 @@ capivaraServices.service('RoomService', [
           .success(function (response) {
             deferred.resolve(response)
           })
-          .error(function (reject) {
+          .error(function (response) {
             deferred.reject(response.error)
           })
 
@@ -267,7 +267,7 @@ capivaraServices.service('RoomService', [
             deferred.reject(response.error)
           })
 
-        return deferred.promise     
+        return deferred.promise
       },
 
       getSentRoomEntryRequests: function (options) {
@@ -296,7 +296,7 @@ capivaraServices.service('RoomService', [
         var deferred = $q.defer(),
             url = Conf.baseUrl + 'room_entry_requests/' + request.id + '/accept'
 
-        $http.get(url)
+        $http.put(url)
           .success(function (response) {
             deferred.resolve(response)
           })

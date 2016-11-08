@@ -110,10 +110,15 @@ describe('RoomService', function() {
       });
 
       it('defers error', function() {
+        var error;
+
         RoomService.getRooms()
           .catch(function(response) {
-            expect(response.error).toEqual('some error')
+            error = response;
           })
+
+        $httpBackend.flush();
+        expect(error).toEqual('some error');
       });
     });
   });
@@ -143,10 +148,15 @@ describe('RoomService', function() {
       });
 
       it('defers error', function() {
+        var error;
+
         RoomService.getParticipatingRooms()
           .catch(function(response) {
-            expect(response.error).toEqual('some error')
+            error = response;
           })
+
+        $httpBackend.flush();
+        expect(error).toEqual('some error');
       });
     });
   });
@@ -178,10 +188,15 @@ describe('RoomService', function() {
       });
 
       it('defers error', function() {
+        var error;
+
         RoomService.getSearch()
           .catch(function(response) {
-            expect(response.error).toEqual('some error')
+            error = response;
           })
+
+        $httpBackend.flush();
+        expect(error).toEqual('some error');
       });
     });
   });
@@ -211,10 +226,15 @@ describe('RoomService', function() {
       });
 
       it('defers error', function() {
+        var error;
+
         RoomService.getRoomTopics({room_id: 1})
           .catch(function(response) {
-            expect(response.error).toEqual('some error')
+            error = response;
           })
+
+        $httpBackend.flush();
+        expect(error).toEqual('some error');
       });
     });
   });
@@ -244,10 +264,15 @@ describe('RoomService', function() {
       });
 
       it('defers error', function() {
+        var error;
+
         RoomService.getRoom({room_id: 1})
           .catch(function(response) {
-            expect(response.error).toEqual('some error')
-          })
+            error = response;
+          });
+
+        $httpBackend.flush();
+        expect(error).toEqual('some error');
       });
     });
   });
@@ -277,10 +302,15 @@ describe('RoomService', function() {
       });
 
       it('defers error', function() {
+        var error;
+
         RoomService.createRoom({name: 'CPW'})
           .catch(function(response) {
-            expect(response.error).toEqual('some error')
+            error = response;
           });
+
+        $httpBackend.flush();
+        expect(error).toEqual('some error');
       });
     });
   });
@@ -310,10 +340,15 @@ describe('RoomService', function() {
       });
 
       it('defers error', function() {
+        var error;
+
         RoomService.deleteRoom({id: 1})
           .catch(function(response) {
-            expect(response.error).toEqual('some error')
+            error = response;
           });
+
+        $httpBackend.flush();
+        expect(error).toEqual('some error');
       });
     });
   });
@@ -343,10 +378,15 @@ describe('RoomService', function() {
       });
 
       it('defers error', function() {
+        var error;
+
         RoomService.createRoomEntryRequest({room_id: 1, receiver_id: 2})
           .catch(function(response) {
-            expect(response.error).toEqual('some error')
+            error = response;
           });
+
+        $httpBackend.flush();
+        expect(error).toEqual('some error')
       });
     });
   });
@@ -427,10 +467,15 @@ describe('TopicService', function() {
       });
 
       it('defers error', function() {
+        var error;
+
         TopicService.getTopic({room_id: 1, topic_id: 1})
           .catch(function(response) {
-            expect(response.error).toEqual('some error')
+            error = response;
           })
+
+        $httpBackend.flush();
+        expect(error).toEqual('some error');
       });
     });
   });
@@ -462,14 +507,19 @@ describe('TopicService', function() {
 
     describe('failure', function() {
       beforeEach(function() {
-        $httpBackend.expect('GET', topicsURL).respond(400, {error: 'some error'})
+        $httpBackend.expect('POST', topicsURL).respond(400, {error: 'some error'})
       });
 
       it('defers error', function() {
+        var error;
+
         TopicService.createTopic({room_id: 1})
           .catch(function(response) {
-            expect(response.error).toEqual('some error')
+            error = response;
           })
+
+        $httpBackend.flush();
+        expect(error).toEqual('some error')
       });
     });
   });
@@ -499,10 +549,15 @@ describe('TopicService', function() {
       });
 
       it('defers error', function() {
+        var error;
+
         TopicService.deleteTopic({room_id: 1, topic_id: 1})
           .catch(function(response) {
-            expect(response.error).toEqual('some error')
+            error = response;
           });
+
+        $httpBackend.flush();
+        expect(error).toEqual('some error')
       });
     });
   });
@@ -578,10 +633,15 @@ describe('MessageService', function() {
       });
 
       it('defers error', function() {
+        var error;
+
         MessageService.getMessages({room_id: 1, topic_id: 1})
           .catch(function(response) {
-            expect(response.error).toEqual('some error')
+            error = response;
           })
+
+        $httpBackend.flush();
+        expect(error).toEqual('some error');
       });
     });
   });
@@ -613,14 +673,19 @@ describe('MessageService', function() {
 
     describe('failure', function() {
       beforeEach(function() {
-        $httpBackend.expect('GET', messagesURL).respond(400, {error: 'some error'})
+        $httpBackend.expect('POST', messagesURL).respond(400, {error: 'some error'})
       });
 
       it('defers error', function() {
-        MessageService.createMessage({room_id: 1})
+        var error;
+
+        MessageService.createMessage({room_id: 1, topic_id: 1})
           .catch(function(response) {
-            expect(response.error).toEqual('some error')
+            error = response;
           })
+
+        $httpBackend.flush();
+        expect(error).toEqual('some error')
       });
     });
   });
@@ -700,10 +765,15 @@ describe('RoomEntryRequestService', function() {
       });
 
       it('defers error', function() {
+        var error;
+
         RoomEntryRequestService.getRoomEntryRequests()
           .catch(function(response) {
-            expect(response.error).toEqual('some error')
+            error = response;
           })
+
+        $httpBackend.flush();
+        expect(error).toEqual('some error')
       });
     });
   });
@@ -733,10 +803,15 @@ describe('RoomEntryRequestService', function() {
       });
 
       it('defers error', function() {
+        var error;
+
         RoomEntryRequestService.getSentRoomEntryRequests({room_id: 1})
           .catch(function(response) {
-            expect(response.error).toEqual('some error')
+            error = response;
           })
+
+        $httpBackend.flush();
+        expect(error).toEqual('some error')
       });
     });
   });
@@ -744,7 +819,7 @@ describe('RoomEntryRequestService', function() {
   describe('#accept', function() {
     describe('success', function() {
       beforeEach(function() {
-        $httpBackend.expect('GET', acceptRoomEntryRequestURL).respond(200, {room_entry_request: responseRoomEntryRequests[0]})
+        $httpBackend.expect('PUT', acceptRoomEntryRequestURL).respond(200, {room_entry_request: responseRoomEntryRequests[0]})
       });
 
       it('gets sent room entry requests', function() {
@@ -762,14 +837,19 @@ describe('RoomEntryRequestService', function() {
 
     describe('failure', function() {
       beforeEach(function() {
-        $httpBackend.expect('GET', acceptRoomEntryRequestURL).respond(400, {error: 'some error'})
+        $httpBackend.expect('PUT', acceptRoomEntryRequestURL).respond(400, {error: 'some error'})
       });
 
       it('defers error', function() {
+        var error;
+
         RoomEntryRequestService.accept({id: 1})
           .catch(function(response) {
-            expect(response.error).toEqual('some error')
+            error = response;
           })
+
+        $httpBackend.flush();
+        expect(error).toEqual('some error')
       });
     });
   });

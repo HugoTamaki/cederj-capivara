@@ -50,10 +50,15 @@ describe('CourseService', function() {
       });
 
       it('defers error', function() {
+        var error;
+
         CourseService.getCourses()
           .catch(function(response) {
-            expect(response.error).toEqual('some error')
+            error = response;
           })
+
+        $httpBackend.flush();
+        expect(error).toEqual('some error');
       });
     });
   });

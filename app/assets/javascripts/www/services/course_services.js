@@ -14,7 +14,7 @@ capivaraServices.service('CourseService', [
             deferred.resolve(response)
           })
           .error(function (response) {
-            deferred.reject(response.errors)
+            deferred.reject(response.error)
           })
 
         return deferred.promise
