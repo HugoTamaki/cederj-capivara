@@ -355,12 +355,12 @@ describe Api::V1::RoomEntryRequestsController do
     end
   end
 
-  describe 'GET #accept' do
+  describe 'PUT #accept' do
     context 'accept invitation' do
       it 'changes invitation status' do
         request.env['HTTP_AUTHORIZATION'] = "Token token=#{api_key.token}"
 
-        get :accept, id: room_entry_request.id, format: :json
+        put :accept, id: room_entry_request.id, format: :json
 
         expected_response = {
           room_entry_request: {
@@ -403,7 +403,7 @@ describe Api::V1::RoomEntryRequestsController do
 
         request.env['HTTP_AUTHORIZATION'] = "Token token=#{api_key.token}"
 
-        get :accept, id: room_entry_request.id, format: :json
+        put :accept, id: room_entry_request.id, format: :json
 
         expect(room.reload.participants).to include(sender)
         expect(room_entry_request.reload.accepted).to eql(true)
@@ -414,7 +414,7 @@ describe Api::V1::RoomEntryRequestsController do
       it 'sends error message' do
         request.env['HTTP_AUTHORIZATION'] = "Token token=#{api_key.token}"
 
-        get :accept, id: 9999, format: :json
+        put :accept, id: 9999, format: :json
 
         expected_response = {
           error: "Couldn't find RoomEntryRequest with 'id'=9999"
@@ -434,7 +434,7 @@ describe Api::V1::RoomEntryRequestsController do
       it 'sends not authorized error' do
         request.env['HTTP_AUTHORIZATION'] = "Token token=#{api_key.token}"
 
-        get :accept, id: room_entry_request.id, format: :json
+        put :accept, id: room_entry_request.id, format: :json
 
         expected_response = {
           error: 'Not authorized'
