@@ -34,12 +34,14 @@ module.exports = function (config) {
     autoWatch: true,
     frameworks: ['jasmine'],
     browsers: ['PhantomJS'],
+    reporters: ['spec'],
     plugins: [
       'karma-phantomjs-launcher',
       'karma-coverage',
       'karma-jasmine',
       'karma-json-fixtures-preprocessor',
-      'karma-ng-html2js-preprocessor'
+      'karma-ng-html2js-preprocessor',
+      'karma-spec-reporter'
     ],
     jsonFixturesPreprocessor: {
       camelizeFilenames: true
