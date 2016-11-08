@@ -29,13 +29,13 @@ describe('UsersService', function() {
     common_disciplines: []
   }
 
-  describe('when getting visitedUser', function() {
+  describe('#getVisitedUser', function() {
     describe('with success', function() {
       beforeEach(function() {
         $httpBackend.whenGET(usersURL).respond(200, visitedUser)
       })
 
-      it('should get visitedUser', function() {
+      it('gets visitedUser', function() {
         deferred.resolve(visitedUser)
         var user
 

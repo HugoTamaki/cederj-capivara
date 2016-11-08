@@ -25,13 +25,13 @@ describe('CourseService', function() {
     }
   ]
 
-  describe('getCourses', function() {
+  describe('#getCourses', function() {
     describe('success', function() {
       beforeEach(function() {
         $httpBackend.expect('GET', coursesURL).respond(200, {courses: responseCourses})
       });
 
-      it('should get courses', function() {
+      it('gets courses', function() {
         var courses
 
         CourseService.getCourses()
@@ -49,7 +49,7 @@ describe('CourseService', function() {
         $httpBackend.expect('GET', coursesURL).respond(400, {error: 'some error'})
       });
 
-      it('should defer error', function() {
+      it('defers error', function() {
         CourseService.getCourses()
           .catch(function(response) {
             expect(response.error).toEqual('some error')

@@ -85,13 +85,13 @@ describe('RoomService', function() {
     }
   ]
 
-  describe('getRooms', function() {
+  describe('#getRooms', function() {
     describe('success', function() {
       beforeEach(function() {
         $httpBackend.expect('GET', roomsURL).respond(200, {rooms: responseRooms})
       });
 
-      it('should get rooms', function() {
+      it('gets rooms', function() {
         var rooms
 
         RoomService.getRooms()
@@ -109,7 +109,7 @@ describe('RoomService', function() {
         $httpBackend.expect('GET', roomsURL).respond(400, {error: 'some error'})
       });
 
-      it('should defer error', function() {
+      it('defers error', function() {
         RoomService.getRooms()
           .catch(function(response) {
             expect(response.error).toEqual('some error')
@@ -118,13 +118,13 @@ describe('RoomService', function() {
     });
   });
 
-  describe('getParticipatingRooms', function() {
+  describe('#getParticipatingRooms', function() {
     describe('success', function() {
       beforeEach(function() {
         $httpBackend.expect('GET', participatingRoomsURL).respond(200, {rooms: responseRooms})
       });
 
-      it('should get participating rooms', function() {
+      it('gets participating rooms', function() {
         var rooms
 
         RoomService.getParticipatingRooms()
@@ -142,7 +142,7 @@ describe('RoomService', function() {
         $httpBackend.expect('GET', participatingRoomsURL).respond(400, {error: 'some error'})
       });
 
-      it('should defer error', function() {
+      it('defers error', function() {
         RoomService.getParticipatingRooms()
           .catch(function(response) {
             expect(response.error).toEqual('some error')
@@ -151,14 +151,14 @@ describe('RoomService', function() {
     });
   });
 
-  describe('getSearch', function() {
+  describe('#getSearch', function() {
     describe('success', function() {
       beforeEach(function() {
         RoomService.term = 'something'
         $httpBackend.expect('GET', getSearchURL).respond(200, {rooms: responseRooms})
       });
 
-      it('should get searched rooms', function() {
+      it('gets searched rooms', function() {
         var rooms
 
         RoomService.getSearch()
@@ -177,7 +177,7 @@ describe('RoomService', function() {
         $httpBackend.expect('GET', getSearchURL).respond(400, {error: 'some error'})
       });
 
-      it('should defer error', function() {
+      it('defers error', function() {
         RoomService.getSearch()
           .catch(function(response) {
             expect(response.error).toEqual('some error')
@@ -186,13 +186,13 @@ describe('RoomService', function() {
     });
   });
 
-  describe('getRoomTopics', function() {
+  describe('#getRoomTopics', function() {
     describe('success', function() {
       beforeEach(function() {
         $httpBackend.expect('GET', topicsURL).respond(200, {topics: responseTopics})
       });
 
-      it('should get room topics', function() {
+      it('gets room topics', function() {
         var topics
 
         RoomService.getRoomTopics({room_id: 1})
@@ -210,7 +210,7 @@ describe('RoomService', function() {
         $httpBackend.expect('GET', topicsURL).respond(400, {error: 'some error'})
       });
 
-      it('should defer error', function() {
+      it('defers error', function() {
         RoomService.getRoomTopics({room_id: 1})
           .catch(function(response) {
             expect(response.error).toEqual('some error')
@@ -219,13 +219,13 @@ describe('RoomService', function() {
     });
   });
 
-  describe('getRoom', function() {
+  describe('#getRoom', function() {
     describe('success', function() {
       beforeEach(function() {
         $httpBackend.expect('GET', roomURL).respond(200, {room: responseRooms[0]})
       });
 
-      it('should get room', function() {
+      it('gets room', function() {
         var topics
 
         RoomService.getRoom({room_id: 1})
@@ -243,7 +243,7 @@ describe('RoomService', function() {
         $httpBackend.expect('GET', roomURL).respond(400, {error: 'some error'})
       });
 
-      it('should defer error', function() {
+      it('defers error', function() {
         RoomService.getRoom({room_id: 1})
           .catch(function(response) {
             expect(response.error).toEqual('some error')
@@ -252,13 +252,13 @@ describe('RoomService', function() {
     });
   });
 
-  describe('createRoom', function() {
+  describe('#createRoom', function() {
     describe('success', function() {
       beforeEach(function() {
         $httpBackend.expect('POST', roomsURL).respond(200, {room: responseRooms[0]})
       });
 
-      it('should save room', function() {
+      it('saves room', function() {
         var room
 
         RoomService.createRoom({name: 'CPW'})
@@ -276,7 +276,7 @@ describe('RoomService', function() {
         $httpBackend.expect('POST', roomsURL).respond(400, {error: 'some error'})
       });
 
-      it('should defer error', function() {
+      it('defers error', function() {
         RoomService.createRoom({name: 'CPW'})
           .catch(function(response) {
             expect(response.error).toEqual('some error')
@@ -285,13 +285,13 @@ describe('RoomService', function() {
     });
   });
 
-  describe('deleteRoom', function() {
+  describe('#deleteRoom', function() {
     describe('success', function() {
       beforeEach(function() {
         $httpBackend.expect('DELETE', roomURL).respond(200, {room: responseRooms[0]})
       });
 
-      it('should delete room', function() {
+      it('deletes room', function() {
         var room
 
         RoomService.deleteRoom({id: 1})
@@ -309,7 +309,7 @@ describe('RoomService', function() {
         $httpBackend.expect('DELETE', roomURL).respond(400, {error: 'some error'})
       });
 
-      it('should defer error', function() {
+      it('defers error', function() {
         RoomService.deleteRoom({id: 1})
           .catch(function(response) {
             expect(response.error).toEqual('some error')
@@ -318,13 +318,13 @@ describe('RoomService', function() {
     });
   });
 
-  describe('createRoomEntryRequest', function() {
+  describe('#createRoomEntryRequest', function() {
     describe('success', function() {
       beforeEach(function() {
         $httpBackend.expect('POST', roomEntryRequestURL).respond(200, {room_entry_request: responseEntryRequest[0]})
       });
 
-      it('should create room entry request', function() {
+      it('creates room entry request', function() {
         var request
 
         RoomService.createRoomEntryRequest({room_id: 1, receiver_id: 2})
@@ -342,7 +342,7 @@ describe('RoomService', function() {
         $httpBackend.expect('POST', roomEntryRequestURL).respond(400, {error: 'some error'})
       });
 
-      it('should defer error', function() {
+      it('defers error', function() {
         RoomService.createRoomEntryRequest({room_id: 1, receiver_id: 2})
           .catch(function(response) {
             expect(response.error).toEqual('some error')
@@ -402,13 +402,13 @@ describe('TopicService', function() {
     }
   ]
 
-  describe('getTopic', function() {
+  describe('#getTopic', function() {
     describe('success', function() {
       beforeEach(function() {
         $httpBackend.expect('GET', topicURL).respond(200, {topic: responseTopics[0]})
       });
 
-      it('should get topic', function() {
+      it('gets topic', function() {
         var topic
 
         TopicService.getTopic({room_id: 1, topic_id: 1})
@@ -426,7 +426,7 @@ describe('TopicService', function() {
         $httpBackend.expect('GET', topicURL).respond(400, {error: 'some error'})
       });
 
-      it('should defer error', function() {
+      it('defers error', function() {
         TopicService.getTopic({room_id: 1, topic_id: 1})
           .catch(function(response) {
             expect(response.error).toEqual('some error')
@@ -435,13 +435,13 @@ describe('TopicService', function() {
     });
   });
 
-  describe('createTopic', function() {
+  describe('#createTopic', function() {
     describe('success', function() {
       beforeEach(function() {
         $httpBackend.expect('POST', topicsURL).respond(200, {topic: responseTopics[0]})
       });
 
-      it('should create topic', function() {
+      it('creates topic', function() {
         var topic, params;
 
         params = {
@@ -465,7 +465,7 @@ describe('TopicService', function() {
         $httpBackend.expect('GET', topicsURL).respond(400, {error: 'some error'})
       });
 
-      it('should defer error', function() {
+      it('defers error', function() {
         TopicService.createTopic({room_id: 1})
           .catch(function(response) {
             expect(response.error).toEqual('some error')
@@ -474,13 +474,13 @@ describe('TopicService', function() {
     });
   });
 
-  describe('deleteTopic', function() {
+  describe('#deleteTopic', function() {
     describe('success', function() {
       beforeEach(function() {
         $httpBackend.expect('DELETE', topicURL).respond(200, {topic: responseTopics[0]})
       });
 
-      it('should delete topic', function() {
+      it('deletes topic', function() {
         var topic
 
         TopicService.deleteTopic({room_id: 1, topic_id: 1})
@@ -498,7 +498,7 @@ describe('TopicService', function() {
         $httpBackend.expect('DELETE', topicURL).respond(400, {error: 'some error'})
       });
 
-      it('should defer error', function() {
+      it('defers error', function() {
         TopicService.deleteTopic({room_id: 1, topic_id: 1})
           .catch(function(response) {
             expect(response.error).toEqual('some error')
@@ -553,13 +553,13 @@ describe('MessageService', function() {
     }
   ]
 
-  describe('getMessages', function() {
+  describe('#getMessages', function() {
     describe('success', function() {
       beforeEach(function() {
         $httpBackend.expect('GET', messagesURL).respond(200, {messages: responseMessages})
       });
 
-      it('should get messages', function() {
+      it('gets messages', function() {
         var messages
 
         MessageService.getMessages({room_id: 1, topic_id: 1})
@@ -577,7 +577,7 @@ describe('MessageService', function() {
         $httpBackend.expect('GET', messagesURL).respond(400, {error: 'some error'})
       });
 
-      it('should defer error', function() {
+      it('defers error', function() {
         MessageService.getMessages({room_id: 1, topic_id: 1})
           .catch(function(response) {
             expect(response.error).toEqual('some error')
@@ -586,13 +586,13 @@ describe('MessageService', function() {
     });
   });
 
-  describe('createMessage', function() {
+  describe('#createMessage', function() {
     describe('success', function() {
       beforeEach(function() {
         $httpBackend.expect('POST', messagesURL).respond(200, {message: responseMessages[0]})
       });
 
-      it('should create message', function() {
+      it('creates message', function() {
         var message, params;
 
         params = {
@@ -616,7 +616,7 @@ describe('MessageService', function() {
         $httpBackend.expect('GET', messagesURL).respond(400, {error: 'some error'})
       });
 
-      it('should defer error', function() {
+      it('defers error', function() {
         MessageService.createMessage({room_id: 1})
           .catch(function(response) {
             expect(response.error).toEqual('some error')
@@ -675,13 +675,13 @@ describe('RoomEntryRequestService', function() {
     }
   ]
 
-  describe('getRoomEntryRequests', function() {
+  describe('#getRoomEntryRequests', function() {
     describe('success', function() {
       beforeEach(function() {
         $httpBackend.expect('GET', roomEntryRequestsURL).respond(200, {room_entry_requests: responseRoomEntryRequests})
       });
 
-      it('should get room entry requests', function() {
+      it('gets room entry requests', function() {
         var roomEntryRequests;
 
         RoomEntryRequestService.getRoomEntryRequests()
@@ -699,7 +699,7 @@ describe('RoomEntryRequestService', function() {
         $httpBackend.expect('GET', roomEntryRequestsURL).respond(400, {error: 'some error'})
       });
 
-      it('should defer error', function() {
+      it('defers error', function() {
         RoomEntryRequestService.getRoomEntryRequests()
           .catch(function(response) {
             expect(response.error).toEqual('some error')
@@ -708,13 +708,13 @@ describe('RoomEntryRequestService', function() {
     });
   });
 
-  describe('getSentRoomEntryRequests', function() {
+  describe('#getSentRoomEntryRequests', function() {
     describe('success', function() {
       beforeEach(function() {
         $httpBackend.expect('GET', sentRoomEntryRequestsURL).respond(200, {room_entry_requests: responseRoomEntryRequests})
       });
 
-      it('should get sent room entry requests', function() {
+      it('gets sent room entry requests', function() {
         var roomEntryRequests;
 
         RoomEntryRequestService.getSentRoomEntryRequests({room_id: 1})
@@ -732,7 +732,7 @@ describe('RoomEntryRequestService', function() {
         $httpBackend.expect('GET', sentRoomEntryRequestsURL).respond(400, {error: 'some error'})
       });
 
-      it('should defer error', function() {
+      it('defers error', function() {
         RoomEntryRequestService.getSentRoomEntryRequests({room_id: 1})
           .catch(function(response) {
             expect(response.error).toEqual('some error')
@@ -741,13 +741,13 @@ describe('RoomEntryRequestService', function() {
     });
   });
 
-  describe('accept', function() {
+  describe('#accept', function() {
     describe('success', function() {
       beforeEach(function() {
         $httpBackend.expect('GET', acceptRoomEntryRequestURL).respond(200, {room_entry_request: responseRoomEntryRequests[0]})
       });
 
-      it('should get sent room entry requests', function() {
+      it('gets sent room entry requests', function() {
         var roomEntryRequest;
 
         RoomEntryRequestService.accept({id: 1})
@@ -765,7 +765,7 @@ describe('RoomEntryRequestService', function() {
         $httpBackend.expect('GET', acceptRoomEntryRequestURL).respond(400, {error: 'some error'})
       });
 
-      it('should defer error', function() {
+      it('defers error', function() {
         RoomEntryRequestService.accept({id: 1})
           .catch(function(response) {
             expect(response.error).toEqual('some error')
