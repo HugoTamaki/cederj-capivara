@@ -30,6 +30,8 @@ capivara.config([
 
     $locationProvider.html5Mode(true)
 
+    $urlRouterProvider.otherwise('/profile')
+
     $stateProvider
       .state('login', {
         url: '/login',
@@ -85,7 +87,7 @@ capivara.config([
       })
 
       .state('room', {
-        url: 'room/:room_id/topics',
+        url: '/room/:room_id/topics',
         templateUrl: 'forum/room.html',
         controller: 'RoomCtrl',
         data: {
@@ -94,7 +96,7 @@ capivara.config([
       })
 
       .state('new_room', {
-        url: 'room/new_room',
+        url: '/room/new_room',
         templateUrl: 'forum/new_room.html',
         controller: 'NewRoomCtrl',
         data: {
@@ -103,7 +105,7 @@ capivara.config([
       })
 
       .state('new_topic', {
-        url: 'room/:room_id/new_topic',
+        url: '/room/:room_id/new_topic',
         templateUrl: 'forum/new_topic.html',
         controller: 'NewTopicCtrl',
         data: {
@@ -112,7 +114,7 @@ capivara.config([
       })
 
       .state('topic', {
-        url: 'room/:room_id/topic/:topic_id/messages',
+        url: '/room/:room_id/topic/:topic_id/messages',
         templateUrl: 'forum/topic.html',
         controller: 'TopicCtrl',
         data: {
@@ -133,7 +135,7 @@ capivara.config([
   }
 ])
 
-.constant(
+capivara.constant(
   'CONST', {
     'RESPONSE_STATUS': {
       'UNAUTHORIZED': 401,
@@ -145,3 +147,47 @@ capivara.config([
     }
   }
 )
+
+capivara.run([
+  'User',
+
+  '$state',
+  '$location',
+  '$rootScope',
+  'StartupService',
+
+  function (User,
+
+            $state,
+            $location,
+            $rootScope,
+            StartupService) {
+
+    var appStarted = 0; // flag to redirect only once when app is started
+    $rootScope.$on('$stateChangeStart',
+    function(event) {
+      if(appStarted) return;
+      appStarted = 1;
+      event.preventDefault()
+      moment.locale('pt-BR')
+
+      StartupService.init()
+
+      _(StartupService.startTasks).each(function (task) {
+        StartupService.executeTask(task)
+      })
+    })
+
+    if (!User.logged) {
+      $state.go('login')
+    }
+
+    $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
+      var requireLogin = toState.data.requireLogin
+
+      if (requireLogin && !User.logged) {
+        $location.path('login')
+      }
+    })
+  }
+])
