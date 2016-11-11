@@ -51,3 +51,21 @@ describe('CacheService', function() {
     });
   });
 });
+
+describe('LabelService', function() {
+  var LabelService;
+
+  beforeEach(module('capivara'));
+
+  beforeEach(inject(function(_LabelService_) {
+    LabelService = _LabelService_;
+  }));
+
+  describe('#error', function() {
+    describe('failed login', function() {
+      it('shows Email ou senha errados.', function() {
+        expect(LabelService.error.failedLogin).toEqual('Email ou senha errados.');
+      });
+    });
+  });
+});

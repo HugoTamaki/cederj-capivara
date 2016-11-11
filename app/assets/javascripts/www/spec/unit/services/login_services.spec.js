@@ -65,10 +65,14 @@ describe('User', function() {
 
     beforeEach(function() {
       options = {}
+      spyOn(CacheService, 'get').and.returnValue(null)
+      User.init();
     })
 
     describe('success', function() {
-      it('calls users post', function() {
+      beforeEach(function() {
+        spyOn(CacheService, 'set')
+
         $httpBackend.expect('POST', usersURL).respond(200, {
           user: {
             id: 1,
@@ -85,24 +89,6 @@ describe('User', function() {
       })
 
       it('sets user data to User', function() {
-        $httpBackend.expect('POST', usersURL).respond(200, {
-          user: {
-            id: 1,
-            first_name: 'Fulano',
-            last_name: 'da Silva',
-            email: 'fulano@email.com',
-            room_ids: []
-          },
-          api_key: "0b6d7646caa040be8ac65b8969ba9e08:8356ec5c67b5436d8df57324b8e70cfd"
-        })
-
-        expect(User.first_name).toEqual(undefined)
-        expect(User.last_name).toEqual(undefined)
-        expect(User.email).toEqual(undefined)
-        expect(User.token).toEqual(undefined)
-        expect(User.room_ids).toEqual(undefined)
-        User.signUp(options)
-        $httpBackend.flush()
         expect(User.first_name).toEqual('Fulano')
         expect(User.last_name).toEqual('da Silva')
         expect(User.email).toEqual('fulano@email.com')
@@ -111,38 +97,10 @@ describe('User', function() {
       })
 
       it('sets User as logged', function() {
-        $httpBackend.expect('POST', usersURL).respond(200, {
-          user: {
-            id: 1,
-            first_name: 'Fulano',
-            last_name: 'da Silva',
-            email: 'fulano@email.com',
-            room_ids: []
-          },
-          api_key: "0b6d7646caa040be8ac65b8969ba9e08:8356ec5c67b5436d8df57324b8e70cfd"
-        })
-
-        expect(User.logged).toEqual(undefined)
-        User.signUp(options)
-        $httpBackend.flush()
         expect(User.logged).toEqual(true)
       })
 
       it('calls CacheService set', function() {
-        $httpBackend.expect('POST', usersURL).respond(200, {
-          user: {
-            id: 1,
-            first_name: 'Fulano',
-            last_name: 'da Silva',
-            email: 'fulano@email.com',
-            room_ids: []
-          },
-          api_key: "0b6d7646caa040be8ac65b8969ba9e08:8356ec5c67b5436d8df57324b8e70cfd"
-        })
-
-        spyOn(CacheService, 'set')
-        User.signUp(options)
-        $httpBackend.flush()
         expect(CacheService.set).toHaveBeenCalled()
       })
     })

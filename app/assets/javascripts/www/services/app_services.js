@@ -26,7 +26,7 @@ capivaraServices.service('CacheService', [
 .service('LabelService', [
 
   function () {
-    var LabelService = {
+    return {
       error: {
         failedLogin: 'Email ou senha errados.',
         somethingWrong: 'Alguma coisa aconteceu, tente novamente mais tarde.',
@@ -52,8 +52,6 @@ capivaraServices.service('CacheService', [
         }
       }
     }
-
-    return LabelService
   }
 ])
 
