@@ -29,15 +29,11 @@ describe('User', function() {
 
   describe('#init', function() {
     beforeEach(function() {
+      User.logged = undefined;
       spyOn(CacheService, 'get').and.returnValue(userData)
     })
 
     it('sets data to service', function() {
-      expect(User.first_name).toEqual(undefined)
-      expect(User.last_name).toEqual(undefined)
-      expect(User.email).toEqual(undefined)
-      expect(User.token).toEqual(undefined)
-      expect(User.room_ids).toEqual(undefined)
       User.init()
       expect(User.first_name).toEqual('Fulano')
       expect(User.last_name).toEqual('da Silva')
@@ -65,8 +61,9 @@ describe('User', function() {
 
     beforeEach(function() {
       options = {}
-      spyOn(CacheService, 'get').and.returnValue(null)
+      spyOn(CacheService, 'get').and.returnValue(null);
       User.init();
+      User.logged = undefined;
     })
 
     describe('success', function() {
