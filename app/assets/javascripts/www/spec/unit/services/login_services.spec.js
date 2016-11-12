@@ -25,6 +25,7 @@ describe('User', function() {
   }))
 
   var usersURL = 'http://localhost:3000/api/v1/users/'
+  var signInURL = 'http://localhost:3000/api/v1/users/sign_in'
   var signOutURL = 'http://localhost:3000/api/v1/users/sign_out'
 
   describe('#init', function() {
@@ -108,6 +109,64 @@ describe('User', function() {
 
         expect(User.logged).toEqual(undefined)
         User.signUp(options)
+        $httpBackend.flush()
+        expect(User.logged).toEqual(undefined)
+      })
+    })
+  })
+
+  describe('#signIn', function() {
+    var options
+
+    beforeEach(function() {
+      options = {}
+      spyOn(CacheService, 'get').and.returnValue(null);
+      User.init();
+      User.logged = undefined;
+    })
+
+    describe('success', function() {
+      beforeEach(function() {
+        spyOn(CacheService, 'set')
+
+        $httpBackend.expect('POST', signInURL).respond(200, {
+          user: {
+            id: 1,
+            first_name: 'Fulano',
+            last_name: 'da Silva',
+            email: 'fulano@email.com',
+            room_ids: []
+          },
+          api_key: "0b6d7646caa040be8ac65b8969ba9e08:8356ec5c67b5436d8df57324b8e70cfd"
+        })
+
+        User.signIn(options)
+        $httpBackend.flush()
+      })
+
+      it('sets user data to User', function() {
+        expect(User.first_name).toEqual('Fulano')
+        expect(User.last_name).toEqual('da Silva')
+        expect(User.email).toEqual('fulano@email.com')
+        expect(User.token).toEqual("0b6d7646caa040be8ac65b8969ba9e08:8356ec5c67b5436d8df57324b8e70cfd")
+        expect(User.room_ids).toEqual([])
+      })
+
+      it('sets User as logged', function() {
+        expect(User.logged).toEqual(true)
+      })
+
+      it('calls CacheService set', function() {
+        expect(CacheService.set).toHaveBeenCalled()
+      })
+    })
+
+    describe('failure', function() {
+      it('does not set User as logged', function() {
+        $httpBackend.expect('POST', signInURL).respond(400, {})
+
+        expect(User.logged).toEqual(undefined)
+        User.signIn(options)
         $httpBackend.flush()
         expect(User.logged).toEqual(undefined)
       })

@@ -66,4 +66,16 @@ describe('LoginCtrl', function() {
       });
     });
   });
+
+  describe('#goToSignUp', function() {
+    beforeEach(function() {
+      spyOn($state, 'go');
+      loadController();
+      $scope.goToSignUp();
+    });
+
+    it('sends to signUp state', function() {
+      expect($state.go).toHaveBeenCalledWith('sign_up');
+    });
+  });
 });
