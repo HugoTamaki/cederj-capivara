@@ -186,11 +186,11 @@ describe('User', function() {
       })
 
       it('sets user on cache with null', function() {
-        spyOn(CacheService, 'set')
+        spyOn(CacheService, 'remove')
         $httpBackend.expect('DELETE', signOutURL).respond(200, {})
         User.signOut()
         $httpBackend.flush()
-        expect(CacheService.set).toHaveBeenCalledWith('user', null)
+        expect(CacheService.remove).toHaveBeenCalledWith('user')
       })
 
       it('sets User as not logged', function() {

@@ -64,7 +64,7 @@ capivaraServices.service('User', [
 
         $http.delete(url)
           .success(function (response) {
-            CacheService.set('user', null)
+            CacheService.remove('user')
             self.logged = false
             deferred.resolve()
           })
