@@ -62,18 +62,7 @@ capivara.controller('ForumCtrl', [
         usSpinnerService.stop('participating-rooms')
       })
 
-    RoomService.getSearch()
-      .then(function (response) {
-        $scope.searchedRooms = response.rooms.map(function (data) {
-          return new Room(data)
-        })
-      })
-      .catch(function () {
-        $scope.error = LabelService.error.somethingWrong
-      })
-      .finally(function () {
-        usSpinnerService.stop('search-rooms')
-      })
+    $scope.searchedRooms = [];
 
     $scope.accept = function (request) {
       usSpinnerService.spin('entry-requests')
