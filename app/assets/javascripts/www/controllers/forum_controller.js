@@ -73,7 +73,6 @@ capivara.controller('ForumCtrl', [
           return RoomEntryRequestService.getRoomEntryRequests()
         })
         .then(function (response) {
-          usSpinnerService.stop('entry-requests')
           $scope.roomEntryRequests = _(response.room_entry_requests).map(function (data) {
             return new RoomEntryRequest(data)
           })

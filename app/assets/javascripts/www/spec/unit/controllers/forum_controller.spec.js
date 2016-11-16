@@ -7,6 +7,7 @@ describe('ForumCtrl', function() {
   var roomEntryRequestsURL = 'http://localhost:3000/api/v1/room_entry_requests';
   var roomsURL = 'http://localhost:3000/api/v1/rooms';
   var participatingRoomsURL = 'http://localhost:3000/api/v1/rooms/participating_rooms';
+  var acceptURL = 'http://localhost:3000/api/v1/room_entry_requests/1/accept'
 
   var roomEntryRequestsResponse = {
     room_entry_requests: [
@@ -137,6 +138,56 @@ describe('ForumCtrl', function() {
 
     it('gets participatingRooms', function() {
       expect($scope.participatingRooms.toString()).toEqual(participatingRooms.toString());
+    });
+  });
+
+  describe('#accept', function() {
+    var request;
+
+    beforeEach(function() {
+      request = roomEntryRequestsResponse.room_entry_requests[0];
+      $httpBackend.expect("GET", roomEntryRequestsURL).respond(200, roomEntryRequestsResponse);
+      $httpBackend.expect("GET", roomsURL).respond(200, roomsResponse);
+      $httpBackend.expect("GET", participatingRoomsURL).respond(200, roomsResponse);
+      loadController();
+      $httpBackend.flush();
+    });
+
+    describe('success', function() {
+      beforeEach(function() {
+        spyOn(usSpinnerService, 'spin');
+        spyOn(usSpinnerService, 'stop');
+        $httpBackend.expect("PUT", acceptURL).respond(200, {});
+        $httpBackend.expect("GET", roomEntryRequestsURL).respond(200, roomEntryRequestsResponse);
+        $scope.accept(request);
+        $httpBackend.flush();
+      });
+
+      it('spins request spinner', function() {
+        expect(usSpinnerService.spin).toHaveBeenCalledWith('entry-requests');
+      });
+
+      it('sets notice on scope', function() {
+        expect($scope.notice).toEqual('Pedido aceito com sucesso.');
+      });
+
+      it('stops request spinner', function() {
+        expect(usSpinnerService.stop).toHaveBeenCalledWith('entry-requests');
+      });
+    });
+
+    describe('failure', function() {
+      beforeEach(function() {
+        spyOn(usSpinnerService, 'spin');
+        spyOn(usSpinnerService, 'stop');
+        $httpBackend.expect("PUT", acceptURL).respond(400, {});
+        $scope.accept(request);
+        $httpBackend.flush();
+      });
+
+      it('sets error on scope', function() {
+        expect($scope.error).toEqual('Alguma coisa aconteceu, tente novamente mais tarde.');
+      });
     });
   });
 });
