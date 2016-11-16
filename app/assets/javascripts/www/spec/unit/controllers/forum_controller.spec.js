@@ -190,4 +190,46 @@ describe('ForumCtrl', function() {
       });
     });
   });
+
+  describe('#goToRoom', function() {
+    var room = roomsResponse.rooms[0];
+
+    beforeEach(function() {
+      spyOn($state, 'go');
+      $httpBackend.expect("GET", roomEntryRequestsURL).respond(200, roomEntryRequestsResponse);
+      $httpBackend.expect("GET", roomsURL).respond(200, roomsResponse);
+      $httpBackend.expect("GET", participatingRoomsURL).respond(200, roomsResponse);
+      loadController();
+      $httpBackend.flush();
+      $scope.goToRoom(room);
+    });
+
+    it('cleans RoomService.term', function() {
+      expect(RoomService.term).toEqual('');
+    });
+
+    it('calls room state', function() {
+      expect($state.go).toHaveBeenCalledWith('room', {room_id: room.id});
+    });
+  });
+
+  describe('#newRoom', function() {
+    beforeEach(function() {
+      spyOn($state, 'go');
+      $httpBackend.expect("GET", roomEntryRequestsURL).respond(200, roomEntryRequestsResponse);
+      $httpBackend.expect("GET", roomsURL).respond(200, roomsResponse);
+      $httpBackend.expect("GET", participatingRoomsURL).respond(200, roomsResponse);
+      loadController();
+      $httpBackend.flush();
+      $scope.newRoom();
+    });
+
+    it('cleans RoomService.term', function() {
+      expect(RoomService.term).toEqual('');
+    });
+
+    it('calls new_room state', function() {
+      expect($state.go).toHaveBeenCalledWith('new_room');
+    });
+  });
 });
