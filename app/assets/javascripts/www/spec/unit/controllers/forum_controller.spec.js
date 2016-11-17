@@ -2,12 +2,14 @@
 
 describe('ForumCtrl', function() {
   var $controller, $state, $scope, $rootScope, $httpBackend, Room, User, usSpinnerService, RoomService,
-      RoomEntryRequestService, RoomEntryRequest, LabelService;
+      RoomEntryRequestService, RoomEntryRequest, LabelService, roomEntryRequests, rooms, participatingRooms;
 
-  var roomEntryRequestsURL = 'http://localhost:3000/api/v1/room_entry_requests';
   var roomsURL = 'http://localhost:3000/api/v1/rooms';
+  var acceptURL = 'http://localhost:3000/api/v1/room_entry_requests/1/accept';
+  var searchURL = 'http://localhost:3000/api/v1/rooms/search?term=term';
+  var deleteRoomURL = 'http://localhost:3000/api/v1/rooms/1';
+  var roomEntryRequestsURL = 'http://localhost:3000/api/v1/room_entry_requests';
   var participatingRoomsURL = 'http://localhost:3000/api/v1/rooms/participating_rooms';
-  var acceptURL = 'http://localhost:3000/api/v1/room_entry_requests/1/accept'
 
   var roomEntryRequestsResponse = {
     room_entry_requests: [
@@ -77,7 +79,20 @@ describe('ForumCtrl', function() {
     LabelService = _LabelService_;
     $httpBackend = _$httpBackend_;
     $httpBackend.whenGET(/\.html$/).respond('');
+
+    roomEntryRequests = [
+      new RoomEntryRequest(roomEntryRequestsResponse.room_entry_requests[0])
+    ];
+
+    rooms = [
+      new Room(roomsResponse.rooms[0])
+    ]
+
+    participatingRooms = [
+      new Room(roomsResponse.rooms[0])
+    ]
   }));
+
 
   function loadController() {
     $controller('ForumCtrl', { $scope: $scope });
@@ -95,22 +110,6 @@ describe('ForumCtrl', function() {
   })
 
   describe('initializing controller', function() {
-    var roomEntryRequests, rooms, participatingRooms;
-
-    beforeEach(function() {
-      roomEntryRequests = [
-        new RoomEntryRequest(roomEntryRequestsResponse.room_entry_requests[0])
-      ];
-
-      rooms = [
-        new Room(roomsResponse.rooms[0])
-      ]
-
-      participatingRooms = [
-        new Room(roomsResponse.rooms[0])
-      ]
-    });
-
     it('defines scope user', function() {
       expect($scope.user).toBeDefined();
     });
@@ -185,11 +184,6 @@ describe('ForumCtrl', function() {
     var room = roomsResponse.rooms[0];
 
     beforeEach(function() {
-      $httpBackend.expect("GET", roomEntryRequestsURL).respond(200, roomEntryRequestsResponse);
-      $httpBackend.expect("GET", roomsURL).respond(200, roomsResponse);
-      $httpBackend.expect("GET", participatingRoomsURL).respond(200, roomsResponse);
-      loadController();
-      $httpBackend.flush();
       $scope.goToRoom(room);
     });
 
@@ -204,11 +198,6 @@ describe('ForumCtrl', function() {
 
   describe('#newRoom', function() {
     beforeEach(function() {
-      $httpBackend.expect("GET", roomEntryRequestsURL).respond(200, roomEntryRequestsResponse);
-      $httpBackend.expect("GET", roomsURL).respond(200, roomsResponse);
-      $httpBackend.expect("GET", participatingRoomsURL).respond(200, roomsResponse);
-      loadController();
-      $httpBackend.flush();
       $scope.newRoom();
     });
 
@@ -218,6 +207,81 @@ describe('ForumCtrl', function() {
 
     it('calls new_room state', function() {
       expect($state.go).toHaveBeenCalledWith('new_room');
+    });
+  });
+
+  describe('#search', function() {
+    describe('success', function() {
+      beforeEach(function() {
+        RoomService.term = 'term';
+        $httpBackend.expect("GET", searchURL).respond(200, roomsResponse);
+        $scope.search()
+        $httpBackend.flush();
+      });
+
+      it('spins search-room spinner', function() {
+        expect(usSpinnerService.spin).toHaveBeenCalled();
+      });
+
+      it('fills searchedRooms', function() {
+        expect($scope.searchedRooms.toString()).toEqual(rooms.toString());
+      });
+
+      it('stops search-room spinner', function() {
+        expect(usSpinnerService.stop).toHaveBeenCalled();
+      });
+    });
+
+    describe('failure', function() {
+      beforeEach(function() {
+        RoomService.term = 'term';
+        $httpBackend.expect("GET", searchURL).respond(400, {});
+        $scope.search()
+        $httpBackend.flush();
+      });
+
+      it('fills error message', function() {
+        expect($scope.error).toEqual('Alguma coisa aconteceu, tente novamente mais tarde.');
+      });
+    });
+  });
+
+  describe('#deleteRoom', function() {
+    describe('success', function() {
+      beforeEach(function() {
+        $httpBackend.expect("DELETE", deleteRoomURL).respond(200, roomsResponse.rooms[0]);
+        $httpBackend.expect("GET", roomsURL).respond(200, roomsResponse);
+        $scope.deleteRoom({id: 1});
+        $httpBackend.flush();
+      });
+
+      it('spins my-rooms spinner', function() {
+        expect(usSpinnerService.spin).toHaveBeenCalledWith('my-rooms');
+      });
+
+      it('sets rooms to scope', function() {
+        expect($scope.rooms.toString()).toEqual(rooms.toString());
+      });
+
+      it('sets notice', function() {
+        expect($scope.notice).toEqual('Sala de discussão apagada com sucesso.');
+      });
+
+      it('stops my-rooms spinner', function() {
+        expect(usSpinnerService.stop).toHaveBeenCalledWith('my-rooms');
+      });
+    });
+
+    describe('failure', function() {
+      beforeEach(function() {
+        $httpBackend.expect("DELETE", deleteRoomURL).respond(400, {});
+        $scope.deleteRoom({id: 1});
+        $httpBackend.flush();
+      });
+
+      it('fills error message', function() {
+        expect($scope.error).toEqual('Alguma coisa aconteceu, tente novamente mais tarde.');
+      });
     });
   });
 });
