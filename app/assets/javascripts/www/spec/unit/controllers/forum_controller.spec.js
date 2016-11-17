@@ -83,18 +83,21 @@ describe('ForumCtrl', function() {
     $controller('ForumCtrl', { $scope: $scope });
   }
 
+  beforeEach(function() {
+    spyOn(usSpinnerService, 'spin');
+    spyOn(usSpinnerService, 'stop');
+    spyOn($state, 'go');
+    $httpBackend.expect("GET", roomEntryRequestsURL).respond(200, roomEntryRequestsResponse);
+    $httpBackend.expect("GET", roomsURL).respond(200, roomsResponse);
+    $httpBackend.expect("GET", participatingRoomsURL).respond(200, roomsResponse);
+    loadController();
+    $httpBackend.flush();
+  })
+
   describe('initializing controller', function() {
     var roomEntryRequests, rooms, participatingRooms;
 
     beforeEach(function() {
-      spyOn(usSpinnerService, 'spin');
-      spyOn(usSpinnerService, 'stop');
-      $httpBackend.expect("GET", roomEntryRequestsURL).respond(200, roomEntryRequestsResponse);
-      $httpBackend.expect("GET", roomsURL).respond(200, roomsResponse);
-      $httpBackend.expect("GET", participatingRoomsURL).respond(200, roomsResponse);
-      loadController();
-      $httpBackend.flush();
-
       roomEntryRequests = [
         new RoomEntryRequest(roomEntryRequestsResponse.room_entry_requests[0])
       ];
@@ -142,21 +145,10 @@ describe('ForumCtrl', function() {
   });
 
   describe('#accept', function() {
-    var request;
-
-    beforeEach(function() {
-      request = roomEntryRequestsResponse.room_entry_requests[0];
-      $httpBackend.expect("GET", roomEntryRequestsURL).respond(200, roomEntryRequestsResponse);
-      $httpBackend.expect("GET", roomsURL).respond(200, roomsResponse);
-      $httpBackend.expect("GET", participatingRoomsURL).respond(200, roomsResponse);
-      loadController();
-      $httpBackend.flush();
-    });
+    var request = roomEntryRequestsResponse.room_entry_requests[0];
 
     describe('success', function() {
       beforeEach(function() {
-        spyOn(usSpinnerService, 'spin');
-        spyOn(usSpinnerService, 'stop');
         $httpBackend.expect("PUT", acceptURL).respond(200, {});
         $httpBackend.expect("GET", roomEntryRequestsURL).respond(200, roomEntryRequestsResponse);
         $scope.accept(request);
@@ -178,8 +170,6 @@ describe('ForumCtrl', function() {
 
     describe('failure', function() {
       beforeEach(function() {
-        spyOn(usSpinnerService, 'spin');
-        spyOn(usSpinnerService, 'stop');
         $httpBackend.expect("PUT", acceptURL).respond(400, {});
         $scope.accept(request);
         $httpBackend.flush();
@@ -195,7 +185,6 @@ describe('ForumCtrl', function() {
     var room = roomsResponse.rooms[0];
 
     beforeEach(function() {
-      spyOn($state, 'go');
       $httpBackend.expect("GET", roomEntryRequestsURL).respond(200, roomEntryRequestsResponse);
       $httpBackend.expect("GET", roomsURL).respond(200, roomsResponse);
       $httpBackend.expect("GET", participatingRoomsURL).respond(200, roomsResponse);
@@ -215,7 +204,6 @@ describe('ForumCtrl', function() {
 
   describe('#newRoom', function() {
     beforeEach(function() {
-      spyOn($state, 'go');
       $httpBackend.expect("GET", roomEntryRequestsURL).respond(200, roomEntryRequestsResponse);
       $httpBackend.expect("GET", roomsURL).respond(200, roomsResponse);
       $httpBackend.expect("GET", participatingRoomsURL).respond(200, roomsResponse);
