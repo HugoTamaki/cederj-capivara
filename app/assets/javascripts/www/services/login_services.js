@@ -12,6 +12,8 @@ capivaraServices.service('User', [
         extendAndCache
 
     User = {
+      disciplines: [],
+
       init: function () {
         var self = this,
             data

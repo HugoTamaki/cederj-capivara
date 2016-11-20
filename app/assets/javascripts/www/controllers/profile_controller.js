@@ -10,13 +10,13 @@ capivara.controller('ProfileCtrl', [
     $scope.user = User
 
     $scope.setStatus = function (status) {
-      if (status === 'incomplete') {
-        return 'a fazer'
-      } else if (status === 'doing') {
-        return 'fazendo'
-      } else {
-        return 'completo'
+      var statusTranslation = {
+        'incomplete': 'a fazer',
+        'doing': 'fazendo',
+        'complete': 'completo'
       }
+
+      return statusTranslation[status];
     }
   }
 ])
