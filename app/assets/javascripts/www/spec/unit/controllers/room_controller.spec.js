@@ -155,4 +155,86 @@ describe('Room', function() {
       });
     });
   });
+
+  describe('NewRoomCtrl', function() {
+    var $controller, $state, $stateParams, $scope, $rootScope, $httpBackend, usSpinnerService, User, room;
+
+    beforeEach(module('capivara'));
+
+    var roomURL = 'http://localhost:3000/api/v1/rooms';
+
+    beforeEach(inject(function(_$controller_, _$state_, _$stateParams_, _$rootScope_, _$httpBackend_, _usSpinnerService_, _User_) {
+      $state = _$state_;
+      $stateParams = _$stateParams_;
+      $controller = _$controller_;
+      $rootScope = _$rootScope_;
+      $scope = $rootScope.$new();
+      $httpBackend = _$httpBackend_;
+      usSpinnerService = _usSpinnerService_;
+      User = _User_;
+
+      $httpBackend.whenGET(/\.html$/).respond('');
+    }));
+
+    var roomResponse = {
+      room: {
+        id: 3,
+        name: 'PDA',
+        public: false,
+        user: {
+          id: 1,
+          first_name: 'John',
+          last_name: 'Doe',
+          email: 'johndoe@email.com'
+        },
+        created_at: Date.now(),
+        updated_at: Date.now()
+      }
+    }
+
+    room = roomResponse.room;
+
+    function loadController() {
+      $controller('NewRoomCtrl', { $scope: $scope });
+    }
+
+    describe('#createRoom', function() {
+      describe('success', function() {
+        beforeEach(function() {
+          spyOn(usSpinnerService, 'spin');
+          spyOn(usSpinnerService, 'stop');
+          spyOn(User, 'updateRoomIds');
+          loadController();
+          $httpBackend.expect("POST", roomURL).respond(200, roomResponse);
+          $scope.createRoom(room);
+          $httpBackend.flush();
+        });
+
+        it('spins loader', function() {
+          expect(usSpinnerService.spin).toHaveBeenCalledWith('create-room');
+        });
+
+        it('updates User roomIds', function() {
+          expect(User.updateRoomIds).toHaveBeenCalled();
+        });
+
+        it('stops spinner', function() {
+          expect(usSpinnerService.stop).toHaveBeenCalled();
+        });
+      });
+
+      describe('failure', function() {
+        beforeEach(function() {
+          loadController();
+          $httpBackend.expect("POST", roomURL).respond(400, roomResponse);
+          $scope.createRoom(room);
+          $httpBackend.flush();
+        });
+
+        it('sets error message', function() {
+          expect($scope.error).toEqual('Alguma coisa aconteceu, tente novamente mais tarde.');
+        });
+      });
+    });
+  });
 });
