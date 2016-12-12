@@ -24,7 +24,7 @@ describe('User', function() {
     }
   }))
 
-  var usersURL = 'http://localhost:3000/api/v1/users/'
+  var usersURL = 'http://localhost:3000/api/v1/users'
   var signInURL = 'http://localhost:3000/api/v1/users/sign_in'
   var signOutURL = 'http://localhost:3000/api/v1/users/sign_out'
 

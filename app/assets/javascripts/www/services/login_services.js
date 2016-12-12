@@ -26,7 +26,7 @@ capivaraServices.service('User', [
 
       signUp: function (options) {
         var deferred = $q.defer(),
-            url = Conf.baseUrl + 'users/',
+            url = Conf.baseUrl + 'users',
             self = this,
             error
 
